@@ -3,40 +3,151 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Free online percentage calculator. Calculate percentages, marks percentage, increase and decrease quickly on mobile.">
+
+  <meta name="description" content="QuickPercent - free online percentage and discount calculator. Fast, simple and accurate calculators for everyday use.">
+
   <meta name="theme-color" content="#2563eb">
-  <title>QuickPercent - Percentage Calculator | Calculate Percentage Online</title>
+
+  <title>QuickPercent - Percentage & Discount Calculator</title>
+
   <style>
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033}
-    header{background:#2563eb;color:white;padding:28px 18px;text-align:center}
-    header h1{margin:0 0 8px;font-size:30px}
-    header p{margin:0;opacity:.92}
-    .wrap{max-width:720px;margin:28px auto;padding:0 16px}
-    .card{background:white;border-radius:18px;padding:22px;box-shadow:0 8px 30px rgba(0,0,0,.08);margin-bottom:20px}
-    label{display:block;font-weight:700;margin:14px 0 7px}
-    input{width:100%;padding:14px;border:1px solid #d7dce5;border-radius:10px;font-size:17px}
-    button{width:100%;border:0;border-radius:10px;padding:14px;font-size:17px;font-weight:700;cursor:pointer;margin-top:16px}
-    .calc{background:#2563eb;color:white}
-    .reset{background:#eef2f7;color:#172033}
-    .result{display:none;margin-top:18px;background:#eef5ff;border-radius:12px;padding:18px;text-align:center}
-    .result strong{font-size:30px;color:#2563eb}
-    .copy{background:#172033;color:white}
-    h2{margin-top:0}
-    .faq{border-top:1px solid #e5e7eb;padding:14px 0}
-    .faq:last-child{border-bottom:1px solid #e5e7eb}
-    footer{text-align:center;color:#667085;padding:20px;font-size:14px}
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+    }
+
+    header {
+      background: #2563eb;
+      color: white;
+      padding: 28px 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    header p {
+      margin: 0;
+      opacity: .92;
+    }
+
+    .wrap {
+      max-width: 720px;
+      margin: 28px auto;
+      padding: 0 16px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.08);
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin: 14px 0 7px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d7dce5;
+      border-radius: 10px;
+      font-size: 17px;
+    }
+
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 16px;
+    }
+
+    .calc {
+      background: #2563eb;
+      color: white;
+    }
+
+    .reset {
+      background: #eef2f7;
+      color: #172033;
+    }
+
+    .result {
+      display: none;
+      margin-top: 18px;
+      background: #eef5ff;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .result strong {
+      display: block;
+      font-size: 30px;
+      color: #2563eb;
+      margin: 8px 0;
+    }
+
+    .copy {
+      background: #172033;
+      color: white;
+    }
+
+    .formula {
+      font-weight: 700;
+    }
+
+    .faq {
+      border-top: 1px solid #e5e7eb;
+      padding: 14px 0;
+    }
+
+    .faq:last-child {
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    footer {
+      text-align: center;
+      color: #667085;
+      padding: 20px;
+      font-size: 14px;
+    }
   </style>
 </head>
+
 <body>
+
 <header>
   <h1>QuickPercent</h1>
   <p>Fast, simple and accurate percentage calculator</p>
 </header>
 
 <main class="wrap">
+
+  <!-- Percentage Calculator -->
   <section class="card">
     <h2>What is X% of Y?</h2>
+
     <label for="percent">Percentage (%)</label>
     <input id="percent" type="number" inputmode="decimal" placeholder="e.g. 20">
 
@@ -53,50 +164,183 @@
     </div>
   </section>
 
+
+  <!-- Discount Calculator -->
+  <section class="card">
+    <h2>Discount Calculator</h2>
+
+    <label for="price">Original Price</label>
+    <input id="price" type="number" inputmode="decimal" placeholder="e.g. 1000">
+
+    <label for="discount">Discount (%)</label>
+    <input id="discount" type="number" inputmode="decimal" placeholder="e.g. 20">
+
+    <button class="calc" onclick="calculateDiscount()">Calculate Discount</button>
+    <button class="reset" onclick="resetDiscount()">Reset</button>
+
+    <div id="discountResult" class="result">
+      <div>Discount Amount</div>
+      <strong id="discountAmount">0</strong>
+
+      <div>Final Price</div>
+      <strong id="finalPrice">0</strong>
+
+      <button class="copy" onclick="copyDiscountResult()">Copy Result</button>
+    </div>
+  </section>
+
+
+  <!-- Percentage Formula -->
   <section class="card">
     <h2>How to Calculate a Percentage?</h2>
+
     <p>Use this formula:</p>
-    <p><strong>Percentage result = (Percentage ÷ 100) × Number</strong></p>
+
+    <p class="formula">
+      Percentage result = (Percentage ÷ 100) × Number
+    </p>
+
     <p>Example: 20% of 500 = 100.</p>
   </section>
 
+
+  <!-- Discount Formula -->
+  <section class="card">
+    <h2>How to Calculate a Discount?</h2>
+
+    <p>Discount amount:</p>
+
+    <p class="formula">
+      Discount = (Discount % ÷ 100) × Original Price
+    </p>
+
+    <p>Final price:</p>
+
+    <p class="formula">
+      Final Price = Original Price − Discount
+    </p>
+
+    <p>Example: 20% off $1000 = $200 discount, final price = $800.</p>
+  </section>
+
+
+  <!-- FAQ -->
   <section class="card">
     <h2>Frequently Asked Questions</h2>
-    <div class="faq"><strong>What is a percentage?</strong><p>A percentage is a number expressed as a fraction of 100.</p></div>
-    <div class="faq"><strong>Is this calculator free?</strong><p>Yes. This calculator is free to use on mobile and desktop.</p></div>
-    <div class="faq"><strong>Can I use it for marks?</strong><p>Yes. For example, enter 25% and 800 to find 25% of 800.</p></div>
+
+    <div class="faq">
+      <strong>What is a percentage?</strong>
+      <p>A percentage is a number expressed as a fraction of 100.</p>
+    </div>
+
+    <div class="faq">
+      <strong>How does the discount calculator work?</strong>
+      <p>Enter the original price and discount percentage to calculate the discount amount and final price.</p>
+    </div>
+
+    <div class="faq">
+      <strong>Is QuickPercent free?</strong>
+      <p>Yes. QuickPercent is free to use on mobile and desktop.</p>
+    </div>
   </section>
+
 </main>
 
-<footer>© 2026 Percentage Calculator. All rights reserved.</footer>
+<footer>
+  © 2026 QuickPercent. All rights reserved.
+</footer>
+
 
 <script>
-function calculate(){
-  const p=parseFloat(document.getElementById('percent').value);
-  const n=parseFloat(document.getElementById('number').value);
-  const result=document.getElementById('result');
-  const answer=document.getElementById('answer');
 
-  if(isNaN(p)||isNaN(n)){
-    alert('Please enter both numbers.');
-    return;
+  // Percentage Calculator
+  function calculate() {
+    const p = parseFloat(document.getElementById('percent').value);
+    const n = parseFloat(document.getElementById('number').value);
+
+    const result = document.getElementById('result');
+    const answer = document.getElementById('answer');
+
+    if (isNaN(p) || isNaN(n)) {
+      alert('Please enter both numbers.');
+      return;
+    }
+
+    const value = (p / 100) * n;
+
+    answer.textContent =
+      Number.isInteger(value) ? value : value.toFixed(2);
+
+    result.style.display = 'block';
   }
 
-  const value=(p/100)*n;
-  answer.textContent=Number.isInteger(value)?value:value.toFixed(2);
-  result.style.display='block';
-}
 
-function resetCalc(){
-  document.getElementById('percent').value='';
-  document.getElementById('number').value='';
-  document.getElementById('result').style.display='none';
-}
+  function resetCalc() {
+    document.getElementById('percent').value = '';
+    document.getElementById('number').value = '';
+    document.getElementById('result').style.display = 'none';
+  }
 
-function copyResult(){
-  const text=document.getElementById('answer').textContent;
-  navigator.clipboard.writeText(text).then(()=>alert('Result copied!'));
-}
+
+  function copyResult() {
+    const text = document.getElementById('answer').textContent;
+
+    navigator.clipboard.writeText(text)
+      .then(() => alert('Result copied!'));
+  }
+
+
+  // Discount Calculator
+  function calculateDiscount() {
+    const price = parseFloat(document.getElementById('price').value);
+    const discount = parseFloat(document.getElementById('discount').value);
+
+    const result = document.getElementById('discountResult');
+
+    if (isNaN(price) || isNaN(discount)) {
+      alert('Please enter price and discount.');
+      return;
+    }
+
+    const discountAmount = (discount / 100) * price;
+    const finalPrice = price - discountAmount;
+
+    document.getElementById('discountAmount').textContent =
+      Number.isInteger(discountAmount)
+        ? discountAmount
+        : discountAmount.toFixed(2);
+
+    document.getElementById('finalPrice').textContent =
+      Number.isInteger(finalPrice)
+        ? finalPrice
+        : finalPrice.toFixed(2);
+
+    result.style.display = 'block';
+  }
+
+
+  function resetDiscount() {
+    document.getElementById('price').value = '';
+    document.getElementById('discount').value = '';
+    document.getElementById('discountResult').style.display = 'none';
+  }
+
+
+  function copyDiscountResult() {
+    const discount =
+      document.getElementById('discountAmount').textContent;
+
+    const finalPrice =
+      document.getElementById('finalPrice').textContent;
+
+    const text =
+      'Discount: ' + discount + '\nFinal Price: ' + finalPrice;
+
+    navigator.clipboard.writeText(text)
+      .then(() => alert('Result copied!'));
+  }
+
 </script>
+
 </body>
 </html>
