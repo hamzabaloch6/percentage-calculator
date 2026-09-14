@@ -287,21 +287,12 @@ function convertCurrency(){
     const from = document.getElementById("fromCurrency").value;
     const to = document.getElementById("toCurrency").value;
 
-    const rate = parseFloat(
-        document.getElementById("rate").value
-    );
+
 
     const result = document.getElementById("result");
 
-    if(
-        isNaN(amount) ||
-        isNaN(rate) ||
-        amount < 0 ||
-        rate < 0
-    ){
-        result.innerHTML = "Please enter valid values.";
-        return;
-    }
+
+    
 
     if(from === to){
 
@@ -317,21 +308,72 @@ function convertCurrency(){
         return;
     }
 
-    const converted = amount * rate;
 
-    result.innerHTML =
-        "<strong>" +
-        amount.toLocaleString(undefined,{
-            maximumFractionDigits:2
-        }) +
-        " " + from +
-        " = " +
-        converted.toLocaleString(undefined,{
-            minimumFractionDigits:2,
-            maximumFractionDigits:2
-        }) +
-        " " + to +
-        "</strong>";
+async function convertCurrency(){
+    const amount = parseFloat(
+        document.getElementById("amount").value
+    );
+
+    const from = document.getElementById("fromCurrency").value;
+    const to = document.getElementById("toCurrency").value;
+    const result = document.getElementById("result");
+
+    if(isNaN(amount) || amount < 0){
+        result.innerHTML = "Please enter a valid amount.";
+        return;
+    }
+
+    if(from === to){
+        result.innerHTML =
+            "<strong>" +
+            amount.toLocaleString(undefined,{
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }) + " " + from +
+            " = " +
+            amount.toLocaleString(undefined,{
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }) + " " + to +
+            "</strong>";
+        return;
+    }
+
+    result.innerHTML = "Fetching latest exchange rate...";
+
+    try {
+        const response = await fetch(
+            `https://api.frankfurter.dev/v2/rate/${from}/${to}`
+        );
+
+        if(!response.ok){
+            throw new Error("Rate unavailable");
+        }
+
+        const data = await response.json();
+        const rate = data.rate;
+        const converted = amount * rate;
+
+        result.innerHTML =
+            "<strong>" +
+            amount.toLocaleString(undefined,{
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }) + " " + from +
+            " = " +
+            converted.toLocaleString(undefined,{
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }) + " " + to +
+            "</strong><br><br>" +
+            "Exchange Rate: 1 " + from + " = " +
+            rate.toLocaleString(undefined,{
+                maximumFractionDigits:6
+            }) + " " + to;
+    } catch(error) {
+        result.innerHTML =
+            "Unable to fetch the latest exchange rate. Please try again.";
+    }
 }
 </script>
 
