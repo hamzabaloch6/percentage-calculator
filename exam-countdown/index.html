@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Exam Countdown – Countdown to Your Exam | QuickPercent</title>
+
+<meta name="description" content="Use the free Exam Countdown to see exactly how many days, hours, minutes and seconds remain until your exam.">
+
+<link rel="canonical" href="https://quickpercent.github.io/exam-countdown/">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+    color:#222;
+}
+
+header{
+    background:#2563eb;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:28px;
+}
+
+.container{
+    max-width:850px;
+    margin:30px auto;
+    padding:0 15px;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+h2{
+    margin-top:0;
+    color:#1d4ed8;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    margin-top:7px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    background:#2563eb;
+    color:white;
+    border:0;
+    border-radius:8px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.countdown{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.time-box{
+    background:#eff6ff;
+    padding:18px 8px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.time-box strong{
+    display:block;
+    font-size:28px;
+    color:#2563eb;
+}
+
+.time-box span{
+    font-size:14px;
+}
+
+.message{
+    margin-top:20px;
+    padding:15px;
+    background:#eff6ff;
+    border-radius:10px;
+    text-align:center;
+    font-weight:bold;
+}
+
+p{
+    line-height:1.7;
+}
+
+li{
+    margin:10px 0;
+    line-height:1.6;
+}
+
+.breadcrumb{
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.breadcrumb a{
+    color:#2563eb;
+    text-decoration:none;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#666;
+}
+
+@media(max-width:600px){
+    .countdown{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Exam Countdown</h1>
+</header>
+
+<div class="container">
+
+<div class="breadcrumb">
+    <a href="https://quickpercent.github.io/">Home</a>
+    &nbsp;›&nbsp; Exam Countdown
+</div>
+
+<div class="card">
+
+<h2>Countdown to Your Exam</h2>
+
+<label>Exam Date</label>
+<input type="date" id="examDate">
+
+<label>Exam Time</label>
+<input type="time" id="examTime" value="09:00">
+
+<button onclick="startCountdown()">Start Countdown</button>
+
+<div class="message" id="message">
+    Select your exam date and time.
+</div>
+
+<div class="countdown">
+
+<div class="time-box">
+<strong id="days">0</strong>
+<span>Days</span>
+</div>
+
+<div class="time-box">
+<strong id="hours">0</strong>
+<span>Hours</span>
+</div>
+
+<div class="time-box">
+<strong id="minutes">0</strong>
+<span>Minutes</span>
+</div>
+
+<div class="time-box">
+<strong id="seconds">0</strong>
+<span>Seconds</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>How to Use the Exam Countdown</h2>
+
+<ol>
+<li>Select your exam date.</li>
+<li>Select the exam time.</li>
+<li>Click the Start Countdown button.</li>
+<li>The timer will show the remaining days, hours, minutes and seconds.</li>
+</ol>
+
+</div>
+
+<div class="card">
+
+<h2>Why Use an Exam Countdown?</h2>
+
+<p>
+An exam countdown helps students keep track of the time remaining before an important exam. Knowing exactly how much time is left can help you organize your study schedule and prepare effectively.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>What does the Exam Countdown show?</h3>
+<p>
+It shows the remaining days, hours, minutes and seconds until your selected exam date and time.
+</p>
+
+<h3>Can I use it for any exam?</h3>
+<p>
+Yes. You can select any future exam date and time.
+</p>
+
+<h3>What happens when the countdown reaches zero?</h3>
+<p>
+The calculator will display that your exam time has arrived.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 QuickPercent — Free Online Calculators
+</footer>
+
+<script>
+
+let countdownTimer = null;
+
+function startCountdown(){
+
+    const date = document.getElementById("examDate").value;
+    const time = document.getElementById("examTime").value;
+    const message = document.getElementById("message");
+
+    if(!date || !time){
+        message.textContent = "Please select your exam date and time.";
+        return;
+    }
+
+    const examTime = new Date(date + "T" + time);
+
+    if(isNaN(examTime.getTime())){
+        message.textContent = "Please enter a valid exam date and time.";
+        return;
+    }
+
+    if(examTime <= new Date()){
+        message.textContent = "The selected exam date and time has already passed.";
+        return;
+    }
+
+    message.textContent = "Time remaining until your exam:";
+
+    if(countdownTimer){
+        clearInterval(countdownTimer);
+    }
+
+    function updateCountdown(){
+
+        const now = new Date();
+        const difference = examTime - now;
+
+        if(difference <= 0){
+
+            clearInterval(countdownTimer);
+
+            document.getElementById("days").textContent = "0";
+            document.getElementById("hours").textContent = "0";
+            document.getElementById("minutes").textContent = "0";
+            document.getElementById("seconds").textContent = "0";
+
+            message.textContent = "Your exam time has arrived!";
+            return;
+        }
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+            (difference / (1000 * 60 * 60)) % 24
+        );
+        const minutes = Math.floor(
+            (difference / (1000 * 60)) % 60
+        );
+        const seconds = Math.floor(
+            (difference / 1000) % 60
+        );
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+    }
+
+    updateCountdown();
+    countdownTimer = setInterval(updateCountdown, 1000);
+}
+
+</script>
+
+</body>
+</html>
