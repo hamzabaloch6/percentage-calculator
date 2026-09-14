@@ -1133,3 +1133,105 @@ footer{
 
                 <span class="calc-name">
                     
+<script>
+
+function formatNumber(number) {
+    return Number(number).toLocaleString(undefined, {
+        maximumFractionDigits: 10
+    });
+}
+
+function calculatePercentOf() {
+    const percent = parseFloat(document.getElementById("percent1").value);
+    const number = parseFloat(document.getElementById("number1").value);
+    const result = document.getElementById("percentResult1");
+
+    if (isNaN(percent) || isNaN(number)) {
+        result.textContent = "Please enter valid numbers.";
+    } else {
+        result.textContent =
+            percent + "% of " + number + " = " +
+            formatNumber((percent / 100) * number);
+    }
+
+    result.style.display = "block";
+}
+
+function calculateWhatPercent() {
+    const x = parseFloat(document.getElementById("partNumber").value);
+    const y = parseFloat(document.getElementById("wholeNumber").value);
+    const result = document.getElementById("percentResult2");
+
+    if (isNaN(x) || isNaN(y) || y === 0) {
+        result.textContent = "Please enter valid numbers.";
+    } else {
+        result.textContent =
+            x + " is " + formatNumber((x / y) * 100) + "% of " + y;
+    }
+
+    result.style.display = "block";
+}
+
+function calculatePercentageChange() {
+    const oldValue = parseFloat(document.getElementById("oldNumber").value);
+    const newValue = parseFloat(document.getElementById("newNumber").value);
+    const result = document.getElementById("percentResult3");
+
+    if (isNaN(oldValue) || isNaN(newValue) || oldValue === 0) {
+        result.textContent = "Please enter valid numbers.";
+    } else {
+        const change = ((newValue - oldValue) / oldValue) * 100;
+
+        result.textContent =
+            change > 0
+            ? "Percentage Increase = " + formatNumber(change) + "%"
+            : change < 0
+            ? "Percentage Decrease = " + formatNumber(Math.abs(change)) + "%"
+            : "No percentage change.";
+    }
+
+    result.style.display = "block";
+}
+
+function calculateDiscount() {
+    const price = parseFloat(document.getElementById("originalPrice").value);
+    const discount = parseFloat(document.getElementById("discountPercent").value);
+    const result = document.getElementById("discountResult");
+
+    if (isNaN(price) || isNaN(discount)) {
+        result.textContent = "Please enter valid numbers.";
+    } else {
+        const saving = price * discount / 100;
+        result.innerHTML =
+            "You save: " + formatNumber(saving) +
+            "<br>Final Price: " + formatNumber(price - saving);
+    }
+
+    result.style.display = "block";
+}
+
+function showPercentageMode(mode) {
+    for (let i = 1; i <= 3; i++) {
+        document.getElementById("percentageMode" + i).classList.add("hidden");
+        document.getElementById("modeBtn" + i).classList.remove("active");
+    }
+
+    document.getElementById("percentageMode" + mode).classList.remove("hidden");
+    document.getElementById("modeBtn" + mode).classList.add("active");
+}
+
+function openCalculatorMenu() {
+    document.getElementById("calculatorMenu").style.display = "flex";
+}
+
+function closeCalculatorMenu() {
+    document.getElementById("calculatorMenu").style.display = "none";
+}
+
+function closeMenuOutside(event) {
+    if (event.target.id === "calculatorMenu") {
+        closeCalculatorMenu();
+    }
+}
+
+</script>
