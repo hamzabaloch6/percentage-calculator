@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Average Calculator – Calculate Average Easily | QuickPercent</title>
+
+<meta name="description" content="Calculate the average of numbers quickly and easily with the free Average Calculator by QuickPercent.">
+
+<link rel="canonical" href="https://quickpercent.github.io/average-calculator/">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+    color:#222;
+}
+
+header{
+    background:#2563eb;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:28px;
+}
+
+.container{
+    max-width:850px;
+    margin:30px auto;
+    padding:0 15px;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+h2{
+    margin-top:0;
+    color:#1d4ed8;
+}
+
+textarea{
+    width:100%;
+    min-height:120px;
+    padding:13px;
+    margin-top:8px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+    resize:vertical;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    background:#2563eb;
+    color:white;
+    border:0;
+    border-radius:8px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.result{
+    margin-top:20px;
+    padding:18px;
+    background:#eff6ff;
+    border-radius:10px;
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+}
+
+p{
+    line-height:1.7;
+}
+
+li{
+    margin:10px 0;
+    line-height:1.6;
+}
+
+.breadcrumb{
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.breadcrumb a{
+    color:#2563eb;
+    text-decoration:none;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Average Calculator</h1>
+</header>
+
+<div class="container">
+
+<div class="breadcrumb">
+    <a href="https://quickpercent.github.io/">Home</a>
+    &nbsp;›&nbsp; Average Calculator
+</div>
+
+<div class="card">
+
+<h2>Calculate Average</h2>
+
+<p>Enter numbers separated by commas, spaces, or new lines.</p>
+
+<textarea id="numbers" placeholder="Example: 10, 20, 30, 40, 50"></textarea>
+
+<button onclick="calculateAverage()">Calculate Average</button>
+
+<div class="result" id="result">
+    Enter your numbers to calculate the average.
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>How to Use the Average Calculator</h2>
+
+<ol>
+<li>Enter your numbers in the box.</li>
+<li>Separate numbers using commas, spaces, or new lines.</li>
+<li>Click the Calculate button.</li>
+<li>The calculator will show the average, total, and number of values.</li>
+</ol>
+
+</div>
+
+<div class="card">
+
+<h2>Average Formula</h2>
+
+<p>
+The average is calculated by adding all the numbers together and dividing the total by the number of values.
+</p>
+
+<p>
+<strong>Average = Sum of all numbers ÷ Number of values</strong>
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Example</h2>
+
+<p>
+Suppose the numbers are:
+<strong>10, 20, 30, 40, 50</strong>
+</p>
+
+<p>
+Sum = 10 + 20 + 30 + 40 + 50 = <strong>150</strong>
+</p>
+
+<p>
+Number of values = <strong>5</strong>
+</p>
+
+<p>
+Average = 150 ÷ 5 = <strong>30</strong>
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>What is an average?</h3>
+<p>
+An average is a single value that represents the typical value of a group of numbers.
+</p>
+
+<h3>How is average calculated?</h3>
+<p>
+Add all the numbers together and divide the sum by the number of values.
+</p>
+
+<h3>Can I enter decimal numbers?</h3>
+<p>
+Yes. The calculator supports decimal numbers such as 10.5, 20.75, and 30.25.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 QuickPercent — Free Online Calculators
+</footer>
+
+<script>
+function calculateAverage(){
+
+    const input = document.getElementById("numbers").value.trim();
+    const result = document.getElementById("result");
+
+    if(!input){
+        result.innerHTML = "Please enter some numbers.";
+        return;
+    }
+
+    const values = input
+        .split(/[\s,]+/)
+        .map(Number)
+        .filter(value => !isNaN(value));
+
+    if(values.length === 0){
+        result.innerHTML = "Please enter valid numbers.";
+        return;
+    }
+
+    const sum = values.reduce((total, value) => total + value, 0);
+    const average = sum / values.length;
+
+    result.innerHTML =
+        "Average: <strong>" + average.toFixed(2) +
+        "</strong><br><small>Total: " + sum +
+        " | Values: " + values.length + "</small>";
+}
+</script>
+
+</body>
+</html>
