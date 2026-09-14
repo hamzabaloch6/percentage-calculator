@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Currency Converter – Convert Currencies Online | QuickPercent</title>
+
+<meta name="description" content="Convert currencies quickly with the free Currency Converter by QuickPercent using the latest available published exchange rates.">
+
+<link rel="canonical" href="https://quickpercent.github.io/currency-converter/">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+    color:#222;
+}
+
+header{
+    background:#2563eb;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:28px;
+}
+
+.container{
+    max-width:850px;
+    margin:30px auto;
+    padding:0 15px;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+h2{
+    margin-top:0;
+    color:#1d4ed8;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+input,select{
+    width:100%;
+    padding:13px;
+    margin-top:7px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+    background:white;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    background:#2563eb;
+    color:white;
+    border:0;
+    border-radius:8px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.result{
+    margin-top:20px;
+    padding:18px;
+    background:#eff6ff;
+    border-radius:10px;
+    text-align:center;
+    font-size:20px;
+    line-height:1.8;
+}
+
+.result strong{
+    color:#1d4ed8;
+}
+
+.note{
+    margin-top:15px;
+    padding:14px;
+    background:#f8fafc;
+    border-radius:8px;
+    font-size:14px;
+    line-height:1.6;
+}
+
+p{
+    line-height:1.7;
+}
+
+li{
+    margin:10px 0;
+    line-height:1.6;
+}
+
+.breadcrumb{
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.breadcrumb a{
+    color:#2563eb;
+    text-decoration:none;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Currency Converter</h1>
+</header>
+
+<div class="container">
+
+<div class="breadcrumb">
+    <a href="https://quickpercent.github.io/">Home</a>
+    &nbsp;›&nbsp; Currency Converter
+</div>
+
+<div class="card">
+
+<h2>Convert Currency</h2>
+
+<label for="amount">Amount</label>
+<input type="number" id="amount" placeholder="e.g. 100" min="0" step="any">
+
+<label for="fromCurrency">From Currency</label>
+<select id="fromCurrency">
+    <option value="USD">USD - US Dollar</option>
+    <option value="PKR">PKR - Pakistani Rupee</option>
+    <option value="EUR">EUR - Euro</option>
+    <option value="GBP">GBP - British Pound</option>
+    <option value="AED">AED - UAE Dirham</option>
+    <option value="SAR">SAR - Saudi Riyal</option>
+    <option value="INR">INR - Indian Rupee</option>
+    <option value="CAD">CAD - Canadian Dollar</option>
+    <option value="AUD">AUD - Australian Dollar</option>
+    <option value="JPY">JPY - Japanese Yen</option>
+</select>
+
+<label for="toCurrency">To Currency</label>
+<select id="toCurrency">
+    <option value="PKR">PKR - Pakistani Rupee</option>
+    <option value="USD">USD - US Dollar</option>
+    <option value="EUR">EUR - Euro</option>
+    <option value="GBP">GBP - British Pound</option>
+    <option value="AED">AED - UAE Dirham</option>
+    <option value="SAR">SAR - Saudi Riyal</option>
+    <option value="INR">INR - Indian Rupee</option>
+    <option value="CAD">CAD - Canadian Dollar</option>
+    <option value="AUD">AUD - Australian Dollar</option>
+    <option value="JPY">JPY - Japanese Yen</option>
+</select>
+
+<button type="button" id="convertButton">Convert</button>
+
+<div class="result" id="result">
+    Enter an amount and select the currencies.
+</div>
+
+<div class="note">
+    <strong>Important:</strong> Exchange rates are updated by the data provider on working days.
+    The calculator uses the latest available published reference rate and may differ from
+    bank, exchange-service, or card rates.
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>How to Use the Currency Converter</h2>
+
+<ol>
+<li>Enter the amount you want to convert.</li>
+<li>Select the currency you are converting from.</li>
+<li>Select the currency you want to convert to.</li>
+<li>Click Convert.</li>
+<li>The calculator fetches the latest available published exchange rate and shows the converted amount.</li>
+</ol>
+
+</div>
+
+<div class="card">
+
+<h2>Currency Conversion Formula</h2>
+
+<p>
+If the exchange rate represents how many units of the target currency equal one unit of the source currency:
+</p>
+
+<p>
+<strong>Converted Amount = Amount × Exchange Rate</strong>
+</p>
+
+<p>
+For example, if the fetched rate is 1 USD = 280 PKR, then:
+</p>
+
+<p>
+100 USD × 280 = <strong>28,000 PKR</strong>
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Example</h2>
+
+<p>
+Suppose you want to convert <strong>100 USD</strong> to PKR.
+The calculator automatically fetches the latest available published USD to PKR rate.
+</p>
+
+<p>
+If the fetched rate is 1 USD = 280 PKR:
+</p>
+
+<p>
+100 × 280 = <strong>28,000 PKR</strong>
+</p>
+
+<p>
+The actual result will change when the latest published exchange rate changes.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Does this calculator use live exchange rates?</h3>
+<p>
+It uses the latest available published reference exchange rate from the Frankfurter API.
+These are not real-time intraday trading rates, so bank, card, cash-exchange, and market rates may differ.
+</p>
+
+<h3>Which currencies are supported?</h3>
+<p>
+The calculator currently includes USD, PKR, EUR, GBP, AED, SAR, INR, CAD, AUD and JPY.
+</p>
+
+<h3>Do I need to enter the exchange rate manually?</h3>
+<p>
+No. The calculator automatically requests the latest available published rate when you click Convert.
+</p>
+
+<h3>Why can the result differ from my bank or exchange service?</h3>
+<p>
+Banks, exchange services and card providers may use different rates and may also add spreads or fees.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 QuickPercent — Free Online Calculators
+</footer>
+
+<script>
+const convertButton = document.getElementById("convertButton");
+
+convertButton.addEventListener("click", convertCurrency);
+
+async function convertCurrency(){
+
+    const amountInput = document.getElementById("amount");
+    const from = document.getElementById("fromCurrency").value;
+    const to = document.getElementById("toCurrency").value;
+    const result = document.getElementById("result");
+
+    const amount = Number(amountInput.value);
+
+    if(!amountInput.value.trim() || !Number.isFinite(amount) || amount < 0){
+        result.innerHTML = "Please enter a valid amount.";
+        return;
+    }
+
+    if(from === to){
+        result.innerHTML =
+            "<strong>" +
+            amount.toLocaleString(undefined,{
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }) + " " + from +
+            " = " +
+            amount.toLocaleString(undefined,{
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }) + " " + to +
+            "</strong><br><br>" +
+            "Exchange Rate: 1 " + from + " = 1 " + to;
+        return;
+    }
+
+    result.innerHTML = "Fetching latest exchange rate...";
+
+    try{
+        const url = "https://api.frankfurter.dev/v2/rate/" + from + "/" + to;
+
+        const response = await fetch(url, {
+            method: "GET",
+            cache: "no-store"
+        });
+
+        if(!response.ok){
+            throw new Error("Rate unavailable");
+        }
+
+        const data = await response.json();
+
+        if(!data || typeof data.rate !== "number" || !Number.isFinite(data.rate)){
+            throw new Error("Invalid rate");
+        }
+
+        const rate = data.rate;
+        const converted = amount * rate;
+
+        result.innerHTML =
+            "<strong>" +
+            amount.toLocaleString(undefined,{
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }) + " " + from +
+            " = " +
+            converted.toLocaleString(undefined,{
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }) + " " + to +
+            "</strong><br><br>" +
+            "Exchange Rate: 1 " + from + " = " +
+            rate.toLocaleString(undefined,{
+                maximumFractionDigits:6
+            }) + " " + to;
+    }
+    catch(error){
+        console.error("Currency conversion error:", error);
+        result.innerHTML =
+            "Unable to fetch the latest exchange rate. Please check your internet connection and try again.";
+    }
+}
+</script>
+
+</body>
+</html>
