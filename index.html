@@ -1,1186 +1,1135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-  <meta name="description" content="QuickPercent - free online percentage and discount calculator. Fast, simple and accurate calculators for everyday use.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="theme-color" content="#2563eb">
+<meta name="description" content="QuickPercent - Fast, simple and accurate online calculators.">
 
-  <title>QuickPercent - Percentage & Discount Calculator</title>
+<title>QuickPercent - Online Calculators</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f5f7fb;
-      color: #172033;
-    }
-
-    header {
-      background: #2563eb;
-      color: white;
-      padding: 28px 18px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0 0 8px;
-      font-size: 30px;
-    }
-
-    header p {
-      margin: 0;
-      opacity: .92;
-    }
-
-    .wrap {
-      max-width: 720px;
-      margin: 28px auto;
-      padding: 0 16px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 18px;
-      padding: 22px;
-      box-shadow: 0 8px 30px rgba(0,0,0,.08);
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      margin-top: 0;
-    }
-
-    h3 {
-      margin-top: 0;
-    }
-
-    label {
-      display: block;
-      font-weight: 700;
-      margin: 14px 0 7px;
-    }
-
-    input {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #d7dce5;
-      border-radius: 10px;
-      font-size: 17px;
-    }
-
-    button {
-      width: 100%;
-      border: 0;
-      border-radius: 10px;
-      padding: 14px;
-      font-size: 17px;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 16px;
-    }
-
-    .calc {
-      background: #2563eb;
-      color: white;
-    }
-
-    .reset {
-      background: #eef2f7;
-      color: #172033;
-    }
-
-    .result {
-      display: none;
-      margin-top: 18px;
-      background: #eef5ff;
-      border-radius: 12px;
-      padding: 18px;
-      text-align: center;
-    }
-
-    .result strong {
-      display: block;
-      font-size: 30px;
-      color: #2563eb;
-      margin: 8px 0;
-    }
-
-    .copy {
-      background: #172033;
-      color: white;
-    }
-
-    .formula {
-      font-weight: 700;
-    }
-
-    .modes {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin: 4px 0 18px;
-    }
-
-    .mode-btn {
-      margin: 0;
-      padding: 11px 8px;
-      background: #eef2f7;
-      color: #172033;
-      font-size: 14px;
-    }
-
-    .mode-btn.active {
-      background: #2563eb;
-      color: white;
-    }
-
-    .calc-mode {
-      display: none;
-    }
-
-    .calc-mode.active {
-      display: block;
-    }
-
-    .hint {
-      margin: 6px 0 0;
-      color: #667085;
-      font-size: 13px;
-    }
-
-    .error {
-      display: none;
-      margin-top: 14px;
-      padding: 12px;
-      border-radius: 10px;
-      background: #fff1f2;
-      color: #be123c;
-      font-size: 14px;
-    }
-
-    .result small {
-      display: block;
-      color: #667085;
-      margin-top: 5px;
-    }
-
-    .faq {
-      border-top: 1px solid #e5e7eb;
-      padding: 14px 0;
-    }
-
-    .faq:last-child {
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    footer {
-      text-align: center;
-      color: #667085;
-      padding: 20px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 520px) {
-      .modes {
-        grid-template-columns: 1fr;
-      }
-    }
-/* All Calculators Menu */
-.all-calculators-btn {
-  position: fixed;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 30px;
-  padding: 14px 24px;
-  font-size: 16px;
-  font-weight: 700;
-  z-index: 9999;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-}  .calculator-menu {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  z-index: 10000;
-  align-items: flex-end;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-.calculator-menu-box {
-  width: 100%;
-  background: white;
-  border-radius: 24px 24px 0 0;
-  padding: 24px;
-  max-height: 75vh;
-  overflow-y: auto;
+html{
+    scroll-behavior:smooth;
 }
 
-.menu-close {
-  float: right;
-  border: none;
-  background: #eef2f7;
-  font-size: 28px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3f6fa;
+    color:#172033;
+    line-height:1.6;
 }
 
-.calculator-menu-box h2 {
-  margin-top: 0;
+header{
+    background:#1677e8;
+    color:white;
+    text-align:center;
+    padding:28px 18px 30px;
 }
 
-.calculator-menu-box a {
-  display: block;
-  padding: 15px;
-  margin-top: 10px;
-  background: #f5f7fb;
-  border-radius: 12px;
-  color: #172033;
-  text-decoration: none;
-  font-weight: 700;
-}</style>
+.logo{
+    font-size:30px;
+    font-weight:800;
+    letter-spacing:.3px;
+}
+
+.tagline{
+    margin-top:5px;
+    font-size:14px;
+    opacity:.95;
+}
+
+.container{
+    width:min(100%,900px);
+    margin:auto;
+    padding:18px 14px 100px;
+}
+
+.all-calculators-btn{
+    display:block;
+    width:calc(100% - 28px);
+    max-width:872px;
+    margin:16px auto;
+    border:0;
+    border-radius:14px;
+    background:#fff;
+    color:#1677e8;
+    font-size:16px;
+    font-weight:700;
+    padding:15px 18px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    cursor:pointer;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:22px 18px;
+    margin-bottom:18px;
+    box-shadow:0 4px 18px rgba(0,0,0,.06);
+}
+
+.card h2{
+    font-size:21px;
+    margin-bottom:6px;
+}
+
+.card-description{
+    color:#697386;
+    font-size:14px;
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    font-size:14px;
+    font-weight:700;
+    margin:13px 0 6px;
+}
+
+input,
+select{
+    width:100%;
+    padding:13px 12px;
+    border:1px solid #d8dee8;
+    border-radius:10px;
+    font-size:16px;
+    background:#fff;
+    outline:none;
+}
+
+input:focus,
+select:focus{
+    border-color:#1677e8;
+}
+
+.calculate-btn{
+    width:100%;
+    margin-top:16px;
+    border:0;
+    border-radius:10px;
+    padding:13px;
+    background:#1677e8;
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.calculate-btn:active{
+    transform:scale(.99);
+}
+
+.result{
+    display:none;
+    margin-top:16px;
+    padding:14px;
+    border-radius:10px;
+    background:#eef6ff;
+    color:#1264c4;
+    font-weight:700;
+}
+
+.mode-buttons{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:8px;
+    margin-bottom:15px;
+}
+
+.mode-btn{
+    border:1px solid #d8dee8;
+    background:#fff;
+    border-radius:10px;
+    padding:11px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.mode-btn.active{
+    background:#1677e8;
+    color:white;
+    border-color:#1677e8;
+}
+
+.hidden{
+    display:none;
+}
+
+.formula{
+    background:#f7f9fc;
+    border-left:4px solid #1677e8;
+    padding:14px;
+    border-radius:8px;
+    margin-top:10px;
+    font-size:14px;
+}
+
+.faq-item{
+    padding:14px 0;
+    border-bottom:1px solid #e5e9ef;
+}
+
+.faq-item:last-child{
+    border-bottom:0;
+}
+
+.faq-item h3{
+    font-size:16px;
+    margin-bottom:5px;
+}
+
+.faq-item p{
+    color:#667085;
+    font-size:14px;
+}
+
+footer{
+    text-align:center;
+    padding:25px 15px;
+    color:#737d8c;
+    font-size:13px;
+}
+
+/* Bottom Sheet */
+
+.calculator-menu{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.48);
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    z-index:9999;
+}
+
+.calculator-menu-box{
+    width:100%;
+    max-width:600px;
+    max-height:85vh;
+    overflow-y:auto;
+    background:#fff;
+    border-radius:24px 24px 0 0;
+    padding:20px 16px 30px;
+    animation:slideUp .25s ease;
+}
+
+@keyframes slideUp{
+    from{
+        transform:translateY(100%);
+    }
+    to{
+        transform:translateY(0);
+    }
+}
+
+.menu-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:4px;
+}
+
+.menu-header h2{
+    font-size:23px;
+}
+
+.menu-close{
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:50%;
+    background:#f0f2f5;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.menu-subtitle{
+    color:#70798a;
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+.calculator-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.calculator-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:13px 10px;
+    border:1px solid #e3e7ed;
+    border-radius:14px;
+    text-decoration:none;
+    color:#172033;
+    background:#fff;
+}
+
+.calculator-item:hover{
+    background:#f6f9fd;
+}
+
+.calc-icon{
+    min-width:40px;
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    background:#eaf3ff;
+    color:#1677e8;
+    font-size:20px;
+    font-weight:800;
+}
+
+.calc-name{
+    font-size:13px;
+    font-weight:700;
+    line-height:1.3;
+}
+
+.calc-small{
+    display:block;
+    color:#858d9b;
+    font-size:10px;
+    font-weight:400;
+    margin-top:2px;
+}
+
+@media(max-width:430px){
+
+    .calculator-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .calculator-item{
+        padding:11px 8px;
+    }
+
+    .calc-icon{
+        width:36px;
+        min-width:36px;
+        height:36px;
+    }
+
+    .calc-name{
+        font-size:12px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>QuickPercent</h1>
-  <p>Fast, simple and accurate percentage calculator</p>
-</header><button class="all-calculators-btn" type="button">
-  ☰ All Calculators
-</button><div id="calculatorMenu" class="calculator-menu">
-  <div class="calculator-menu-box">
-    <button class="menu-close" type="button">×</button>
-    <h2>All Calculators</h2>
+<header id="top">
 
-    <a href="#percentage">Percentage Calculator</a>
-    <a href="#discount">Discount Calculator</a>
-    <a href="#age">Age Calculator</a>
-    <a href="#bmi">BMI Calculator</a>
-    <a href="#loan">Loan Calculator</a>
-    <a href="#currency">Currency Converter</a>
-    <a href="#unit">Unit Converter</a>
-  </div>
-</div>
+    <div class="logo">QuickPercent</div>
 
-<main class="wrap">
+    <div class="tagline">
+        Fast, simple and accurate percentage calculator
+    </div>
 
-  <!-- Percentage Calculator -->
-  <section class="card">
+</header>
+
+<button
+    class="all-calculators-btn"
+    type="button"
+    onclick="openCalculatorMenu()">
+    ☰ &nbsp; All Calculators
+</button>
+
+<main class="container">
+
+<!-- Percentage Calculator -->
+
+<section class="card" id="percentage">
+
     <h2>Percentage Calculator</h2>
 
-    <div class="modes">
-      <button class="mode-btn active" type="button"
-        onclick="setPercentMode(1)">
-        X% of Y
-      </button>
+    <p class="card-description">
+        Calculate percentages quickly and easily.
+    </p>
 
-      <button class="mode-btn" type="button"
-        onclick="setPercentMode(2)">
-        X is what %?
-      </button>
+    <div class="mode-buttons">
 
-      <button class="mode-btn" type="button"
-        onclick="setPercentMode(3)">
-        Increase / Decrease
-      </button>
-    </div>
+        <button
+            class="mode-btn active"
+            id="modeBtn1"
+            onclick="showPercentageMode(1)">
+            X% of Y
+        </button>
 
+        <button
+            class="mode-btn"
+            id="modeBtn2"
+            onclick="showPercentageMode(2)">
+            X is what % of Y?
+        </button>
 
-    <!-- Mode 1 -->
-    <div id="percentMode1" class="calc-mode active">
-
-      <h3>What is X% of Y?</h3>
-
-      <label for="percent">Percentage (%)</label>
-
-      <input
-        id="percent"
-        type="number"
-        inputmode="decimal"
-        step="any"
-        placeholder="e.g. 20"
-      >
-
-      <p class="hint">
-        Example: 20% of 500
-      </p>
-
-
-      <label for="number">Number</label>
-
-      <input
-        id="number"
-        type="number"
-        inputmode="decimal"
-        step="any"
-        placeholder="e.g. 500"
-      >
+        <button
+            class="mode-btn"
+            id="modeBtn3"
+            onclick="showPercentageMode(3)">
+            Increase / Decrease
+        </button>
 
     </div>
 
+    <div id="percentageMode1">
 
-    <!-- Mode 2 -->
-    <div id="percentMode2" class="calc-mode">
+        <label for="percent1">Percentage</label>
 
-      <h3>X is what percentage of Y?</h3>
+        <input
+            id="percent1"
+            type="number"
+            step="any"
+            placeholder="e.g. 20">
 
-      <label for="part">Value (X)</label>
+        <label for="number1">Number</label>
 
-      <input
-        id="part"
-        type="number"
-        inputmode="decimal"
-        step="any"
-        placeholder="e.g. 100"
-      >
+        <input
+            id="number1"
+            type="number"
+            step="any"
+            placeholder="e.g. 500">
 
+        <button
+            class="calculate-btn"
+            onclick="calculatePercentOf()">
+            Calculate
+        </button>
 
-      <label for="whole">Total (Y)</label>
-
-      <input
-        id="whole"
-        type="number"
-        inputmode="decimal"
-        step="any"
-        placeholder="e.g. 500"
-      >
-
-    </div>
-
-
-    <!-- Mode 3 -->
-    <div id="percentMode3" class="calc-mode">
-
-      <h3>Percentage increase or decrease</h3>
-
-      <label for="oldValue">Original Value</label>
-
-      <input
-        id="oldValue"
-        type="number"
-        inputmode="decimal"
-        step="any"
-        placeholder="e.g. 500"
-      >
-
-
-      <label for="newValue">New Value</label>
-
-      <input
-        id="newValue"
-        type="number"
-        inputmode="decimal"
-        step="any"
-        placeholder="e.g. 600"
-      >
+        <div class="result" id="percentResult1"></div>
 
     </div>
 
+    <div id="percentageMode2" class="hidden">
 
-    <button
-      class="calc"
-      type="button"
-      onclick="calculatePercentage()">
-      Calculate
-    </button>
+        <label for="partNumber">X</label>
 
-    <button
-      class="reset"
-      type="button"
-      onclick="resetPercentage()">
-      Reset
-    </button>
+        <input
+            id="partNumber"
+            type="number"
+            step="any"
+            placeholder="e.g. 50">
 
+        <label for="wholeNumber">Y</label>
 
-    <div
-      id="percentError"
-      class="error"
-      role="alert">
-    </div>
+        <input
+            id="wholeNumber"
+            type="number"
+            step="any"
+            placeholder="e.g. 200">
 
+        <button
+            class="calculate-btn"
+            onclick="calculateWhatPercent()">
+            Calculate
+        </button>
 
-    <div
-      id="result"
-      class="result"
-      aria-live="polite">
-
-      <div>Result</div>
-
-      <strong id="answer">0</strong>
-
-      <small id="calculation"></small>
-
-      <button
-        class="copy"
-        type="button"
-        onclick="copyPercentageResult()">
-        Copy Result
-      </button>
+        <div class="result" id="percentResult2"></div>
 
     </div>
 
-  </section>
+    <div id="percentageMode3" class="hidden">
+
+        <label for="oldNumber">Original Value</label>
+
+        <input
+            id="oldNumber"
+            type="number"
+            step="any"
+            placeholder="e.g. 100">
+
+        <label for="newNumber">New Value</label>
+
+        <input
+            id="newNumber"
+            type="number"
+            step="any"
+            placeholder="e.g. 125">
+
+        <button
+            class="calculate-btn"
+            onclick="calculatePercentageChange()">
+            Calculate
+        </button>
+
+        <div class="result" id="percentResult3"></div>
+
+    </div>
+
+</section>
 
 
-  <!-- Discount Calculator -->
-  <section class="card">
+<!-- Discount Calculator -->
+
+<section class="card" id="discount">
 
     <h2>Discount Calculator</h2>
 
+    <p class="card-description">
+        Find the discount amount and final price.
+    </p>
 
-    <label for="price">
-      Original Price
+    <label for="originalPrice">
+        Original Price
     </label>
 
     <input
-      id="price"
-      type="number"
-      inputmode="decimal"
-      step="any"
-      placeholder="e.g. 1000"
-    >
+        id="originalPrice"
+        type="number"
+        step="any"
+        placeholder="e.g. 5000">
 
-
-    <label for="discount">
-      Discount (%)
+    <label for="discountPercent">
+        Discount (%)
     </label>
 
     <input
-      id="discount"
-      type="number"
-      inputmode="decimal"
-      step="any"
-      placeholder="e.g. 20"
-    >
-
+        id="discountPercent"
+        type="number"
+        step="any"
+        placeholder="e.g. 20">
 
     <button
-      class="calc"
-      onclick="calculateDiscount()">
-      Calculate Discount
+        class="calculate-btn"
+        onclick="calculateDiscount()">
+        Calculate Discount
     </button>
 
+    <div class="result" id="discountResult"></div>
+
+</section>
+
+
+<!-- Age Calculator -->
+
+<section class="card" id="age">
+
+    <h2>Age Calculator</h2>
+
+    <p class="card-description">
+        Calculate your age from your date of birth.
+    </p>
+
+    <label for="birthDate">
+        Date of Birth
+    </label>
+
+    <input
+        id="birthDate"
+        type="date">
 
     <button
-      class="reset"
-      onclick="resetDiscount()">
-      Reset
+        class="calculate-btn"
+        onclick="calculateAge()">
+        Calculate Age
     </button>
 
+    <div class="result" id="ageResult"></div>
 
-    <div
-      id="discountResult"
-      class="result">
-
-      <div>Discount Amount</div>
-
-      <strong id="discountAmount">0</strong>
+</section>
 
 
-      <div>Final Price</div>
+<!-- BMI Calculator -->
 
-      <strong id="finalPrice">0</strong>
+<section class="card" id="bmi">
+
+    <h2>BMI Calculator</h2>
+
+    <p class="card-description">
+        Calculate your Body Mass Index.
+    </p>
+
+    <label for="bmiWeight">
+        Weight (kg)
+    </label>
+
+    <input
+        id="bmiWeight"
+        type="number"
+        step="any"
+        placeholder="e.g. 70">
+
+    <label for="bmiHeight">
+        Height (cm)
+    </label>
+
+    <input
+        id="bmiHeight"
+        type="number"
+        step="any"
+        placeholder="e.g. 175">
+
+    <button
+        class="calculate-btn"
+        onclick="calculateBMI()">
+        Calculate BMI
+    </button>
+
+    <div class="result" id="bmiResult"></div>
+
+</section>
 
 
-      <button
-        class="copy"
-        onclick="copyDiscountResult()">
-        Copy Result
-      </button>
+<!-- Loan Calculator -->
 
+<section class="card" id="loan">
+
+    <h2>Loan Calculator</h2>
+
+    <p class="card-description">
+        Estimate monthly loan payments.
+    </p>
+
+    <label for="loanAmount">
+        Loan Amount
+    </label>
+
+    <input
+        id="loanAmount"
+        type="number"
+        step="any"
+        placeholder="e.g. 100000">
+
+    <label for="loanRate">
+        Annual Interest Rate (%)
+    </label>
+
+    <input
+        id="loanRate"
+        type="number"
+        step="any"
+        placeholder="e.g. 10">
+
+    <label for="loanYears">
+        Loan Term (Years)
+    </label>
+
+    <input
+        id="loanYears"
+        type="number"
+        step="any"
+        placeholder="e.g. 5">
+
+    <button
+        class="calculate-btn"
+        onclick="calculateLoan()">
+        Calculate Loan
+    </button>
+
+    <div class="result" id="loanResult"></div>
+
+</section>
+
+
+<!-- Currency -->
+
+<section class="card" id="currency">
+
+    <h2>Currency Converter</h2>
+
+    <p class="card-description">
+        Convert currencies using your chosen exchange rate.
+    </p>
+
+    <label for="currencyAmount">
+        Amount
+    </label>
+
+    <input
+        id="currencyAmount"
+        type="number"
+        step="any"
+        placeholder="e.g. 100">
+
+    <label for="exchangeRate">
+        Exchange Rate
+    </label>
+
+    <input
+        id="exchangeRate"
+        type="number"
+        step="any"
+        placeholder="e.g. 278.50">
+
+    <button
+        class="calculate-btn"
+        onclick="calculateCurrency()">
+        Convert
+    </button>
+
+    <div class="result" id="currencyResult"></div>
+
+</section>
+
+
+<!-- Unit Converter -->
+
+<section class="card" id="unit">
+
+    <h2>Unit Converter</h2>
+
+    <p class="card-description">
+        Convert common length, weight and temperature units.
+    </p>
+
+    <label for="unitValue">
+        Value
+    </label>
+
+    <input
+        id="unitValue"
+        type="number"
+        step="any"
+        placeholder="Enter value">
+
+    <label for="unitType">
+        Conversion
+    </label>
+
+    <select id="unitType">
+
+        <option value="km-miles">
+            Kilometers → Miles
+        </option>
+
+        <option value="miles-km">
+            Miles → Kilometers
+        </option>
+
+        <option value="kg-lb">
+            Kilograms → Pounds
+        </option>
+
+        <option value="lb-kg">
+            Pounds → Kilograms
+        </option>
+
+        <option value="c-f">
+            Celsius → Fahrenheit
+        </option>
+
+        <option value="f-c">
+            Fahrenheit → Celsius
+        </option>
+
+    </select>
+
+    <button
+        class="calculate-btn"
+        onclick="calculateUnit()">
+        Convert
+    </button>
+
+    <div class="result" id="unitResult"></div>
+
+</section>
+
+
+<!-- Scientific Calculator -->
+
+<section class="card" id="scientific">
+
+    <h2>Scientific Calculator</h2>
+
+    <p class="card-description">
+        Perform basic mathematical calculations.
+    </p>
+
+    <label for="scientificExpression">
+        Expression
+    </label>
+
+    <input
+        id="scientificExpression"
+        type="text"
+        placeholder="e.g. 25 * 4 + 10">
+
+    <button
+        class="calculate-btn"
+        onclick="calculateScientific()">
+        Calculate
+    </button>
+
+    <div class="result" id="scientificResult"></div>
+
+</section>
+
+
+<!-- EMI Calculator -->
+
+<section class="card" id="emi">
+
+    <h2>EMI Calculator</h2>
+
+    <p class="card-description">
+        Calculate your estimated monthly EMI.
+    </p>
+
+    <label for="emiPrincipal">
+        Principal Amount
+    </label>
+
+    <input
+        id="emiPrincipal"
+        type="number"
+        step="any"
+        placeholder="e.g. 1000000">
+
+    <label for="emiRate">
+        Annual Interest Rate (%)
+    </label>
+
+    <input
+        id="emiRate"
+        type="number"
+        step="any"
+        placeholder="e.g. 12">
+
+    <label for="emiYears">
+        Tenure (Years)
+    </label>
+
+    <input
+        id="emiYears"
+        type="number"
+        step="any"
+        placeholder="e.g. 5">
+
+    <button
+        class="calculate-btn"
+        onclick="calculateEMI()">
+        Calculate EMI
+    </button>
+
+    <div class="result" id="emiResult"></div>
+
+</section>
+
+
+<!-- Investment Calculator -->
+
+<section class="card" id="investment">
+
+    <h2>Investment Calculator</h2>
+
+    <p class="card-description">
+        Estimate future value of a one-time investment.
+    </p>
+
+    <label for="investmentPrincipal">
+        Initial Investment
+    </label>
+
+    <input
+        id="investmentPrincipal"
+        type="number"
+        step="any"
+        placeholder="e.g. 100000">
+
+    <label for="investmentRate">
+        Annual Return (%)
+    </label>
+
+    <input
+        id="investmentRate"
+        type="number"
+        step="any"
+        placeholder="e.g. 10">
+
+    <label for="investmentYears">
+        Years
+    </label>
+
+    <input
+        id="investmentYears"
+        type="number"
+        step="any"
+        placeholder="e.g. 10">
+
+    <button
+        class="calculate-btn"
+        onclick="calculateInvestment()">
+        Calculate
+    </button>
+
+    <div class="result" id="investmentResult"></div>
+
+</section>
+
+
+<!-- Percentage Change -->
+
+<section class="card" id="change">
+
+    <h2>Percentage Change Calculator</h2>
+
+    <p class="card-description">
+        Find the percentage change between two values.
+    </p>
+
+    <label for="changeOld">
+        Old Value
+    </label>
+
+    <input
+        id="changeOld"
+        type="number"
+        step="any"
+        placeholder="e.g. 200">
+
+    <label for="changeNew">
+        New Value
+    </label>
+
+    <input
+        id="changeNew"
+        type="number"
+        step="any"
+        placeholder="e.g. 250">
+
+    <button
+        class="calculate-btn"
+        onclick="calculateChange()">
+        Calculate
+    </button>
+
+    <div class="result" id="changeResult"></div>
+
+</section>
+
+
+<!-- Tip Calculator -->
+
+<section class="card" id="tip">
+
+    <h2>Tip Calculator</h2>
+
+    <p class="card-description">
+        Calculate tip and total bill amount.
+    </p>
+
+    <label for="billAmount">
+        Bill Amount
+    </label>
+
+    <input
+        id="billAmount"
+        type="number"
+        step="any"
+        placeholder="e.g. 2500">
+
+    <label for="tipPercent">
+        Tip (%)
+    </label>
+
+    <input
+        id="tipPercent"
+        type="number"
+        step="any"
+        placeholder="e.g. 10">
+
+    <label for="peopleCount">
+        Number of People
+    </label>
+
+    <input
+        id="peopleCount"
+        type="number"
+        step="1"
+        placeholder="e.g. 2">
+
+    <button
+        class="calculate-btn"
+        onclick="calculateTip()">
+        Calculate Tip
+    </button>
+
+    <div class="result" id="tipResult"></div>
+
+</section>
+
+
+<!-- Formulas -->
+
+<section class="card">
+
+    <h2>Useful Formulas</h2>
+
+    <div class="formula">
+        <strong>Percentage:</strong><br>
+        Percentage = (Part ÷ Whole) × 100
     </div>
 
-  </section>
+    <div class="formula">
+        <strong>Discount:</strong><br>
+        Discount Amount = Original Price × Discount ÷ 100
+    </div>
+
+    <div class="formula">
+        <strong>BMI:</strong><br>
+        BMI = Weight (kg) ÷ Height² (m)
+    </div>
+
+    <div class="formula">
+        <strong>Percentage Change:</strong><br>
+        Change % = ((New − Old) ÷ Old) × 100
+    </div>
+
+</section>
 
 
-  <!-- Percentage Formula -->
-  <section class="card">
+<!-- FAQ -->
 
-    <h2>How to Calculate a Percentage?</h2>
-
-    <p>
-      Use this formula:
-    </p>
-
-    <p class="formula">
-      Percentage result =
-      (Percentage ÷ 100) × Number
-    </p>
-
-    <p>
-      Example: 20% of 500 = 100.
-    </p>
-
-  </section>
-
-
-  <!-- Discount Formula -->
-  <section class="card">
-
-    <h2>How to Calculate a Discount?</h2>
-
-    <p>
-      Discount amount:
-    </p>
-
-    <p class="formula">
-      Discount =
-      (Discount % ÷ 100) × Original Price
-    </p>
-
-
-    <p>
-      Final price:
-    </p>
-
-    <p class="formula">
-      Final Price =
-      Original Price − Discount
-    </p>
-
-
-    <p>
-      Example: 20% off $1000 =
-      $200 discount, final price = $800.
-    </p>
-
-  </section>
-
-
-  <!-- FAQ -->
-  <section class="card">
+<section class="card">
 
     <h2>Frequently Asked Questions</h2>
 
+    <div class="faq-item">
 
-    <div class="faq">
+        <h3>Is QuickPercent free?</h3>
 
-      <strong>
-        What is a percentage?
-      </strong>
-
-      <p>
-        A percentage is a number expressed
-        as a fraction of 100.
-      </p>
+        <p>
+            Yes. QuickPercent is designed as a free online calculator website.
+        </p>
 
     </div>
 
+    <div class="faq-item">
 
-    <div class="faq">
+        <h3>Can I use QuickPercent on mobile?</h3>
 
-      <strong>
-        How does the discount calculator work?
-      </strong>
-
-      <p>
-        Enter the original price and discount
-        percentage to calculate the discount
-        amount and final price.
-      </p>
+        <p>
+            Yes. The website is designed to work on phones, tablets and computers.
+        </p>
 
     </div>
 
+    <div class="faq-item">
 
-    <div class="faq">
+        <h3>Are the calculator results instant?</h3>
 
-      <strong>
-        Is QuickPercent free?
-      </strong>
-
-      <p>
-        Yes. QuickPercent is free to use
-        on mobile and desktop.
-      </p>
+        <p>
+            Yes. Calculations are performed directly in your browser.
+        </p>
 
     </div>
 
-  </section>
+</section>
 
 </main>
 
 
 <footer>
-  © 2026 QuickPercent. All rights reserved.
+
+    © 2026 QuickPercent. All rights reserved.
+
 </footer>
 
 
-<script>
+<!-- All Calculators Bottom Sheet -->
 
-  /* =========================
-     PERCENTAGE CALCULATOR
-  ========================= */
+<div
+    id="calculatorMenu"
+    class="calculator-menu"
+    onclick="closeMenuOutside(event)">
 
-  let percentMode = 1;
+    <div
+        class="calculator-menu-box"
+        onclick="event.stopPropagation()">
 
+        <div class="menu-header">
 
-  function formatNumber(value) {
+            <h2>All Calculators</h2>
 
-    if (!Number.isFinite(value)) {
-      return '0';
-    }
+            <button
+                class="menu-close"
+                type="button"
+                onclick="closeCalculatorMenu()">
+                ×
+            </button>
 
-    if (Number.isInteger(value)) {
-      return value.toLocaleString();
-    }
+        </div>
 
-    return Number(
-      value.toFixed(2)
-    ).toLocaleString();
+        <p class="menu-subtitle">
+            Choose a calculator to get started
+        </p>
 
-  }
+        <div class="calculator-grid">
 
+            <a
+                class="calculator-item"
+                href="#percentage"
+                onclick="closeCalculatorMenu()">
 
-  function setPercentMode(mode) {
+                <span class="calc-icon">%</span>
 
-    percentMode = mode;
+                <span class="calc-name">
+                    Percentage
+                    <small class="calc-small">
+                        Calculate %
+                    </small>
+                </span>
 
+            </a>
 
-    document
-      .querySelectorAll('.mode-btn')
-      .forEach((button, index) => {
 
-        button.classList.toggle(
-          'active',
-          index === mode - 1
-        );
+            <a
+                class="calculator-item"
+                href="#discount"
+                onclick="closeCalculatorMenu()">
 
-      });
+                <span class="calc-icon">🏷</span>
 
+                <span class="calc-name">
+                    Discount
+                    <small class="calc-small">
+                        Find savings
+                    </small>
+                </span>
 
-    document
-      .querySelectorAll('.calc-mode')
-      .forEach((box, index) => {
+            </a>
 
-        box.classList.toggle(
-          'active',
-          index === mode - 1
-        );
 
-      });
+            <a
+                class="calculator-item"
+                href="#age"
+                onclick="closeCalculatorMenu()">
 
+                <span class="calc-icon">🎂</span>
 
-    document.getElementById(
-      'result'
-    ).style.display = 'none';
+                <span class="calc-name">
+                    Age
+                    <small class="calc-small">
+                        Calculate age
+                    </small>
+                </span>
 
+            </a>
 
-    document.getElementById(
-      'percentError'
-    ).style.display = 'none';
 
-  }
+            <a
+                class="calculator-item"
+                href="#bmi"
+                onclick="closeCalculatorMenu()">
 
+                <span class="calc-icon">⚖</span>
 
-  function showPercentError(message) {
-
-    const error =
-      document.getElementById(
-        'percentError'
-      );
-
-
-    error.textContent = message;
-
-    error.style.display = 'block';
-
-
-    document.getElementById(
-      'result'
-    ).style.display = 'none';
-
-  }
-
-
-  function calculatePercentage() {
-
-    const result =
-      document.getElementById('result');
-
-    const answer =
-      document.getElementById('answer');
-
-    const calculation =
-      document.getElementById('calculation');
-
-    const error =
-      document.getElementById('percentError');
-
-
-    error.style.display = 'none';
-
-
-    let value;
-
-    let explanation;
-
-
-    /* X% of Y */
-
-    if (percentMode === 1) {
-
-      const p =
-        parseFloat(
-          document.getElementById(
-            'percent'
-          ).value
-        );
-
-
-      const n =
-        parseFloat(
-          document.getElementById(
-            'number'
-          ).value
-        );
-
-
-      if (
-        !Number.isFinite(p) ||
-        !Number.isFinite(n)
-      ) {
-
-        showPercentError(
-          'Please enter both the percentage and number.'
-        );
-
-        return;
-
-      }
-
-
-      value =
-        (p / 100) * n;
-
-
-      explanation =
-        `${formatNumber(p)}% of ${formatNumber(n)} = ${formatNumber(value)}`;
-
-    }
-
-
-    /* X is what % of Y */
-
-    if (percentMode === 2) {
-
-      const part =
-        parseFloat(
-          document.getElementById(
-            'part'
-          ).value
-        );
-
-
-      const whole =
-        parseFloat(
-          document.getElementById(
-            'whole'
-          ).value
-        );
-
-
-      if (
-        !Number.isFinite(part) ||
-        !Number.isFinite(whole)
-      ) {
-
-        showPercentError(
-          'Please enter both values.'
-        );
-
-        return;
-
-      }
-
-
-      if (whole === 0) {
-
-        showPercentError(
-          'The total value cannot be zero.'
-        );
-
-        return;
-
-      }
-
-
-      value =
-        (part / whole) * 100;
-
-
-      explanation =
-        `${formatNumber(part)} is ${formatNumber(value)}% of ${formatNumber(whole)}`;
-
-    }
-
-
-    /* Increase / Decrease */
-
-    if (percentMode === 3) {
-
-      const oldValue =
-        parseFloat(
-          document.getElementById(
-            'oldValue'
-          ).value
-        );
-
-
-      const newValue =
-        parseFloat(
-          document.getElementById(
-            'newValue'
-          ).value
-        );
-
-
-      if (
-        !Number.isFinite(oldValue) ||
-        !Number.isFinite(newValue)
-      ) {
-
-        showPercentError(
-          'Please enter the original and new values.'
-        );
-
-        return;
-
-      }
-
-
-      if (oldValue === 0) {
-
-        showPercentError(
-          'The original value cannot be zero.'
-        );
-
-        return;
-
-      }
-
-
-      value =
-        (
-          (newValue - oldValue) /
-          Math.abs(oldValue)
-        ) * 100;
-
-
-      const direction =
-        value > 0
-          ? 'increase'
-          : value < 0
-          ? 'decrease'
-          : 'no change';
-
-
-      explanation =
-        `${formatNumber(oldValue)} → ${formatNumber(newValue)} = ${formatNumber(Math.abs(value))}% ${direction}`;
-
-    }
-
-
-    if (
-      percentMode === 2 ||
-      percentMode === 3
-    ) {
-
-      answer.textContent =
-        `${formatNumber(value)}%`;
-
-    } else {
-
-      answer.textContent =
-        formatNumber(value);
-
-    }
-
-
-    calculation.textContent =
-      explanation;
-
-
-    result.style.display =
-      'block';
-
-  }
-
-
-  function resetPercentage() {
-
-    [
-      'percent',
-      'number',
-      'part',
-      'whole',
-      'oldValue',
-      'newValue'
-    ].forEach(id => {
-
-      const input =
-        document.getElementById(id);
-
-      if (input) {
-        input.value = '';
-      }
-
-    });
-
-
-    document.getElementById(
-      'result'
-    ).style.display = 'none';
-
-
-    document.getElementById(
-      'percentError'
-    ).style.display = 'none';
-
-
-    document.getElementById(
-      'answer'
-    ).textContent = '0';
-
-
-    document.getElementById(
-      'calculation'
-    ).textContent = '';
-
-  }
-
-
-  async function copyPercentageResult() {
-
-    const text =
-      document.getElementById(
-        'answer'
-      ).textContent;
-
-
-    try {
-
-      await navigator.clipboard
-        .writeText(text);
-
-
-      const button =
-        document.querySelector(
-          '#result .copy'
-        );
-
-
-      const oldText =
-        button.textContent;
-
-
-      button.textContent =
-        'Copied!';
-
-
-      setTimeout(() => {
-
-        button.textContent =
-          oldText;
-
-      }, 1200);
-
-
-    } catch (e) {
-
-      alert(
-        'Unable to copy result.'
-      );
-
-    }
-
-  }
-
-
-  /* Enter key */
-
-  document
-    .querySelectorAll('input')
-    .forEach(input => {
-
-      input.addEventListener(
-        'keydown',
-        event => {
-
-          if (event.key === 'Enter') {
-
-            if (
-              input.id === 'price' ||
-              input.id === 'discount'
-            ) {
-
-              calculateDiscount();
-
-            } else {
-
-              calculatePercentage();
-
-            }
-
-          }
-
-        }
-      );
-
-    });
-
-
-  /* =========================
-     DISCOUNT CALCULATOR
-  ========================= */
-
-  function calculateDiscount() {
-
-    const price =
-      parseFloat(
-        document.getElementById(
-          'price'
-        ).value
-      );
-
-
-    const discount =
-      parseFloat(
-        document.getElementById(
-          'discount'
-        ).value
-      );
-
-
-    const result =
-      document.getElementById(
-        'discountResult'
-      );
-
-
-    if (
-      isNaN(price) ||
-      isNaN(discount)
-    ) {
-
-      alert(
-        'Please enter price and discount.'
-      );
-
-      return;
-
-    }
-
-
-    const discountAmount =
-      (discount / 100) * price;
-
-
-    const finalPrice =
-      price - discountAmount;
-
-
-    document.getElementById(
-      'discountAmount'
-    ).textContent =
-      Number.isInteger(
-        discountAmount
-      )
-        ? discountAmount
-        : discountAmount.toFixed(2);
-
-
-    document.getElementById(
-      'finalPrice'
-    ).textContent =
-      Number.isInteger(
-        finalPrice
-      )
-        ? finalPrice
-        : finalPrice.toFixed(2);
-
-
-    result.style.display =
-      'block';
-
-  }
-
-
-  function resetDiscount() {
-
-    document.getElementById(
-      'price'
-    ).value = '';
-
-
-    document.getElementById(
-      'discount'
-    ).value = '';
-
-
-    document.getElementById(
-      'discountResult'
-    ).style.display = 'none';
-
-  }
-
-
-  function copyDiscountResult() {
-
-    const discount =
-      document.getElementById(
-        'discountAmount'
-      ).textContent;
-
-
-    const finalPrice =
-      document.getElementById(
-        'finalPrice'
-      ).textContent;
-
-
-    const text =
-      'Discount: ' +
-      discount +
-      '\nFinal Price: ' +
-      finalPrice;
-
-
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-
-        alert(
-          'Result copied!'
-        );
-
-      });
-
-  }
-document.querySelector(".all-calculators-btn").onclick = function () {
-  document.getElementById("calculatorMenu").style.display = "flex";
-};
-
-document.querySelector(".menu-close").onclick = function () {
-  document.getElementById("calculatorMenu").style.display = "none";
-};
-
-document.querySelectorAll("#calculatorMenu a").forEach(function (link) {
-  link.onclick = function () {
-    document.getElementById("calculatorMenu").style.display = "none";
-  };
-});
-</script>
-
-</body>
-</html>
+                <span class="calc-name">
+                    
