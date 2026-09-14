@@ -192,7 +192,63 @@
         grid-template-columns: 1fr;
       }
     }
-  </style>
+/* All Calculators Menu */
+.all-calculators-btn {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  z-index: 9999;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}  .calculator-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 10000;
+  align-items: flex-end;
+}
+
+.calculator-menu-box {
+  width: 100%;
+  background: white;
+  border-radius: 24px 24px 0 0;
+  padding: 24px;
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+.menu-close {
+  float: right;
+  border: none;
+  background: #eef2f7;
+  font-size: 28px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}
+
+.calculator-menu-box h2 {
+  margin-top: 0;
+}
+
+.calculator-menu-box a {
+  display: block;
+  padding: 15px;
+  margin-top: 10px;
+  background: #f5f7fb;
+  border-radius: 12px;
+  color: #172033;
+  text-decoration: none;
+  font-weight: 700;
+}</style>
 </head>
 
 <body>
@@ -200,7 +256,22 @@
 <header>
   <h1>QuickPercent</h1>
   <p>Fast, simple and accurate percentage calculator</p>
-</header>
+</header><button class="all-calculators-btn" type="button">
+  ☰ All Calculators
+</button><div id="calculatorMenu" class="calculator-menu">
+  <div class="calculator-menu-box">
+    <button class="menu-close" type="button">×</button>
+    <h2>All Calculators</h2>
+
+    <a href="#percentage">Percentage Calculator</a>
+    <a href="#discount">Discount Calculator</a>
+    <a href="#age">Age Calculator</a>
+    <a href="#bmi">BMI Calculator</a>
+    <a href="#loan">Loan Calculator</a>
+    <a href="#currency">Currency Converter</a>
+    <a href="#unit">Unit Converter</a>
+  </div>
+</div>
 
 <main class="wrap">
 
@@ -1096,7 +1167,19 @@
       });
 
   }
+document.querySelector(".all-calculators-btn").onclick = function () {
+  document.getElementById("calculatorMenu").style.display = "flex";
+};
 
+document.querySelector(".menu-close").onclick = function () {
+  document.getElementById("calculatorMenu").style.display = "none";
+};
+
+document.querySelectorAll("#calculatorMenu a").forEach(function (link) {
+  link.onclick = function () {
+    document.getElementById("calculatorMenu").style.display = "none";
+  };
+});
 </script>
 
 </body>
