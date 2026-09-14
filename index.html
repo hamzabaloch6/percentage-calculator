@@ -3,1812 +3,1966 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0757d9">
-<meta name="description" content="QuickPercent - Quick, easy and useful calculators for everyday calculations.">
-<title>QuickPercent - Useful Calculators</title>
+
+<meta name="description"
+content="QuickPercent - quick, easy and useful calculators for everyday calculations.">
+
+<meta name="theme-color" content="#1267d9">
+
+<title>QuickPercent - Quick, Easy Useful Calculators</title>
 
 <style>
+
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+    box-sizing:border-box;
 }
 
 html{
-  scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f7f9fc;
-  color:#10264b;
-  line-height:1.5;
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f7f9fc;
+    color:#172b4d;
 }
 
-button,input,select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-/* HEADER */
-.header{
-  background:linear-gradient(135deg,#0757d9,#1646b9);
-  color:white;
-  min-height:170px;
-  padding:25px 18px 55px;
-  position:relative;
-}
-
-.header-inner{
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+header{
+    height:92px;
+    background:#1267d9;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 22px;
+    color:white;
 }
 
 .logo{
-  font-size:30px;
-  font-weight:800;
-  letter-spacing:-1px;
-}
-
-.logo span{
-  color:#55a7ff;
+    font-size:28px;
+    font-weight:800;
+    letter-spacing:-1px;
 }
 
 .header-menu{
-  border:0;
-  background:rgba(255,255,255,.12);
-  color:white;
-  width:48px;
-  height:48px;
-  border-radius:14px;
-  font-size:28px;
+    font-size:31px;
+    cursor:pointer;
+    padding:5px;
 }
 
-/* MAIN */
 .container{
-  width:min(100% - 30px,1050px);
-  margin:-25px auto 60px;
-  position:relative;
-  z-index:2;
+    width:100%;
+    max-width:720px;
+    margin:auto;
+    padding:34px 18px 120px;
 }
 
-.hero{
-  background:#fff;
-  border-radius:24px;
-  padding:30px 22px;
-  box-shadow:0 8px 30px rgba(20,50,100,.08);
+.hero-title{
+    margin:0;
+    color:#102d57;
+    font-size:31px;
+    line-height:1.18;
+    font-weight:800;
 }
 
-.hero h1{
-  font-size:30px;
-  line-height:1.2;
-  margin-bottom:12px;
-  color:#102b57;
+.hero-subtitle{
+    color:#74839a;
+    font-size:17px;
+    line-height:1.55;
+    margin:14px 0 25px;
 }
 
-.hero p{
-  color:#64748b;
-  font-size:16px;
-  max-width:600px;
-}
-
-/* SEARCH */
-.search-box{
-  margin-top:24px;
-  position:relative;
-}
-
-.search-box input{
-  width:100%;
-  height:58px;
-  border:1px solid #dce4ef;
-  border-radius:18px;
-  padding:0 18px 0 53px;
-  outline:none;
-  color:#162d53;
-  background:#fff;
-  font-size:16px;
-}
-
-.search-box input:focus{
-  border-color:#2878ed;
-  box-shadow:0 0 0 4px rgba(40,120,237,.1);
+.search-wrap{
+    position:relative;
+    margin-bottom:28px;
 }
 
 .search-icon{
-  position:absolute;
-  left:18px;
-  top:16px;
-  font-size:24px;
-  color:#7890ad;
+    position:absolute;
+    left:20px;
+    top:19px;
+    font-size:25px;
+    color:#8090a8;
+    z-index:2;
 }
 
-/* CALCULATOR CARDS */
-.calculator-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-  margin-top:22px;
+.search-input{
+    width:100%;
+    height:70px;
+    border:1px solid #e0e6ee;
+    border-radius:25px;
+    background:white;
+    padding:0 20px 0 55px;
+    font-size:18px;
+    outline:none;
+    box-shadow:0 3px 14px rgba(20,40,70,.04);
 }
 
-.calculator-card{
-  background:white;
-  border:1px solid #e5ebf3;
-  border-radius:20px;
-  padding:18px;
-  display:flex;
-  align-items:center;
-  gap:14px;
-  min-height:105px;
-  box-shadow:0 4px 15px rgba(20,50,100,.04);
-  transition:.2s;
-  cursor:pointer;
+.search-input:focus{
+    border-color:#1267d9;
 }
 
-.calculator-card:hover{
-  transform:translateY(-2px);
-  box-shadow:0 9px 25px rgba(20,50,100,.1);
+.card{
+    background:white;
+    border:1px solid #e5eaf1;
+    border-radius:25px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 5px 22px rgba(30,50,80,.05);
 }
 
-.calc-card-icon{
-  width:58px;
-  height:58px;
-  min-width:58px;
-  border-radius:16px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:white;
-  font-size:28px;
-  font-weight:bold;
+.hidden{
+    display:none !important;
 }
 
-.blue{background:#1264df}
-.orange{background:#ff921d}
-.cyan{background:#20b4d6}
-.purple{background:#7652df}
-.green{background:#20b97a}
-.red{background:#ed5d6d}
-.indigo{background:#5367e9}
-.teal{background:#159d9a}
-
-.calculator-card h3{
-  font-size:17px;
-  color:#122b54;
-  margin-bottom:4px;
+.card h2{
+    margin:0 0 8px;
+    color:#102d57;
+    font-size:23px;
 }
 
-.calculator-card p{
-  font-size:13px;
-  color:#7788a0;
+.description{
+    color:#78879c;
+    margin:0 0 20px;
+    line-height:1.5;
 }
 
-/* TOOL SECTIONS */
-.tool-section{
-  margin-top:25px;
-  background:white;
-  border-radius:24px;
-  padding:25px 20px;
-  border:1px solid #e5ebf3;
-  box-shadow:0 5px 20px rgba(20,50,100,.04);
-  scroll-margin-top:20px;
+.feature-head{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:22px;
 }
 
-.tool-title{
-  display:flex;
-  align-items:center;
-  gap:13px;
-  margin-bottom:20px;
+.feature-icon{
+    width:82px;
+    height:82px;
+    border-radius:20px;
+    background:#1769dc;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:44px;
+    font-weight:700;
+    flex-shrink:0;
 }
 
-.tool-title-icon{
-  width:48px;
-  height:48px;
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:white;
-  font-size:23px;
+.feature-title{
+    font-size:22px;
+    font-weight:800;
+    color:#102d57;
 }
 
-.tool-title h2{
-  font-size:22px;
-  color:#102b57;
+.feature-description{
+    margin-top:6px;
+    color:#78879c;
+    font-size:15px;
 }
 
-.tool-title p{
-  font-size:13px;
-  color:#7a8ba2;
-}
-
-/* FORMS */
-.form-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-}
-
-.field{
-  margin-bottom:15px;
-}
-
-.field label{
-  display:block;
-  font-weight:600;
-  color:#334b6e;
-  font-size:14px;
-  margin-bottom:7px;
-}
-
-.field input,
-.field select{
-  width:100%;
-  height:52px;
-  border:1px solid #dce4ef;
-  border-radius:13px;
-  padding:0 14px;
-  outline:none;
-  background:#fff;
-  color:#172f55;
-}
-
-.field input:focus,
-.field select:focus{
-  border-color:#2878ed;
-  box-shadow:0 0 0 3px rgba(40,120,237,.1);
-}
-
-.full{
-  grid-column:1/-1;
-}
-
-.btn{
-  border:0;
-  width:100%;
-  height:52px;
-  border-radius:13px;
-  color:white;
-  font-weight:700;
-  background:#1264df;
-  transition:.2s;
-}
-
-.btn:hover{
-  filter:brightness(.95);
-  transform:translateY(-1px);
-}
-
-.btn.orange-btn{background:#f58b18}
-.btn.green-btn{background:#16aa70}
-.btn.purple-btn{background:#7050d9}
-
-/* MODES */
 .mode-buttons{
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  padding-bottom:4px;
-  margin-bottom:20px;
+    display:flex;
+    gap:8px;
+    margin-bottom:20px;
+    overflow-x:auto;
 }
 
 .mode-btn{
-  border:1px solid #dce4ef;
-  background:#f8fafc;
-  color:#50647f;
-  border-radius:12px;
-  padding:10px 14px;
-  white-space:nowrap;
-  font-weight:600;
+    border:1px solid #dce3ec;
+    background:#f7f9fc;
+    color:#52647c;
+    border-radius:12px;
+    padding:11px 13px;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+    white-space:nowrap;
 }
 
 .mode-btn.active{
-  color:white;
-  background:#1264df;
-  border-color:#1264df;
+    background:#1267d9;
+    color:white;
+    border-color:#1267d9;
 }
 
-/* RESULT */
+label{
+    display:block;
+    color:#263b5b;
+    font-size:14px;
+    font-weight:700;
+    margin:15px 0 7px;
+}
+
+input,
+select{
+    width:100%;
+    height:50px;
+    border:1px solid #d9e0e9;
+    border-radius:12px;
+    padding:0 14px;
+    font-size:16px;
+    background:white;
+    color:#172b4d;
+    outline:none;
+}
+
+input:focus,
+select:focus{
+    border-color:#1267d9;
+}
+
+.calculate-btn{
+    width:100%;
+    height:50px;
+    margin-top:18px;
+    border:0;
+    border-radius:12px;
+    background:#1267d9;
+    color:white;
+    font-size:16px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.calculate-btn:active{
+    transform:scale(.99);
+}
+
+.reset-btn{
+    width:100%;
+    height:45px;
+    margin-top:10px;
+    border:0;
+    border-radius:12px;
+    background:#edf1f6;
+    color:#33445e;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+}
+
 .result{
-  display:none;
-  margin-top:18px;
-  border-radius:16px;
-  padding:18px;
-  background:#edf5ff;
-  border:1px solid #cfe3ff;
+    display:none;
+    margin-top:17px;
+    background:#eef5ff;
+    border-radius:14px;
+    padding:17px;
+    text-align:center;
+    color:#203858;
+    line-height:1.6;
 }
 
-.result.show{
-  display:block;
+.result strong{
+    display:block;
+    color:#1267d9;
+    font-size:27px;
+    margin:4px 0;
 }
 
-.result-label{
-  color:#607694;
-  font-size:13px;
-  margin-bottom:5px;
+.info-card{
+    background:white;
+    border:1px solid #e5eaf1;
+    border-radius:22px;
+    padding:23px;
+    margin-bottom:20px;
 }
 
-.result-value{
-  font-size:27px;
-  font-weight:800;
-  color:#0757d9;
-  word-break:break-word;
+.info-card h2{
+    margin:0 0 14px;
+    color:#102d57;
 }
 
-.result-note{
-  margin-top:7px;
-  color:#5f718b;
-  font-size:13px;
+.info-card p{
+    color:#697a92;
+    line-height:1.6;
 }
 
-.info-box{
-  background:#f7faff;
-  border:1px solid #e0eaf7;
-  border-radius:15px;
-  padding:15px;
-  margin-top:18px;
-  color:#566b87;
-  font-size:14px;
-}
-
-.formula{
-  background:#102b57;
-  color:white;
-  padding:14px;
-  border-radius:12px;
-  margin-top:10px;
-  font-family:monospace;
-  overflow:auto;
-}
-
-/* FAQ */
-.faq{
-  margin-top:25px;
+.formula-box{
+    background:#f3f7fd;
+    border-radius:13px;
+    padding:14px;
+    margin:10px 0;
+    color:#203858;
+    font-weight:700;
 }
 
 .faq-item{
-  background:white;
-  border:1px solid #e2e8f0;
-  border-radius:14px;
-  margin-bottom:10px;
-  overflow:hidden;
+    border-top:1px solid #e7ebf0;
+    padding:16px 0;
 }
 
-.faq-question{
-  width:100%;
-  border:0;
-  background:white;
-  padding:17px;
-  text-align:left;
-  font-weight:700;
-  color:#17345f;
-  display:flex;
-  justify-content:space-between;
+.faq-item:first-child{
+    border-top:0;
 }
 
-.faq-answer{
-  display:none;
-  padding:0 17px 17px;
-  color:#687a92;
-  font-size:14px;
+.faq-item h3{
+    margin:0 0 7px;
+    color:#203858;
+    font-size:16px;
 }
 
-.faq-item.open .faq-answer{
-  display:block;
+.faq-item p{
+    margin:0;
+    color:#74839a;
+    line-height:1.5;
 }
 
-/* FOOTER */
 footer{
-  text-align:center;
-  padding:35px 15px 100px;
-  color:#78899f;
-  font-size:14px;
+    text-align:center;
+    padding:25px 18px 110px;
+    color:#8290a3;
+    font-size:13px;
 }
 
-/* ALL CALCULATORS BUTTON */
-.all-btn{
-  position:fixed;
-  left:50%;
-  bottom:18px;
-  transform:translateX(-50%);
-  z-index:100;
-  background:#111827;
-  color:white;
-  border:0;
-  border-radius:30px;
-  padding:15px 22px;
-  font-weight:700;
-  box-shadow:0 8px 30px rgba(0,0,0,.22);
-  white-space:nowrap;
+.all-calculators-btn{
+    position:fixed;
+    z-index:9000;
+    left:50%;
+    bottom:18px;
+    transform:translateX(-50%);
+    border:0;
+    border-radius:40px;
+    background:#111827;
+    color:white;
+    padding:17px 27px;
+    min-width:235px;
+    font-size:17px;
+    font-weight:800;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    cursor:pointer;
 }
 
-/* OVERLAY */
-.menu-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(10,25,50,.5);
-  backdrop-filter:blur(3px);
-  z-index:200;
-  opacity:0;
-  visibility:hidden;
-  transition:.25s;
+.calculator-menu{
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    background:rgba(12,25,45,.58);
+    display:none;
+    align-items:flex-end;
 }
 
-.menu-overlay.active{
-  opacity:1;
-  visibility:visible;
+.calculator-menu.show{
+    display:flex;
 }
 
-/* BOTTOM SHEET */
-.bottom-sheet{
-  position:fixed;
-  left:50%;
-  bottom:0;
-  transform:translate(-50%,100%);
-  width:min(100%,650px);
-  background:white;
-  border-radius:28px 28px 0 0;
-  z-index:201;
-  padding:12px 22px 28px;
-  max-height:88vh;
-  overflow-y:auto;
-  transition:transform .3s ease;
+.calculator-menu-box{
+    width:100%;
+    max-width:650px;
+    margin:auto;
+    background:white;
+    border-radius:30px 30px 0 0;
+    padding:13px 20px 30px;
+    max-height:88vh;
+    overflow-y:auto;
+    animation:sheetUp .2s ease;
 }
 
-.menu-overlay.active .bottom-sheet{
-  transform:translate(-50%,0);
+@keyframes sheetUp{
+    from{
+        transform:translateY(100%);
+    }
+    to{
+        transform:translateY(0);
+    }
 }
 
-.sheet-handle{
-  width:72px;
-  height:5px;
-  border-radius:20px;
-  background:#c8d0dc;
-  margin:0 auto 24px;
+.handle{
+    width:72px;
+    height:5px;
+    border-radius:10px;
+    background:#cbd3df;
+    margin:0 auto 23px;
 }
 
-.sheet-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:20px;
+.menu-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    margin-bottom:5px;
 }
 
-.sheet-head h2{
-  font-size:24px;
-  color:#142d55;
+.menu-head h2{
+    margin:0;
+    font-size:24px;
+    color:#102d57;
 }
 
-.close-menu{
-  border:0;
-  background:#f1f4f8;
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  color:#435570;
-  font-size:25px;
+.menu-sub{
+    margin-top:7px;
+    color:#8290a3;
+    font-size:13px;
 }
 
-.sheet-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  column-gap:25px;
-  row-gap:18px;
+.menu-close{
+    width:40px;
+    height:40px;
+    border:0;
+    border-radius:50%;
+    background:#f0f3f7;
+    color:#243650;
+    font-size:27px;
+    cursor:pointer;
 }
 
-.sheet-item{
-  display:flex;
-  align-items:center;
-  gap:13px;
-  border:0;
-  background:white;
-  text-align:left;
-  min-height:62px;
-  color:#19345c;
+.menu-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 12px;
+    margin-top:18px;
 }
 
-.sheet-icon{
-  width:48px;
-  height:48px;
-  min-width:48px;
-  border-radius:13px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:white;
-  font-size:22px;
+.menu-item{
+    min-height:72px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    text-decoration:none;
+    border-radius:15px;
+    padding:8px 5px;
+    color:#172b4d;
 }
 
-.sheet-name{
-  font-weight:700;
-  font-size:15px;
+.menu-item:active,
+.menu-item:hover{
+    background:#f6f8fb;
 }
 
-.sheet-desc{
-  color:#8795a9;
-  font-size:11px;
-  margin-top:2px;
+.mi{
+    width:58px;
+    min-width:58px;
+    height:58px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:27px;
+    font-weight:700;
+}
+
+.mi-blue{background:#1769dc;}
+.mi-orange{background:#ff941f;}
+.mi-cyan{background:#27afd0;}
+.mi-purple{background:#7950e8;}
+.mi-green{background:#20b978;}
+
+.menu-text b{
+    display:block;
+    font-size:15px;
+    color:#172b4d;
+}
+
+.menu-text small{
+    display:block;
+    margin-top:4px;
+    color:#8a96a8;
+    font-size:10px;
 }
 
 .more-tools{
-  border-top:1px solid #e6ebf2;
-  margin-top:20px;
-  padding-top:18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.more-left{
-  display:flex;
-  align-items:center;
-  gap:14px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    border-top:1px solid #edf0f4;
+    margin-top:18px;
+    padding:20px 3px 2px;
 }
 
 .more-icon{
-  width:48px;
-  height:48px;
-  border:2px solid #233d66;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:22px;
+    width:48px;
+    height:48px;
+    border:2px solid #253858;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#253858;
+    font-size:22px;
 }
 
-.more-tools h3{
-  font-size:15px;
+.more-text b{
+    display:block;
+    color:#172b4d;
+    font-size:16px;
 }
 
-.more-tools p{
-  font-size:12px;
-  color:#8a98aa;
+.more-text small{
+    display:block;
+    color:#8a96a8;
+    margin-top:4px;
 }
 
-.arrow{
-  font-size:25px;
-  color:#9aa8ba;
+.more-arrow{
+    margin-left:auto;
+    color:#a4afbd;
+    font-size:30px;
 }
 
-/* SCIENTIFIC */
-.scientific-display{
-  background:#0e1f3b;
-  color:white;
-  border-radius:15px;
-  padding:18px;
-  min-height:65px;
-  text-align:right;
-  font-size:25px;
-  margin-bottom:12px;
-  overflow:auto;
+@media(max-width:500px){
+
+    header{
+        height:82px;
+        padding:0 18px;
+    }
+
+    .logo{
+        font-size:25px;
+    }
+
+    .container{
+        padding:29px 17px 120px;
+    }
+
+    .hero-title{
+        font-size:29px;
+    }
+
+    .hero-subtitle{
+        font-size:16px;
+    }
+
+    .feature-icon{
+        width:70px;
+        height:70px;
+        font-size:38px;
+    }
+
+    .feature-title{
+        font-size:19px;
+    }
+
+    .card{
+        padding:21px;
+    }
+
+    .menu-grid{
+        gap:5px 8px;
+    }
+
+    .menu-item{
+        min-height:66px;
+    }
+
+    .mi{
+        width:53px;
+        min-width:53px;
+        height:53px;
+        font-size:24px;
+    }
+
+    .menu-text b{
+        font-size:13px;
+    }
+
+    .all-calculators-btn{
+        bottom:16px;
+        font-size:16px;
+    }
 }
 
-.sci-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-}
-
-.sci-btn{
-  height:52px;
-  border:0;
-  border-radius:11px;
-  background:#edf2f8;
-  color:#203a60;
-  font-weight:700;
-}
-
-.sci-btn.operator{
-  background:#dbeafe;
-  color:#0757d9;
-}
-
-/* MOBILE */
-@media(max-width:650px){
-
-  .header{
-    min-height:145px;
-    padding-top:22px;
-  }
-
-  .logo{
-    font-size:27px;
-  }
-
-  .container{
-    width:calc(100% - 20px);
-  }
-
-  .hero{
-    padding:25px 17px;
-  }
-
-  .hero h1{
-    font-size:27px;
-  }
-
-  .calculator-grid{
-    grid-template-columns:1fr;
-  }
-
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .full{
-    grid-column:auto;
-  }
-
-  .tool-section{
-    padding:21px 16px;
-  }
-
-  .sheet-grid{
-    column-gap:12px;
-  }
-
-  .sheet-item{
-    gap:9px;
-  }
-
-  .sheet-icon{
-    width:44px;
-    height:44px;
-    min-width:44px;
-  }
-
-  .sheet-name{
-    font-size:14px;
-  }
-
-  .bottom-sheet{
-    padding-left:18px;
-    padding-right:18px;
-  }
-}
-
-@media(max-width:390px){
-
-  .sheet-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .sheet-desc{
-    display:none;
-  }
-
-  .sheet-name{
-    font-size:13px;
-  }
-}
 </style>
 </head>
 
 <body>
 
-<header class="header">
-  <div class="header-inner">
+<header>
+    <div class="logo">QuickPercent</div>
 
-    <div class="logo">
-      Quick<span>Percent</span>
+    <div
+        class="header-menu"
+        onclick="openMenu()"
+        aria-label="Open calculators menu">
+        ☰
     </div>
-
-    <button class="header-menu" onclick="openMenu()" aria-label="Open calculators">
-      ☰
-    </button>
-
-  </div>
 </header>
 
 <main class="container">
 
-<section class="hero">
+<h1 class="hero-title">
+    Quick, Easy<br>
+    Useful Calculators
+</h1>
 
-  <h1>Quick, Easy<br>Useful Calculators</h1>
+<p class="hero-subtitle">
+    Simple tools for everyday<br>
+    calculations — all in one place.
+</p>
 
-  <p>
-    Simple tools for everyday calculations — all in one place.
-  </p>
-
-  <div class="search-box">
-
+<div class="search-wrap">
     <span class="search-icon">⌕</span>
 
     <input
-      type="search"
-      id="searchInput"
-      placeholder="Search a calculator..."
-      oninput="searchCalculators()"
-    >
+        id="calculatorSearch"
+        class="search-input"
+        type="search"
+        placeholder="Search a calculator..."
+        oninput="searchCalculators(this.value)">
+</div>
 
-  </div>
 
-  <div class="calculator-grid" id="calculatorGrid">
+<!-- PERCENTAGE -->
 
-    <div class="calculator-card"
-         data-name="percentage"
-         onclick="goTo('percentage')">
+<section class="card calculator-section" id="percentage">
 
-      <div class="calc-card-icon blue">%</div>
+    <div class="feature-head">
 
-      <div>
-        <h3>Percentage Calculator</h3>
-        <p>Find percentages, increase or decrease</p>
-      </div>
+        <div class="feature-icon">%</div>
 
-    </div>
+        <div>
+            <div class="feature-title">
+                Percentage Calculator
+            </div>
 
-    <div class="calculator-card"
-         data-name="discount"
-         onclick="goTo('discount')">
-
-      <div class="calc-card-icon orange">⌑</div>
-
-      <div>
-        <h3>Discount Calculator</h3>
-        <p>Calculate sale price and savings</p>
-      </div>
+            <div class="feature-description">
+                Find percentages, increase or decrease
+            </div>
+        </div>
 
     </div>
 
-    <div class="calculator-card"
-         data-name="age"
-         onclick="goTo('age')">
+    <div class="mode-buttons">
 
-      <div class="calc-card-icon cyan">▣</div>
-
-      <div>
-        <h3>Age Calculator</h3>
-        <p>Calculate your exact age</p>
-      </div>
-
-    </div>
-
-    <div class="calculator-card"
-         data-name="bmi"
-         onclick="goTo('bmi')">
-
-      <div class="calc-card-icon purple">♙</div>
-
-      <div>
-        <h3>BMI Calculator</h3>
-        <p>Check your body mass index</p>
-      </div>
-
-    </div>
-
-    <div class="calculator-card"
-         data-name="loan"
-         onclick="goTo('loan')">
-
-      <div class="calc-card-icon purple">♜</div>
-
-      <div>
-        <h3>Loan Calculator</h3>
-        <p>Estimate monthly loan payments</p>
-      </div>
-
-    </div>
-
-    <div class="calculator-card"
-         data-name="currency"
-         onclick="goTo('currency')">
-
-      <div class="calc-card-icon green">⇄</div>
-
-      <div>
-        <h3>Currency Converter</h3>
-        <p>Convert currencies quickly</p>
-      </div>
-
-    </div>
-
-    <div class="calculator-card"
-         data-name="unit"
-         onclick="goTo('unit')">
-
-      <div class="calc-card-icon indigo">⌁</div>
-
-      <div>
-        <h3>Unit Converter</h3>
-        <p>Convert length, weight and temperature</p>
-      </div>
-
-    </div>
-
-    <div class="calculator-card"
-         data-name="scientific"
-         onclick="goTo('scientific')">
-
-      <div class="calc-card-icon teal">∑</div>
-
-      <div>
-        <h3>Scientific Calculator</h3>
-        <p>Advanced mathematical calculations</p>
-      </div>
-
-    </div>
-
-    <div class="calculator-card"
-         data-name="emi"
-         onclick="goTo('emi')">
-
-      <div class="calc-card-icon blue">₹</div>
-
-      <div>
-        <h3>EMI Calculator</h3>
-        <p>Calculate monthly EMI</p>
-      </div>
-
-    </div>
-
-    <div class="calculator-card"
-         data-name="investment"
-         onclick="goTo('investment')">
-
-      <div class="calc-card-icon green">↗</div>
-
-      <div>
-        <h3>Investment Calculator</h3>
-        <p>Estimate compound growth</p>
-      </div>
-
-    </div>
-
-    <div class="calculator-card"
-         data-name="change"
-         onclick="goTo('change')">
-
-      <div class="calc-card-icon orange">%</div>
-
-      <div>
-        <h3>Percentage Change</h3>
-        <p>Find percentage difference</p>
-      </div>
-
-    </div>
-
-    <div class="calculator-card"
-         data-name="tip"
-         onclick="goTo('tip')">
-
-      <div class="calc-card-icon red">★</div>
-
-      <div>
-        <h3>Tip Calculator</h3>
-        <p>Calculate tips and split bills</p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-<!-- =========================
-     PERCENTAGE CALCULATOR
-========================= -->
-<section class="tool-section" id="percentage">
-
-  <div class="tool-title">
-    <div class="tool-title-icon blue">%</div>
-    <div>
-      <h2>Percentage Calculator</h2>
-      <p>Calculate percentages quickly and easily</p>
-    </div>
-  </div>
-
-  <div class="mode-buttons">
-    <button class="mode-btn active" id="percentMode1"
+        <button
+            id="modeBtn1"
+            class="mode-btn active"
             onclick="showPercentageMode(1)">
-      X% of Y
-    </button>
+            X% of Y
+        </button>
 
-    <button class="mode-btn" id="percentMode2"
+        <button
+            id="modeBtn2"
+            class="mode-btn"
             onclick="showPercentageMode(2)">
-      X is what % of Y
-    </button>
+            X is what %?
+        </button>
 
-    <button class="mode-btn" id="percentMode3"
+        <button
+            id="modeBtn3"
+            class="mode-btn"
             onclick="showPercentageMode(3)">
-      Increase / Decrease
-    </button>
-  </div>
+            Increase / Decrease
+        </button>
 
-  <!-- MODE 1 -->
-  <div id="percentBox1">
+    </div>
 
-    <div class="form-grid">
 
-      <div class="field">
-        <label>Percentage (%)</label>
-        <input type="number" id="percentX" placeholder="e.g. 20">
-      </div>
+    <div id="percentageMode1">
 
-      <div class="field">
+        <label>Percentage</label>
+
+        <input
+            id="percent1"
+            type="number"
+            step="any"
+            placeholder="e.g. 20">
+
         <label>Number</label>
-        <input type="number" id="percentY" placeholder="e.g. 500">
-      </div>
 
-      <div class="full">
-        <button class="btn" onclick="calculatePercentOf()">
-          Calculate Percentage
+        <input
+            id="number1"
+            type="number"
+            step="any"
+            placeholder="e.g. 500">
+
+        <button
+            class="calculate-btn"
+            onclick="calculatePercentOf()">
+            Calculate
         </button>
-      </div>
 
-    </div>
+        <div id="percentResult1" class="result"></div>
 
-    <div class="result" id="percentResult1">
-      <div class="result-label">Result</div>
-      <div class="result-value" id="percentAnswer1"></div>
-      <div class="result-note" id="percentNote1"></div>
-    </div>
-
-  </div>
-
-  <!-- MODE 2 -->
-  <div id="percentBox2" style="display:none">
-
-    <div class="form-grid">
-
-      <div class="field">
-        <label>First Number</label>
-        <input type="number" id="whatPercentX" placeholder="e.g. 50">
-      </div>
-
-      <div class="field">
-        <label>Total Number</label>
-        <input type="number" id="whatPercentY" placeholder="e.g. 200">
-      </div>
-
-      <div class="full">
-        <button class="btn" onclick="calculateWhatPercent()">
-          Calculate
+        <button
+            class="reset-btn"
+            onclick="resetFields(
+                'percent1',
+                'number1',
+                'percentResult1'
+            )">
+            Reset
         </button>
-      </div>
 
     </div>
 
-    <div class="result" id="percentResult2">
-      <div class="result-label">Result</div>
-      <div class="result-value" id="percentAnswer2"></div>
-      <div class="result-note">Percentage of the total</div>
+
+    <div id="percentageMode2" class="hidden">
+
+        <label>Part / X</label>
+
+        <input
+            id="partNumber"
+            type="number"
+            step="any"
+            placeholder="e.g. 25">
+
+        <label>Whole / Y</label>
+
+        <input
+            id="wholeNumber"
+            type="number"
+            step="any"
+            placeholder="e.g. 100">
+
+        <button
+            class="calculate-btn"
+            onclick="calculateWhatPercent()">
+            Calculate
+        </button>
+
+        <div id="percentResult2" class="result"></div>
+
+        <button
+            class="reset-btn"
+            onclick="resetFields(
+                'partNumber',
+                'wholeNumber',
+                'percentResult2'
+            )">
+            Reset
+        </button>
+
     </div>
 
-  </div>
 
-  <!-- MODE 3 -->
-  <div id="percentBox3" style="display:none">
+    <div id="percentageMode3" class="hidden">
 
-    <div class="form-grid">
+        <label>Old Value</label>
 
-      <div class="field">
-        <label>Original Value</label>
-        <input type="number" id="changeOld" placeholder="e.g. 100">
-      </div>
+        <input
+            id="oldNumber"
+            type="number"
+            step="any"
+            placeholder="e.g. 100">
 
-      <div class="field">
         <label>New Value</label>
-        <input type="number" id="changeNew" placeholder="e.g. 125">
-      </div>
 
-      <div class="full">
-        <button class="btn" onclick="calculatePercentageChange()">
-          Calculate Change
+        <input
+            id="newNumber"
+            type="number"
+            step="any"
+            placeholder="e.g. 125">
+
+        <button
+            class="calculate-btn"
+            onclick="calculatePercentageChange()">
+            Calculate
         </button>
-      </div>
+
+        <div id="percentResult3" class="result"></div>
+
+        <button
+            class="reset-btn"
+            onclick="resetFields(
+                'oldNumber',
+                'newNumber',
+                'percentResult3'
+            )">
+            Reset
+        </button>
 
     </div>
-
-    <div class="result" id="percentResult3">
-      <div class="result-label">Percentage Change</div>
-      <div class="result-value" id="percentAnswer3"></div>
-      <div class="result-note" id="percentNote3"></div>
-    </div>
-
-  </div>
-
-  <div class="info-box">
-    <strong>Formula:</strong>
-    <div class="formula">Percentage = (Part ÷ Total) × 100</div>
-  </div>
 
 </section>
 
 
-<!-- =========================
-     DISCOUNT CALCULATOR
-========================= -->
-<section class="tool-section" id="discount">
+<!-- DISCOUNT -->
 
-  <div class="tool-title">
-    <div class="tool-title-icon orange">⌑</div>
-    <div>
-      <h2>Discount Calculator</h2>
-      <p>Find sale price and total savings</p>
-    </div>
-  </div>
+<section class="card calculator-section hidden" id="discount">
 
-  <div class="form-grid">
+<h2>Discount Calculator</h2>
 
-    <div class="field">
-      <label>Original Price</label>
-      <input type="number" id="discountPrice"
-             placeholder="e.g. 5000">
-    </div>
+<p class="description">
+Calculate sale price and savings.
+</p>
 
-    <div class="field">
-      <label>Discount (%)</label>
-      <input type="number" id="discountPercent"
-             placeholder="e.g. 20">
-    </div>
+<label>Original Price</label>
 
-    <div class="full">
-      <button class="btn orange-btn"
-              onclick="calculateDiscount()">
-        Calculate Discount
-      </button>
-    </div>
+<input
+    id="discountPrice"
+    type="number"
+    step="any"
+    placeholder="e.g. 1000">
 
-  </div>
+<label>Discount (%)</label>
 
-  <div class="result" id="discountResult">
+<input
+    id="discountPercent"
+    type="number"
+    step="any"
+    placeholder="e.g. 20">
 
-    <div class="result-label">Final Price</div>
+<button
+    class="calculate-btn"
+    onclick="calculateDiscount()">
+Calculate Discount
+</button>
 
-    <div class="result-value" id="discountFinal"></div>
+<div id="discountResult" class="result"></div>
 
-    <div class="result-note" id="discountSaved"></div>
-
-  </div>
+<button
+    class="reset-btn"
+    onclick="resetFields(
+        'discountPrice',
+        'discountPercent',
+        'discountResult'
+    )">
+Reset
+</button>
 
 </section>
 
 
-<!-- =========================
-     AGE CALCULATOR
-========================= -->
-<section class="tool-section" id="age">
+<!-- AGE -->
 
-  <div class="tool-title">
-    <div class="tool-title-icon cyan">▣</div>
-    <div>
-      <h2>Age Calculator</h2>
-      <p>Calculate your exact age</p>
-    </div>
-  </div>
+<section class="card calculator-section hidden" id="age">
 
-  <div class="form-grid">
+<h2>Age Calculator</h2>
 
-    <div class="field full">
-      <label>Date of Birth</label>
-      <input type="date" id="birthDate">
-    </div>
+<p class="description">
+Calculate your exact age from your date of birth.
+</p>
 
-    <div class="full">
-      <button class="btn"
-              onclick="calculateAge()">
-        Calculate Age
-      </button>
-    </div>
+<label>Date of Birth</label>
 
-  </div>
+<input
+    id="birthDate"
+    type="date">
 
-  <div class="result" id="ageResult">
+<button
+    class="calculate-btn"
+    onclick="calculateAge()">
+Calculate Age
+</button>
 
-    <div class="result-label">Your Age</div>
+<div id="ageResult" class="result"></div>
 
-    <div class="result-value" id="ageAnswer"></div>
-
-    <div class="result-note" id="ageDays"></div>
-
-  </div>
+<button
+    class="reset-btn"
+    onclick="resetFields(
+        'birthDate',
+        'ageResult'
+    )">
+Reset
+</button>
 
 </section>
 
 
-<!-- =========================
-     BMI CALCULATOR
-========================= -->
-<section class="tool-section" id="bmi">
+<!-- BMI -->
 
-  <div class="tool-title">
-    <div class="tool-title-icon purple">♙</div>
-    <div>
-      <h2>BMI Calculator</h2>
-      <p>Check your body mass index</p>
-    </div>
-  </div>
+<section class="card calculator-section hidden" id="bmi">
 
-  <div class="form-grid">
+<h2>BMI Calculator</h2>
 
-    <div class="field">
-      <label>Weight (kg)</label>
-      <input type="number" id="bmiWeight"
-             placeholder="e.g. 70">
-    </div>
+<p class="description">
+Check your body mass index using weight and height.
+</p>
 
-    <div class="field">
-      <label>Height (cm)</label>
-      <input type="number" id="bmiHeight"
-             placeholder="e.g. 175">
-    </div>
+<label>Weight (kg)</label>
 
-    <div class="full">
-      <button class="btn purple-btn"
-              onclick="calculateBMI()">
-        Calculate BMI
-      </button>
-    </div>
+<input
+    id="bmiWeight"
+    type="number"
+    step="any"
+    placeholder="e.g. 70">
 
-  </div>
+<label>Height (cm)</label>
 
-  <div class="result" id="bmiResult">
+<input
+    id="bmiHeight"
+    type="number"
+    step="any"
+    placeholder="e.g. 175">
 
-    <div class="result-label">Your BMI</div>
+<button
+    class="calculate-btn"
+    onclick="calculateBMI()">
+Calculate BMI
+</button>
 
-    <div class="result-value" id="bmiAnswer"></div>
+<div id="bmiResult" class="result"></div>
 
-    <div class="result-note" id="bmiCategory"></div>
+<button
+    class="reset-btn"
+    onclick="resetFields(
+        'bmiWeight',
+        'bmiHeight',
+        'bmiResult'
+    )">
+Reset
+</button>
 
-  </div>
+  </section>
+  <!-- LOAN -->
 
-</section>
+<section class="card calculator-section hidden" id="loan">
 
+<h2>Loan Calculator</h2>
 
-<!-- =========================
-     LOAN CALCULATOR
-========================= -->
-<section class="tool-section" id="loan">
+<p class="description">
+Estimate your monthly loan payment and total repayment.
+</p>
 
-  <div class="tool-title">
-    <div class="tool-title-icon purple">♜</div>
-    <div>
-      <h2>Loan Calculator</h2>
-      <p>Estimate monthly loan payments</p>
-    </div>
-  </div>
+<label>Loan Amount</label>
 
-  <div class="form-grid">
+<input
+    id="loanAmount"
+    type="number"
+    step="any"
+    placeholder="e.g. 500000">
 
-    <div class="field">
-      <label>Loan Amount</label>
-      <input type="number" id="loanAmount"
-             placeholder="e.g. 1000000">
-    </div>
+<label>Annual Interest Rate (%)</label>
 
-    <div class="field">
-      <label>Annual Interest (%)</label>
-      <input type="number" id="loanRate"
-             step="0.01"
-             placeholder="e.g. 12">
-    </div>
+<input
+    id="loanRate"
+    type="number"
+    step="any"
+    placeholder="e.g. 10">
 
-    <div class="field">
-      <label>Loan Term (Years)</label>
-      <input type="number" id="loanYears"
-             placeholder="e.g. 5">
-    </div>
+<label>Loan Term (Years)</label>
 
-    <div class="field">
-      <label>Currency</label>
-      <select id="loanCurrency">
-        <option value="PKR">PKR</option>
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-        <option value="GBP">GBP</option>
-      </select>
-    </div>
+<input
+    id="loanYears"
+    type="number"
+    step="any"
+    placeholder="e.g. 5">
 
-    <div class="full">
-      <button class="btn purple-btn"
-              onclick="calculateLoan()">
-        Calculate Loan
-      </button>
-    </div>
+<button
+    class="calculate-btn"
+    onclick="calculateLoan()">
+Calculate Loan
+</button>
 
-  </div>
+<div id="loanResult" class="result"></div>
 
-  <div class="result" id="loanResult">
-
-    <div class="result-label">Monthly Payment</div>
-
-    <div class="result-value" id="loanMonthly"></div>
-
-    <div class="result-note" id="loanTotal"></div>
-
-  </div>
+<button
+    class="reset-btn"
+    onclick="resetFields(
+        'loanAmount',
+        'loanRate',
+        'loanYears',
+        'loanResult'
+    )">
+Reset
+</button>
 
 </section>
 
 
-<!-- =========================
-     CURRENCY CONVERTER
-========================= -->
-<section class="tool-section" id="currency">
+<!-- CURRENCY -->
 
-  <div class="tool-title">
-    <div class="tool-title-icon green">⇄</div>
-    <div>
-      <h2>Currency Converter</h2>
-      <p>Convert currencies quickly</p>
-    </div>
-  </div>
+<section class="card calculator-section hidden" id="currency">
 
-  <div class="form-grid">
+<h2>Currency Converter</h2>
 
-    <div class="field">
-      <label>Amount</label>
-      <input type="number" id="currencyAmount"
-             placeholder="e.g. 100">
-    </div>
+<p class="description">
+Convert currencies using an exchange rate you enter.
+</p>
 
-    <div class="field">
-      <label>From</label>
-      <select id="currencyFrom">
-        <option value="USD">USD - US Dollar</option>
-        <option value="PKR">PKR - Pakistani Rupee</option>
-        <option value="EUR">EUR - Euro</option>
-        <option value="GBP">GBP - British Pound</option>
-        <option value="AED">AED - UAE Dirham</option>
-        <option value="SAR">SAR - Saudi Riyal</option>
-        <option value="INR">INR - Indian Rupee</option>
-      </select>
-    </div>
+<label>Amount</label>
 
-    <div class="field">
-      <label>To</label>
-      <select id="currencyTo">
-        <option value="PKR">PKR - Pakistani Rupee</option>
-        <option value="USD">USD - US Dollar</option>
-        <option value="EUR">EUR - Euro</option>
-        <option value="GBP">GBP - British Pound</option>
-        <option value="AED">AED - UAE Dirham</option>
-        <option value="SAR">SAR - Saudi Riyal</option>
-        <option value="INR">INR - Indian Rupee</option>
-      </select>
-    </div>
+<input
+    id="currencyAmount"
+    type="number"
+    step="any"
+    placeholder="e.g. 100">
 
-    <div class="full">
-      <button class="btn green-btn"
-              onclick="calculateCurrency()">
-        Convert Currency
-      </button>
-    </div>
+<label>Exchange Rate</label>
 
-  </div>
+<input
+    id="currencyRate"
+    type="number"
+    step="any"
+    placeholder="e.g. 278">
 
-  <div class="result" id="currencyResult">
+<p style="color:#8794a7;font-size:13px;margin:8px 0 0;">
+Example: if 1 USD = 278 PKR, enter 278 as the exchange rate.
+</p>
 
-    <div class="result-label">Converted Amount</div>
+<button
+    class="calculate-btn"
+    onclick="calculateCurrency()">
+Convert
+</button>
 
-    <div class="result-value" id="currencyAnswer"></div>
+<div id="currencyResult" class="result"></div>
 
-    <div class="result-note" id="currencyRate"></div>
-
-  </div>
+<button
+    class="reset-btn"
+    onclick="resetFields(
+        'currencyAmount',
+        'currencyRate',
+        'currencyResult'
+    )">
+Reset
+</button>
 
 </section>
 
 
-<!-- =========================
-     UNIT CONVERTER
-========================= -->
-<section class="tool-section" id="unit">
+<!-- UNIT CONVERTER -->
 
-  <div class="tool-title">
-    <div class="tool-title-icon indigo">⌁</div>
-    <div>
-      <h2>Unit Converter</h2>
-      <p>Convert length, weight and temperature</p>
-    </div>
-  </div>
+<section class="card calculator-section hidden" id="unit">
 
-  <div class="field">
-    <label>Conversion Type</label>
+<h2>Unit Converter</h2>
 
-    <select id="unitType"
-            onchange="updateUnitOptions()">
+<p class="description">
+Convert common length, weight and temperature units.
+</p>
 
-      <option value="length">Length</option>
-      <option value="weight">Weight</option>
-      <option value="temperature">Temperature</option>
-    </select>
-  </div>
+<label>Value</label>
 
-  <div class="form-grid">
+<input
+    id="unitValue"
+    type="number"
+    step="any"
+    placeholder="e.g. 10">
 
-    <div class="field">
-      <label>Value</label>
-      <input type="number" id="unitValue"
-             placeholder="Enter value">
-    </div>
+<label>Conversion</label>
 
-    <div class="field">
-      <label>From</label>
-      <select id="unitFrom"></select>
-    </div>
+<select id="unitType">
 
-    <div class="field">
-      <label>To</label>
-      <select id="unitTo"></select>
-    </div>
+<option value="km-miles">
+Kilometers → Miles
+</option>
 
-    <div class="full">
-      <button class="btn"
-              onclick="calculateUnit()">
-        Convert Unit
-      </button>
-    </div>
+<option value="miles-km">
+Miles → Kilometers
+</option>
 
-  </div>
+<option value="kg-lb">
+Kilograms → Pounds
+</option>
 
-  <div class="result" id="unitResult">
+<option value="lb-kg">
+Pounds → Kilograms
+</option>
 
-    <div class="result-label">Converted Value</div>
+<option value="c-f">
+Celsius → Fahrenheit
+</option>
 
-    <div class="result-value" id="unitAnswer"></div>
+<option value="f-c">
+Fahrenheit → Celsius
+</option>
 
-  </div>
+</select>
 
-</section>
+<button
+    class="calculate-btn"
+    onclick="calculateUnit()">
+Convert
+</button>
 
+<div id="unitResult" class="result"></div>
 
-<!-- =========================
-     SCIENTIFIC CALCULATOR
-========================= -->
-<section class="tool-section" id="scientific">
-
-  <div class="tool-title">
-    <div class="tool-title-icon teal">∑</div>
-    <div>
-      <h2>Scientific Calculator</h2>
-      <p>Advanced mathematical calculations</p>
-    </div>
-  </div>
-
-  <div class="scientific-display"
-       id="scientificDisplay">0</div>
-
-  <div class="sci-grid">
-
-    <button class="sci-btn" onclick="scientificClear()">AC</button>
-    <button class="sci-btn" onclick="scientificBack()">⌫</button>
-    <button class="sci-btn" onclick="scientificInput('(')">(</button>
-    <button class="sci-btn operator" onclick="scientificInput('/')">÷</button>
-
-    <button class="sci-btn" onclick="scientificInput('7')">7</button>
-    <button class="sci-btn" onclick="scientificInput('8')">8</button>
-    <button class="sci-btn" onclick="scientificInput('9')">9</button>
-    <button class="sci-btn operator" onclick="scientificInput('*')">×</button>
-
-    <button class="sci-btn" onclick="scientificInput('4')">4</button>
-    <button class="sci-btn" onclick="scientificInput('5')">5</button>
-    <button class="sci-btn" onclick="scientificInput('6')">6</button>
-    <button class="sci-btn operator" onclick="scientificInput('-')">−</button>
-
-    <button class="sci-btn" onclick="scientificInput('1')">1</button>
-    <button class="sci-btn" onclick="scientificInput('2')">2</button>
-    <button class="sci-btn" onclick="scientificInput('3')">3</button>
-    <button class="sci-btn operator" onclick="scientificInput('+')">+</button>
-
-    <button class="sci-btn" onclick="scientificInput('0')">0</button>
-    <button class="sci-btn" onclick="scientificInput('.')">.</button>
-    <button class="sci-btn" onclick="scientificInput('%')">%</button>
-    <button class="sci-btn operator" onclick="scientificCalculate()">=</button>
-
-  </div>
+<button
+    class="reset-btn"
+    onclick="resetFields(
+        'unitValue',
+        'unitResult'
+    )">
+Reset
+</button>
 
 </section>
 
 
-<!-- =========================
-     EMI CALCULATOR
-========================= -->
-<section class="tool-section" id="emi">
+<!-- SCIENTIFIC -->
 
-  <div class="tool-title">
-    <div class="tool-title-icon blue">₹</div>
-    <div>
-      <h2>EMI Calculator</h2>
-      <p>Calculate your monthly EMI</p>
-    </div>
-  </div>
+<section class="card calculator-section hidden" id="scientific">
 
-  <div class="form-grid">
+<h2>Scientific Calculator</h2>
 
-    <div class="field">
-      <label>Principal Amount</label>
-      <input type="number" id="emiAmount"
-             placeholder="e.g. 1000000">
-    </div>
+<p class="description">
+Perform basic mathematical expressions.
+</p>
 
-    <div class="field">
-      <label>Interest Rate (%)</label>
-      <input type="number" id="emiRate"
-             step="0.01"
-             placeholder="e.g. 12">
-    </div>
+<label>Expression</label>
 
-    <div class="field">
-      <label>Tenure (Years)</label>
-      <input type="number" id="emiYears"
-             placeholder="e.g. 5">
-    </div>
+<input
+    id="scientificExpression"
+    type="text"
+    inputmode="decimal"
+    placeholder="e.g. 25*4+10">
 
-    <div class="full">
-      <button class="btn"
-              onclick="calculateEMI()">
-        Calculate EMI
-      </button>
-    </div>
+<button
+    class="calculate-btn"
+    onclick="calculateScientific()">
+Calculate
+</button>
 
-  </div>
+<div id="scientificResult" class="result"></div>
 
-  <div class="result" id="emiResult">
+<button
+    class="reset-btn"
+    onclick="resetFields(
+        'scientificExpression',
+        'scientificResult'
+    )">
+Reset
+</button>
 
-    <div class="result-label">Monthly EMI</div>
-
-    <div class="result-value" id="emiMonthly"></div>
-
-    <div class="result-note" id="emiTotal"></div>
-
-  </div>
+<p style="font-size:12px;color:#8995a7;margin-top:14px;">
+Supported: + &nbsp; − &nbsp; × &nbsp; ÷ &nbsp; brackets &nbsp; %
+</p>
 
 </section>
 
 
-<!-- =========================
-     INVESTMENT CALCULATOR
-========================= -->
-<section class="tool-section" id="investment">
+<!-- EMI -->
 
-  <div class="tool-title">
-    <div class="tool-title-icon green">↗</div>
-    <div>
-      <h2>Investment Calculator</h2>
-      <p>Estimate compound investment growth</p>
-    </div>
-  </div>
+<section class="card calculator-section hidden" id="emi">
 
-  <div class="form-grid">
+<h2>EMI Calculator</h2>
 
-    <div class="field">
-      <label>Initial Investment</label>
-      <input type="number" id="investmentInitial"
-             placeholder="e.g. 100000">
-    </div>
+<p class="description">
+Calculate estimated monthly EMI for a loan.
+</p>
 
-    <div class="field">
-      <label>Monthly Investment</label>
-      <input type="number" id="investmentMonthly"
-             placeholder="e.g. 10000">
-    </div>
+<label>Principal Amount</label>
 
-    <div class="field">
-      <label>Annual Return (%)</label>
-      <input type="number" id="investmentRate"
-             step="0.1"
-             placeholder="e.g. 10">
-    </div>
+<input
+    id="emiPrincipal"
+    type="number"
+    step="any"
+    placeholder="e.g. 1000000">
 
-    <div class="field">
-      <label>Period (Years)</label>
-      <input type="number" id="investmentYears"
-             placeholder="e.g. 10">
-    </div>
+<label>Annual Interest Rate (%)</label>
 
-    <div class="full">
-      <button class="btn green-btn"
-              onclick="calculateInvestment()">
-        Calculate Growth
-      </button>
-    </div>
+<input
+    id="emiRate"
+    type="number"
+    step="any"
+    placeholder="e.g. 12">
 
-  </div>
+<label>Term (Years)</label>
 
-  <div class="result" id="investmentResult">
+<input
+    id="emiYears"
+    type="number"
+    step="any"
+    placeholder="e.g. 5">
 
-    <div class="result-label">Estimated Future Value</div>
+<button
+    class="calculate-btn"
+    onclick="calculateEMI()">
+Calculate EMI
+</button>
 
-    <div class="result-value"
-         id="investmentAnswer"></div>
+<div id="emiResult" class="result"></div>
 
-    <div class="result-note"
-         id="investmentProfit"></div>
-
-  </div>
+<button
+    class="reset-btn"
+    onclick="resetFields(
+        'emiPrincipal',
+        'emiRate',
+        'emiYears',
+        'emiResult'
+    )">
+Reset
+</button>
 
 </section>
 
 
-<!-- =========================
-     PERCENTAGE CHANGE
-========================= -->
-<section class="tool-section" id="change">
+<!-- INVESTMENT -->
 
-  <div class="tool-title">
-    <div class="tool-title-icon orange">%</div>
-    <div>
-      <h2>Percentage Change</h2>
-      <p>Find the percentage difference between values</p>
-    </div>
-  </div>
+<section class="card calculator-section hidden" id="investment">
 
-  <div class="form-grid">
+<h2>Investment Calculator</h2>
 
-    <div class="field">
-      <label>Original Value</label>
-      <input type="number" id="changeValue1"
-             placeholder="e.g. 100">
-    </div>
+<p class="description">
+Estimate future value using annual compound growth.
+</p>
 
-    <div class="field">
-      <label>New Value</label>
-      <input type="number" id="changeValue2"
-             placeholder="e.g. 120">
-    </div>
+<label>Initial Investment</label>
 
-    <div class="full">
-      <button class="btn orange-btn"
-              onclick="calculateChange()">
-        Calculate Percentage Change
-      </button>
-    </div>
+<input
+    id="investmentPrincipal"
+    type="number"
+    step="any"
+    placeholder="e.g. 100000">
 
-  </div>
+<label>Annual Return (%)</label>
 
-  <div class="result" id="changeResult">
+<input
+    id="investmentRate"
+    type="number"
+    step="any"
+    placeholder="e.g. 10">
 
-    <div class="result-label">Percentage Change</div>
+<label>Years</label>
 
-    <div class="result-value"
-         id="changeAnswer"></div>
+<input
+    id="investmentYears"
+    type="number"
+    step="any"
+    placeholder="e.g. 10">
 
-    <div class="result-note"
-         id="changeNote"></div>
+<button
+    class="calculate-btn"
+    onclick="calculateInvestment()">
+Calculate
+</button>
 
-  </div>
+<div id="investmentResult" class="result"></div>
+
+<button
+    class="reset-btn"
+    onclick="resetFields(
+        'investmentPrincipal',
+        'investmentRate',
+        'investmentYears',
+        'investmentResult'
+    )">
+Reset
+</button>
+
+</section>
+<!-- PERCENTAGE CHANGE -->
+
+<section class="card calculator-section hidden" id="change">
+
+<h2>Percentage Change</h2>
+
+<p class="description">
+Compare an old value with a new value.
+</p>
+
+<label>Old Value</label>
+
+<input
+    id="changeOld"
+    type="number"
+    step="any"
+    placeholder="e.g. 200">
+
+<label>New Value</label>
+
+<input
+    id="changeNew"
+    type="number"
+    step="any"
+    placeholder="e.g. 250">
+
+<button
+    class="calculate-btn"
+    onclick="calculateChange()">
+Calculate Change
+</button>
+
+<div id="changeResult" class="result"></div>
+
+<button
+    class="reset-btn"
+    onclick="resetFields(
+        'changeOld',
+        'changeNew',
+        'changeResult'
+    )">
+Reset
+</button>
 
 </section>
 
 
-<!-- =========================
-     TIP CALCULATOR
-========================= -->
-<section class="tool-section" id="tip">
+<!-- TIP -->
 
-  <div class="tool-title">
-    <div class="tool-title-icon red">★</div>
-    <div>
-      <h2>Tip Calculator</h2>
-      <p>Calculate tip and split your bill</p>
-    </div>
-  </div>
+<section class="card calculator-section hidden" id="tip">
 
-  <div class="form-grid">
+<h2>Tip Calculator</h2>
 
-    <div class="field">
-      <label>Bill Amount</label>
-      <input type="number" id="tipBill"
-             placeholder="e.g. 5000">
-    </div>
+<p class="description">
+Calculate tip, total bill and amount per person.
+</p>
 
-    <div class="field">
-      <label>Tip (%)</label>
-      <input type="number" id="tipPercent"
-             placeholder="e.g. 10">
-    </div>
+<label>Bill Amount</label>
 
-    <div class="field">
-      <label>Number of People</label>
-      <input type="number" id="tipPeople"
-             value="1"
-             min="1">
-    </div>
+<input
+    id="tipBill"
+    type="number"
+    step="any"
+    placeholder="e.g. 2000">
 
-    <div class="full">
-      <button class="btn"
-              onclick="calculateTip()">
-        Calculate Tip
-      </button>
-    </div>
+<label>Tip (%)</label>
 
-  </div>
+<input
+    id="tipRate"
+    type="number"
+    step="any"
+    placeholder="e.g. 10">
 
-  <div class="result" id="tipResult">
+<label>Number of People</label>
 
-    <div class="result-label">Total Bill</div>
+<input
+    id="tipPeople"
+    type="number"
+    min="1"
+    step="1"
+    value="1">
 
-    <div class="result-value"
-         id="tipTotal"></div>
+<button
+    class="calculate-btn"
+    onclick="calculateTip()">
+Calculate Tip
+</button>
 
-    <div class="result-note"
-         id="tipPerPerson"></div>
+<div id="tipResult" class="result"></div>
 
-  </div>
-
-</section>
-
-
-<!-- =========================
-     FORMULAS
-========================= -->
-<section class="tool-section">
-
-  <div class="tool-title">
-    <div class="tool-title-icon blue">ƒ</div>
-    <div>
-      <h2>Useful Formulas</h2>
-      <p>Common formulas at a glance</p>
-    </div>
-  </div>
-
-  <div class="info-box">
-    <strong>Percentage</strong>
-    <div class="formula">(Part ÷ Total) × 100</div>
-  </div>
-
-  <div class="info-box">
-    <strong>Discount</strong>
-    <div class="formula">Discount = Price × Discount% ÷ 100</div>
-  </div>
-
-  <div class="info-box">
-    <strong>BMI</strong>
-    <div class="formula">BMI = Weight(kg) ÷ Height(m)²</div>
-  </div>
-
-  <div class="info-box">
-    <strong>Percentage Change</strong>
-    <div class="formula">((New − Old) ÷ Old) × 100</div>
-  </div>
+<button
+    class="reset-btn"
+    onclick="resetFields(
+        'tipBill',
+        'tipRate',
+        'tipPeople',
+        'tipResult'
+    )">
+Reset
+</button>
 
 </section>
 
 
-<!-- =========================
-     FAQ
-========================= -->
-<section class="faq">
+<!-- FORMULAS -->
 
-  <div class="tool-title">
-    <div class="tool-title-icon indigo">?</div>
-    <div>
-      <h2>Frequently Asked Questions</h2>
-      <p>Quick answers about our calculators</p>
-    </div>
-  </div>
+<section class="info-card">
 
-  <div class="faq-item">
+<h2>How to Calculate a Percentage?</h2>
 
-    <button class="faq-question"
-            onclick="toggleFAQ(this)">
-      How does the percentage calculator work?
-      <span>+</span>
-    </button>
+<div class="formula-box">
+Percentage = (Percentage ÷ 100) × Number
+</div>
 
-    <div class="faq-answer">
-      Enter the values and choose the calculation mode.
-      QuickPercent instantly calculates the result.
-    </div>
+<p>
+Example: 20% of 500 = 100.
+</p>
 
-  </div>
+</section>
 
-  <div class="faq-item">
 
-    <button class="faq-question"
-            onclick="toggleFAQ(this)">
-      Can I use QuickPercent on my phone?
-      <span>+</span>
-    </button>
+<section class="info-card">
 
-    <div class="faq-answer">
-      Yes. The website is designed to work smoothly
-      on mobile phones, tablets and desktop devices.
-    </div>
+<h2>How to Calculate a Discount?</h2>
 
-  </div>
+<div class="formula-box">
+Discount = Original Price × Discount % ÷ 100
+</div>
 
-  <div class="faq-item">
+<div class="formula-box">
+Final Price = Original Price − Discount
+</div>
 
-    <button class="faq-question"
-            onclick="toggleFAQ(this)">
-      Are these calculators free?
-      <span>+</span>
-    </button>
+<p>
+Example: 20% off 1000 gives a 200 discount,
+so the final price is 800.
+</p>
 
-    <div class="faq-answer">
-      Yes. QuickPercent calculators are free to use.
-    </div>
+</section>
 
-  </div>
+
+<!-- FAQ -->
+
+<section class="info-card">
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+
+<h3>What is a percentage?</h3>
+
+<p>
+A percentage is a number expressed as a fraction of 100.
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>How does the discount calculator work?</h3>
+
+<p>
+Enter the original price and discount percentage
+to calculate your savings and final price.
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>Can I use QuickPercent on mobile?</h3>
+
+<p>
+Yes. QuickPercent is designed to work on phones,
+tablets and desktop computers.
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>Are the calculations instant?</h3>
+
+<p>
+Yes. Calculations are performed directly in your browser.
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>Is QuickPercent free?</h3>
+
+<p>
+Yes. QuickPercent calculators are free to use.
+</p>
+
+</div>
 
 </section>
 
 </main>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
 <footer>
-  <p>© 2026 QuickPercent. All rights reserved.</p>
-  <p>Quick, easy and useful calculators.</p>
+
+© 2026 QuickPercent. All rights reserved.
+
+<br><br>
+
+Quick, easy and useful calculators.
+
 </footer>
 
 
-<!-- =========================
-     ALL CALCULATORS BUTTON
-========================= -->
-<button class="all-btn" onclick="openMenu()">
-  ☰ All Calculators
+<!-- ALL CALCULATORS BUTTON -->
+
+<button
+    class="all-calculators-btn"
+    type="button"
+    onclick="openMenu()">
+
+☰ &nbsp; All Calculators
+
 </button>
 
 
-<!-- =========================
-     BOTTOM SHEET MENU
-========================= -->
-<div class="menu-overlay" id="menuOverlay"
-     oncl
-    <!-- =========================
-     QUICKPERCENT JAVASCRIPT
-========================= -->
+<!-- BOTTOM SHEET -->
+
+<div
+    id="calculatorMenu"
+    class="calculator-menu"
+    onclick="outsideClose(event)">
+
+    <div
+        class="calculator-menu-box"
+        onclick="event.stopPropagation()">
+
+        <div class="handle"></div>
+
+
+        <div class="menu-head">
+
+            <div>
+
+                <h2>All Calculators</h2>
+
+                <div class="menu-sub">
+                    Choose a calculator or tool to get started.
+                </div>
+
+            </div>
+
+            <button
+                class="menu-close"
+                type="button"
+                onclick="closeMenu()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="menu-grid">
+
+
+            <!-- Percentage -->
+
+            <a
+                class="menu-item"
+                href="#percentage"
+                onclick="selectCalculator('percentage')">
+
+                <span class="mi mi-blue">%</span>
+
+                <span class="menu-text">
+
+                    <b>Percentage</b>
+
+                    <small>
+                        Calculate percentages
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <!-- Discount -->
+
+            <a
+                class="menu-item"
+                href="#discount"
+                onclick="selectCalculator('discount')">
+
+                <span class="mi mi-orange">◇</span>
+
+                <span class="menu-text">
+
+                    <b>Discount</b>
+
+                    <small>
+                        Find sale prices
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <!-- Age -->
+
+            <a
+                class="menu-item"
+                href="#age"
+                onclick="selectCalculator('age')">
+
+                <span class="mi mi-cyan">□</span>
+
+                <span class="menu-text">
+
+                    <b>Age</b>
+
+                    <small>
+                        Calculate exact age
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <!-- BMI -->
+
+            <a
+                class="menu-item"
+                href="#bmi"
+                onclick="selectCalculator('bmi')">
+
+                <span class="mi mi-purple">♙</span>
+
+                <span class="menu-text">
+
+                    <b>BMI</b>
+
+                    <small>
+                        Check body mass index
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <!-- Loan -->
+
+            <a
+                class="menu-item"
+                href="#loan"
+                onclick="selectCalculator('loan')">
+
+                <span class="mi mi-purple">♜</span>
+
+                <span class="menu-text">
+
+                    <b>Loan</b>
+
+                    <small>
+                        Estimate payments
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <!-- Currency -->
+
+            <a
+                class="menu-item"
+                href="#currency"
+                onclick="selectCalculator('currency')">
+
+                <span class="mi mi-green">↔</span>
+
+                <span class="menu-text">
+
+                    <b>Currency</b>
+
+                    <small>
+                        Convert currencies
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <!-- Unit -->
+
+            <a
+                class="menu-item"
+                href="#unit"
+                onclick="selectCalculator('unit')">
+
+                <span class="mi mi-purple">⌁</span>
+
+                <span class="menu-text">
+
+                    <b>Unit Converter</b>
+
+                    <small>
+                        Convert measurements
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <!-- Scientific -->
+
+            <a
+                class="menu-item"
+                href="#scientific"
+                onclick="selectCalculator('scientific')">
+
+                <span class="mi mi-blue">√</span>
+
+                <span class="menu-text">
+
+                    <b>Scientific</b>
+
+                    <small>
+                        Advanced calculations
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <!-- EMI -->
+
+            <a
+                class="menu-item"
+                href="#emi"
+                onclick="selectCalculator('emi')">
+
+                <span class="mi mi-purple">₿</span>
+
+                <span class="menu-text">
+
+                    <b>EMI</b>
+
+                    <small>
+                        Monthly loan EMI
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <!-- Investment -->
+
+            <a
+                class="menu-item"
+                href="#investment"
+                onclick="selectCalculator('investment')">
+
+                <span class="mi mi-green">↗</span>
+
+                <span class="menu-text">
+
+                    <b>Investment</b>
+
+                    <small>
+                        Future value estimate
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <!-- Percentage Change -->
+
+            <a
+                class="menu-item"
+                href="#change"
+                onclick="selectCalculator('change')">
+
+                <span class="mi mi-blue">↕</span>
+
+                <span class="menu-text">
+
+                    <b>% Change</b>
+
+                    <small>
+                        Compare values
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <!-- Tip -->
+
+            <a
+                class="menu-item"
+                href="#tip"
+                onclick="selectCalculator('tip')">
+
+                <span class="mi mi-orange">+</span>
+
+                <span class="menu-text">
+
+                    <b>Tip</b>
+
+                    <small>
+                        Split a tip and bill
+                    </small>
+
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- MORE TOOLS -->
+
+        <div class="more-tools">
+
+            <div class="more-icon">
+                ⚙
+            </div>
+
+            <div class="more-text">
+
+                <b>More Tools</b>
+
+                <small>
+                    Coming Soon
+                </small>
+
+            </div>
+
+            <div class="more-arrow">
+                ›
+            </div>
+
+        </div>
+
+    </div>
+  
+
+</div>
 <script>
 
 /* =========================
-   BASIC HELPERS
+   GENERAL HELPERS
 ========================= */
 
-function $(id){
-  return document.getElementById(id);
-}
-
 function formatNumber(number){
-  if(!Number.isFinite(number)) return "0";
 
-  return new Intl.NumberFormat("en-US",{
-    maximumFractionDigits:2
-  }).format(number);
+    return Number(number).toLocaleString(
+        "en-US",
+        {
+            maximumFractionDigits:2
+        }
+    );
+
 }
 
-function showResult(id){
-  const box = $(id);
-  if(box) box.classList.add("show");
+
+function showResult(id,text){
+
+    const result =
+        document.getElementById(id);
+
+    if(!result) return;
+
+    result.innerHTML = text;
+
+    result.style.display = "block";
+
 }
 
-function validNumber(value){
-  return value !== "" && Number.isFinite(Number(value));
+
+function resetFields(){
+
+    const args =
+        Array.from(arguments);
+
+    const resultId =
+        args[args.length - 1];
+
+    const fieldIds =
+        args.slice(0,-1);
+
+    fieldIds.forEach(function(id){
+
+        const field =
+            document.getElementById(id);
+
+        if(field){
+
+            field.value = "";
+
+        }
+
+    });
+
+    const result =
+        document.getElementById(resultId);
+
+    if(result){
+
+        result.innerHTML = "";
+
+        result.style.display = "none";
+
+    }
+
 }
 
 
 /* =========================
-   SCROLL / NAVIGATION
+   MENU
 ========================= */
 
-function goTo(sectionId){
+function openMenu(){
 
-  closeMenu();
+    const menu =
+        document.getElementById(
+            "calculatorMenu"
+        );
 
-  const section = $(sectionId);
+    if(menu){
 
-  if(section){
-    setTimeout(function(){
-      section.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
-    },150);
-  }
+        menu.classList.add("show");
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+
+}
+
+
+function closeMenu(){
+
+    const menu =
+        document.getElementById(
+            "calculatorMenu"
+        );
+
+    if(menu){
+
+        menu.classList.remove("show");
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+}
+
+
+function outsideClose(event){
+
+    if(
+        event.target.id ===
+        "calculatorMenu"
+    ){
+
+        closeMenu();
+
+    }
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeMenu();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   SELECT CALCULATOR
+========================= */
+
+function selectCalculator(id){
+
+    closeMenu();
+
+    const sections =
+        document.querySelectorAll(
+            ".calculator-section"
+        );
+
+    sections.forEach(function(section){
+
+        section.classList.add("hidden");
+
+    });
+
+    const selected =
+        document.getElementById(id);
+
+    if(selected){
+
+        selected.classList.remove("hidden");
+
+        setTimeout(function(){
+
+            selected.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+
+        },120);
+
+    }
+
 }
 
 
@@ -1816,1247 +1970,1130 @@ function goTo(sectionId){
    SEARCH
 ========================= */
 
-function searchCalculators(){
+function searchCalculators(value){
 
-  const input = $("searchInput");
+    value =
+        value.toLowerCase().trim();
 
-  if(!input) return;
+    const sections =
+        document.querySelectorAll(
+            ".calculator-section"
+        );
 
-  const search = input.value.toLowerCase().trim();
+    if(value === ""){
 
-  const cards = document.querySelectorAll(".calculator-card");
+        sections.forEach(function(section){
 
-  cards.forEach(function(card){
+            if(section.id === "percentage"){
 
-    const name = card.dataset.name || "";
+                section.classList.remove(
+                    "hidden"
+                );
 
-    const text = card.innerText.toLowerCase();
+            }else{
 
-    if(
-      search === "" ||
-      name.includes(search) ||
-      text.includes(search)
-    ){
-      card.style.display = "flex";
-    }else{
-      card.style.display = "none";
+                section.classList.add(
+                    "hidden"
+                );
+
+            }
+
+        });
+
+        return;
+
     }
 
-  });
+    let found = false;
+
+    sections.forEach(function(section){
+
+        const text =
+            section.innerText.toLowerCase();
+
+        if(text.includes(value)){
+
+            section.classList.remove(
+                "hidden"
+            );
+
+            found = true;
+
+        }else{
+
+            section.classList.add(
+                "hidden"
+            );
+
+        }
+
+    });
+
 }
 
 
 /* =========================
-   PERCENTAGE MODE SWITCH
+   PERCENTAGE
 ========================= */
 
 function showPercentageMode(mode){
 
-  const boxes = [
-    $("percentBox1"),
-    $("percentBox2"),
-    $("percentBox3")
-  ];
+    for(let i=1;i<=3;i++){
 
-  const buttons = [
-    $("percentMode1"),
-    $("percentMode2"),
-    $("percentMode3")
-  ];
+        const box =
+            document.getElementById(
+                "percentageMode"+i
+            );
 
-  boxes.forEach(function(box,index){
+        const button =
+            document.getElementById(
+                "modeBtn"+i
+            );
 
-    if(box){
-      box.style.display =
-        index === mode - 1 ? "block" : "none";
+        if(box){
+
+            box.classList.add("hidden");
+
+        }
+
+        if(button){
+
+            button.classList.remove(
+                "active"
+            );
+
+        }
+
     }
 
-  });
 
-  buttons.forEach(function(button,index){
+    const selected =
+        document.getElementById(
+            "percentageMode"+mode
+        );
 
-    if(button){
-      button.classList.toggle(
-        "active",
-        index === mode - 1
-      );
+    const selectedButton =
+        document.getElementById(
+            "modeBtn"+mode
+        );
+
+    if(selected){
+
+        selected.classList.remove(
+            "hidden"
+        );
+
     }
 
-  });
+    if(selectedButton){
+
+        selectedButton.classList.add(
+            "active"
+        );
+
+    }
+
 }
 
-
-/* =========================
-   PERCENTAGE: X% OF Y
-========================= */
 
 function calculatePercentOf(){
 
-  const x = Number($("percentX").value);
-  const y = Number($("percentY").value);
+    const p =
+        parseFloat(
+            document.getElementById(
+                "percent1"
+            ).value
+        );
 
-  if(!Number.isFinite(x) || !Number.isFinite(y)){
+    const n =
+        parseFloat(
+            document.getElementById(
+                "number1"
+            ).value
+        );
 
-    alert("Please enter both numbers.");
+    if(isNaN(p) || isNaN(n)){
 
-    return;
-  }
+        showResult(
+            "percentResult1",
+            "Please enter valid numbers."
+        );
 
-  const answer = (x / 100) * y;
+        return;
 
-  $("percentAnswer1").textContent =
-    formatNumber(answer);
+    }
 
-  $("percentNote1").textContent =
-    x + "% of " + formatNumber(y) +
-    " = " + formatNumber(answer);
+    const answer =
+        (p / 100) * n;
 
-  showResult("percentResult1");
+    showResult(
+        "percentResult1",
+        p + "% of " +
+        n +
+        " = <strong>" +
+        formatNumber(answer) +
+        "</strong>"
+    );
+
 }
 
-
-/* =========================
-   PERCENTAGE: X IS WHAT %
-========================= */
 
 function calculateWhatPercent(){
 
-  const x = Number($("whatPercentX").value);
-  const y = Number($("whatPercentY").value);
+    const x =
+        parseFloat(
+            document.getElementById(
+                "partNumber"
+            ).value
+        );
 
-  if(!Number.isFinite(x) || !Number.isFinite(y)){
+    const y =
+        parseFloat(
+            document.getElementById(
+                "wholeNumber"
+            ).value
+        );
 
-    alert("Please enter both numbers.");
+    if(
+        isNaN(x) ||
+        isNaN(y) ||
+        y === 0
+    ){
 
-    return;
-  }
+        showResult(
+            "percentResult2",
+            "Please enter valid numbers."
+        );
 
-  if(y === 0){
+        return;
 
-    alert("Total number cannot be zero.");
+    }
 
-    return;
-  }
+    const answer =
+        (x / y) * 100;
 
-  const answer = (x / y) * 100;
+    showResult(
+        "percentResult2",
+        x +
+        " is <strong>" +
+        formatNumber(answer) +
+        "%</strong> of " +
+        y
+    );
 
-  $("percentAnswer2").textContent =
-    formatNumber(answer) + "%";
-
-  showResult("percentResult2");
 }
 
-
-/* =========================
-   PERCENTAGE INCREASE / DECREASE
-========================= */
 
 function calculatePercentageChange(){
 
-  const oldValue = Number($("changeOld").value);
-  const newValue = Number($("changeNew").value);
+    const oldValue =
+        parseFloat(
+            document.getElementById(
+                "oldNumber"
+            ).value
+        );
 
-  if(
-    !Number.isFinite(oldValue) ||
-    !Number.isFinite(newValue)
-  ){
+    const newValue =
+        parseFloat(
+            document.getElementById(
+                "newNumber"
+            ).value
+        );
 
-    alert("Please enter both values.");
+    if(
+        isNaN(oldValue) ||
+        isNaN(newValue) ||
+        oldValue === 0
+    ){
 
-    return;
-  }
+        showResult(
+            "percentResult3",
+            "Please enter valid numbers."
+        );
 
-  if(oldValue === 0){
+        return;
 
-    alert("Original value cannot be zero.");
+    }
 
-    return;
-  }
+    const change =
+        (
+            (newValue - oldValue) /
+            Math.abs(oldValue)
+        ) * 100;
 
-  const change =
-    ((newValue - oldValue) / Math.abs(oldValue)) * 100;
+    let text;
 
-  $("percentAnswer3").textContent =
-    formatNumber(Math.abs(change)) + "%";
+    if(change > 0){
 
-  if(change > 0){
+        text =
+            "Percentage Increase" +
+            "<strong>+" +
+            formatNumber(change) +
+            "%</strong>";
 
-    $("percentNote3").textContent =
-      "Increase of " + formatNumber(Math.abs(change)) + "%";
+    }else if(change < 0){
 
-  }else if(change < 0){
+        text =
+            "Percentage Decrease" +
+            "<strong>" +
+            formatNumber(
+                Math.abs(change)
+            ) +
+            "%</strong>";
 
-    $("percentNote3").textContent =
-      "Decrease of " + formatNumber(Math.abs(change)) + "%";
+    }else{
 
-  }else{
+        text =
+            "No percentage change." +
+            "<strong>0%</strong>";
 
-    $("percentNote3").textContent =
-      "No change";
+    }
 
-  }
+    showResult(
+        "percentResult3",
+        text
+    );
 
-  showResult("percentResult3");
 }
 
 
 /* =========================
-   DISCOUNT CALCULATOR
+   DISCOUNT
 ========================= */
 
 function calculateDiscount(){
 
-  const price = Number($("discountPrice").value);
-  const discount = Number($("discountPercent").value);
+    const price =
+        parseFloat(
+            document.getElementById(
+                "discountPrice"
+            ).value
+        );
 
-  if(
-    !Number.isFinite(price) ||
-    !Number.isFinite(discount)
-  ){
+    const percent =
+        parseFloat(
+            document.getElementById(
+                "discountPercent"
+            ).value
+        );
 
-    alert("Please enter price and discount.");
+    if(
+        isNaN(price) ||
+        isNaN(percent)
+    ){
 
-    return;
-  }
+        showResult(
+            "discountResult",
+            "Please enter valid numbers."
+        );
 
-  if(price < 0 || discount < 0){
+        return;
 
-    alert("Values cannot be negative.");
+    }
 
-    return;
-  }
+    const saving =
+        price * percent / 100;
 
-  const saved = price * discount / 100;
-  const finalPrice = price - saved;
+    const finalPrice =
+        price - saving;
 
-  $("discountFinal").textContent =
-    formatNumber(finalPrice);
+    showResult(
+        "discountResult",
+        "You Save" +
+        "<strong>" +
+        formatNumber(saving) +
+        "</strong>" +
+        "Final Price" +
+        "<strong>" +
+        formatNumber(finalPrice) +
+        "</strong>"
+    );
 
-  $("discountSaved").textContent =
-    "You save " + formatNumber(saved) +
-    " (" + formatNumber(discount) + "%)";
-
-  showResult("discountResult");
 }
 
 
 /* =========================
-   AGE CALCULATOR
+   AGE
 ========================= */
 
 function calculateAge(){
 
-  const birthInput = $("birthDate").value;
+    const value =
+        document.getElementById(
+            "birthDate"
+        ).value;
 
-  if(!birthInput){
+    if(!value){
 
-    alert("Please select your date of birth.");
+        showResult(
+            "ageResult",
+            "Please select your date of birth."
+        );
 
-    return;
-  }
+        return;
 
-  const birth = new Date(birthInput + "T00:00:00");
-  const today = new Date();
+    }
 
-  if(birth > today){
+    const birth =
+        new Date(value);
 
-    alert("Date of birth cannot be in the future.");
+    const today =
+        new Date();
 
-    return;
-  }
+    let years =
+        today.getFullYear() -
+        birth.getFullYear();
 
-  let years =
-    today.getFullYear() - birth.getFullYear();
+    let months =
+        today.getMonth() -
+        birth.getMonth();
 
-  let months =
-    today.getMonth() - birth.getMonth();
+    let days =
+        today.getDate() -
+        birth.getDate();
 
-  let days =
-    today.getDate() - birth.getDate();
 
-  if(days < 0){
+    if(days < 0){
 
-    months--;
+        months--;
 
-    const previousMonth =
-      new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        0
-      );
+        const previousMonth =
+            new Date(
+                today.getFullYear(),
+                today.getMonth(),
+                0
+            );
 
-    days += previousMonth.getDate();
-  }
+        days +=
+            previousMonth.getDate();
 
-  if(months < 0){
+    }
 
-    years--;
-    months += 12;
-  }
 
-  $("ageAnswer").textContent =
-    years + " years, " +
-    months + " months, " +
-    days + " days";
+    if(months < 0){
 
-  const milliseconds =
-    today.getTime() - birth.getTime();
+        years--;
 
-  const totalDays =
-    Math.floor(
-      milliseconds / (1000 * 60 * 60 * 24)
+        months += 12;
+
+    }
+
+
+    if(years < 0){
+
+        showResult(
+            "ageResult",
+            "Please enter a valid date."
+        );
+
+        return;
+
+    }
+
+
+    showResult(
+        "ageResult",
+        "Your exact age is" +
+        "<strong>" +
+        years +
+        " years, " +
+        months +
+        " months, " +
+        days +
+        " days</strong>"
     );
 
-  $("ageDays").textContent =
-    "Approximately " +
-    formatNumber(totalDays) +
-    " days old.";
-
-  showResult("ageResult");
 }
 
 
 /* =========================
-   BMI CALCULATOR
+   BMI
 ========================= */
 
 function calculateBMI(){
 
-  const weight = Number($("bmiWeight").value);
-  const heightCm = Number($("bmiHeight").value);
+    const weight =
+        parseFloat(
+            document.getElementById(
+                "bmiWeight"
+            ).value
+        );
 
-  if(
-    !Number.isFinite(weight) ||
-    !Number.isFinite(heightCm)
-  ){
+    const height =
+        parseFloat(
+            document.getElementById(
+                "bmiHeight"
+            ).value
+        );
 
-    alert("Please enter weight and height.");
+    if(
+        isNaN(weight) ||
+        isNaN(height) ||
+        height <= 0
+    ){
 
-    return;
-  }
+        showResult(
+            "bmiResult",
+            "Please enter valid values."
+        );
 
-  if(weight <= 0 || heightCm <= 0){
+        return;
 
-    alert("Weight and height must be greater than zero.");
+    }
 
-    return;
-  }
+    const bmi =
+        weight /
+        Math.pow(
+            height / 100,
+            2
+        );
 
-  const heightM = heightCm / 100;
+    let category;
 
-  const bmi =
-    weight / (heightM * heightM);
+    if(bmi < 18.5){
 
-  let category = "";
+        category = "Underweight";
 
-  if(bmi < 18.5){
+    }else if(bmi < 25){
 
-    category = "Underweight";
+        category = "Normal weight";
 
-  }else if(bmi < 25){
+    }else if(bmi < 30){
 
-    category = "Normal weight";
+        category = "Overweight";
 
-  }else if(bmi < 30){
+    }else{
 
-    category = "Overweight";
+        category = "Obesity";
 
-  }else{
+    }
 
-    category = "Obesity";
-  }
+    showResult(
+        "bmiResult",
+        "BMI" +
+        "<strong>" +
+        formatNumber(bmi) +
+        "</strong>" +
+        category
+    );
 
-  $("bmiAnswer").textContent =
-    formatNumber(bmi);
-
-  $("bmiCategory").textContent =
-    "Category: " + category;
-
-  showResult("bmiResult");
 }
 
 
 /* =========================
-   LOAN CALCULATOR
+   LOAN
 ========================= */
 
 function calculateLoan(){
 
-  const principal =
-    Number($("loanAmount").value);
+    const amount =
+        parseFloat(
+            document.getElementById(
+                "loanAmount"
+            ).value
+        );
 
-  const annualRate =
-    Number($("loanRate").value);
+    const rate =
+        parseFloat(
+            document.getElementById(
+                "loanRate"
+            ).value
+        );
 
-  const years =
-    Number($("loanYears").value);
+    const years =
+        parseFloat(
+            document.getElementById(
+                "loanYears"
+            ).value
+        );
 
-  const currency =
-    $("loanCurrency").value;
+    if(
+        isNaN(amount) ||
+        isNaN(rate) ||
+        isNaN(years) ||
+        amount <= 0 ||
+        years <= 0
+    ){
 
-  if(
-    !Number.isFinite(principal) ||
-    !Number.isFinite(annualRate) ||
-    !Number.isFinite(years)
-  ){
+        showResult(
+            "loanResult",
+            "Please enter valid loan details."
+        );
 
-    alert("Please enter all loan details.");
+        return;
 
-    return;
-  }
+    }
 
-  if(
-    principal <= 0 ||
-    annualRate < 0 ||
-    years <= 0
-  ){
+    const monthlyRate =
+        rate / 100 / 12;
 
-    alert("Please enter valid loan values.");
+    const payments =
+        years * 12;
 
-    return;
-  }
+    let monthly;
 
-  const months = years * 12;
-  const monthlyRate = annualRate / 100 / 12;
+    if(monthlyRate === 0){
 
-  let monthly;
+        monthly =
+            amount / payments;
 
-  if(monthlyRate === 0){
+    }else{
 
-    monthly = principal / months;
+        monthly =
+            amount *
+            monthlyRate *
+            Math.pow(
+                1 + monthlyRate,
+                payments
+            ) /
+            (
+                Math.pow(
+                    1 + monthlyRate,
+                    payments
+                ) - 1
+            );
 
-  }else{
+    }
 
-    monthly =
-      principal *
-      monthlyRate *
-      Math.pow(
-        1 + monthlyRate,
-        months
-      ) /
-      (
-        Math.pow(
-          1 + monthlyRate,
-          months
-        ) - 1
-      );
-  }
+    const total =
+        monthly * payments;
 
-  const total = monthly * months;
-  const interest = total - principal;
+    const interest =
+        total - amount;
 
-  $("loanMonthly").textContent =
-    currency + " " + formatNumber(monthly);
+    showResult(
+        "loanResult",
+        "Monthly Payment" +
+        "<strong>" +
+        formatNumber(monthly) +
+        "</strong>" +
+        "Total Repayment: " +
+        formatNumber(total) +
+        "<br>" +
+        "Total Interest: " +
+        formatNumber(interest)
+    );
 
-  $("loanTotal").textContent =
-    "Total repayment: " +
-    currency + " " +
-    formatNumber(total) +
-    " | Interest: " +
-    currency + " " +
-    formatNumber(interest);
-
-  showResult("loanResult");
 }
 
 
 /* =========================
-   CURRENCY CONVERTER
-   Offline reference rates
+   CURRENCY
 ========================= */
-
-const currencyRates = {
-
-  USD:1,
-  PKR:280,
-  EUR:0.92,
-  GBP:0.78,
-  AED:3.6725,
-  SAR:3.75,
-  INR:83.5
-
-};
-
 
 function calculateCurrency(){
 
-  const amount =
-    Number($("currencyAmount").value);
-
-  const from =
-    $("currencyFrom").value;
-
-  const to =
-    $("currencyTo").value;
-
-  if(!Number.isFinite(amount)){
-
-    alert("Please enter an amount.");
-
-    return;
-  }
-
-  const usdValue =
-    amount / currencyRates[from];
-
-  const result =
-    usdValue * currencyRates[to];
-
-  const rate =
-    currencyRates[to] /
-    currencyRates[from];
-
-  $("currencyAnswer").textContent =
-    formatNumber(result) + " " + to;
-
-  $("currencyRate").textContent =
-    "1 " + from +
-    " ≈ " +
-    formatNumber(rate) +
-    " " + to +
-    " • Reference rate";
-
-  showResult("currencyResult");
-}
-
-
-/* =========================
-   UNIT OPTIONS
-========================= */
-
-const unitOptions = {
-
-  length:{
-
-    meter:"Meter",
-    kilometer:"Kilometer",
-    centimeter:"Centimeter",
-    millimeter:"Millimeter",
-    mile:"Mile",
-    yard:"Yard",
-    foot:"Foot",
-    inch:"Inch"
-
-  },
-
-  weight:{
-
-    kilogram:"Kilogram",
-    gram:"Gram",
-    milligram:"Milligram",
-    pound:"Pound",
-    ounce:"Ounce"
-
-  },
-
-  temperature:{
-
-    celsius:"Celsius",
-    fahrenheit:"Fahrenheit",
-    kelvin:"Kelvin"
-
-  }
-
-};
-
-
-function updateUnitOptions(){
-
-  const type =
-    $("unitType").value;
-
-  const from =
-    $("unitFrom");
-
-  const to =
-    $("unitTo");
-
-  from.innerHTML = "";
-  to.innerHTML = "";
-
-  Object.keys(unitOptions[type]).forEach(function(key){
-
-    const option1 =
-      document.createElement("option");
-
-    option1.value = key;
-    option1.textContent =
-      unitOptions[type][key];
-
-    from.appendChild(option1);
-
-    const option2 =
-      document.createElement("option");
-
-    option2.value = key;
-    option2.textContent =
-      unitOptions[type][key];
-
-    to.appendChild(option2);
-
-  });
-
-  if(to.options.length > 1){
-    to.selectedIndex = 1;
-  }
-}
-
-
-/* =========================
-   UNIT CONVERTER
-========================= */
-
-function calculateUnit(){
-
-  const value =
-    Number($("unitValue").value);
-
-  const type =
-    $("unitType").value;
-
-  const from =
-    $("unitFrom").value;
-
-  const to =
-    $("unitTo").value;
-
-  if(!Number.isFinite(value)){
-
-    alert("Please enter a value.");
-
-    return;
-  }
-
-  let result;
-
-  if(type === "length"){
-
-    const meters = {
-
-      meter:1,
-      kilometer:1000,
-      centimeter:0.01,
-      millimeter:0.001,
-      mile:1609.344,
-      yard:0.9144,
-      foot:0.3048,
-      inch:0.0254
-
-    };
-
-    result =
-      value *
-      meters[from] /
-      meters[to];
-
-  }
-
-
-  else if(type === "weight"){
-
-    const kilograms = {
-
-      kilogram:1,
-      gram:0.001,
-      milligram:0.000001,
-      pound:0.45359237,
-      ounce:0.028349523125
-
-    };
-
-    result =
-      value *
-      kilograms[from] /
-      kilograms[to];
-
-  }
-
-
-  else if(type === "temperature"){
-
-    let celsius;
-
-    if(from === "celsius"){
-      celsius = value;
-    }
-
-    else if(from === "fahrenheit"){
-      celsius = (value - 32) * 5 / 9;
-    }
-
-    else{
-      celsius = value - 273.15;
-    }
-
-
-    if(to === "celsius"){
-      result = celsius;
-    }
-
-    else if(to === "fahrenheit"){
-      result = celsius * 9 / 5 + 32;
-    }
-
-    else{
-      result = celsius + 273.15;
-    }
-
-  }
-
-  $("unitAnswer").textContent =
-    formatNumber(result);
-
-  showResult("unitResult");
-}
-
-
-/* =========================
-   SCIENTIFIC CALCULATOR
-========================= */
-
-let scientificExpression = "";
-
-
-function updateScientificDisplay(){
-
-  const display =
-    $("scientificDisplay");
-
-  if(display){
-    display.textContent =
-      scientificExpression || "0";
-  }
-}
-
-
-function scientificInput(value){
-
-  scientificExpression += value;
-
-  updateScientificDisplay();
-}
-
-
-function scientificClear(){
-
-  scientificExpression = "";
-
-  updateScientificDisplay();
-}
-
-
-function scientificBack(){
-
-  scientificExpression =
-    scientificExpression.slice(0,-1);
-
-  updateScientificDisplay();
-}
-
-
-function scientificCalculate(){
-
-  if(!scientificExpression){
-
-    return;
-  }
-
-  try{
-
-    let expression =
-      scientificExpression;
-
-    expression =
-      expression.replace(/×/g,"*");
-
-    expression =
-      expression.replace(/÷/g,"/");
-
-    expression =
-      expression.replace(
-        /(\d+(?:\.\d+)?)%/g,
-        "($1/100)"
-      );
+    const amount =
+        parseFloat(
+            document.getElementById(
+                "currencyAmount"
+            ).value
+        );
+
+    const rate =
+        parseFloat(
+            document.getElementById(
+                "currencyRate"
+            ).value
+        );
 
     if(
-      !/^[0-9+\-*/().%\s]+$/.test(expression)
+        isNaN(amount) ||
+        isNaN(rate)
     ){
 
-      throw new Error("Invalid");
+        showResult(
+            "currencyResult",
+            "Please enter valid values."
+        );
+
+        return;
 
     }
 
     const result =
-      Function(
-        '"use strict"; return (' +
-        expression +
-        ')'
-      )();
+        amount * rate;
 
-    if(!Number.isFinite(result)){
-
-      throw new Error("Invalid result");
-
-    }
-
-    scientificExpression =
-      String(result);
-
-    updateScientificDisplay();
-
-  }catch(error){
-
-    $("scientificDisplay").textContent =
-      "Error";
-
-    scientificExpression = "";
-
-    setTimeout(
-      updateScientificDisplay,
-      900
+    showResult(
+        "currencyResult",
+        "Converted Amount" +
+        "<strong>" +
+        formatNumber(result) +
+        "</strong>"
     );
-  }
+
 }
 
 
 /* =========================
-   EMI CALCULATOR
+   UNIT
+========================= */
+
+function calculateUnit(){
+
+    const value =
+        parseFloat(
+            document.getElementById(
+                "unitValue"
+            ).value
+        );
+
+    const type =
+        document.getElementById(
+            "unitType"
+        ).value;
+
+    if(isNaN(value)){
+
+        showResult(
+            "unitResult",
+            "Please enter a valid value."
+        );
+
+        return;
+
+    }
+
+    let result;
+    let unit;
+
+
+    if(type === "km-miles"){
+
+        result = value * 0.621371;
+        unit = "miles";
+
+    }else if(type === "miles-km"){
+
+        result = value * 1.609344;
+        unit = "km";
+
+    }else if(type === "kg-lb"){
+
+        result = value * 2.20462262;
+        unit = "lb";
+
+    }else if(type === "lb-kg"){
+
+        result = value * 0.45359237;
+        unit = "kg";
+
+    }else if(type === "c-f"){
+
+        result = value * 9 / 5 + 32;
+        unit = "°F";
+
+    }else if(type === "f-c"){
+
+        result = (value - 32) * 5 / 9;
+        unit = "°C";
+
+    }
+
+
+    showResult(
+        "unitResult",
+        "Result" +
+        "<strong>" +
+        formatNumber(result) +
+        " " +
+        unit +
+        "</strong>"
+    );
+
+}
+
+
+/* =========================
+   SCIENTIFIC
+========================= */
+
+function calculateScientific(){
+
+    const expression =
+        document.getElementById(
+            "scientificExpression"
+        ).value.trim();
+
+    if(!expression){
+
+        showResult(
+            "scientificResult",
+            "Please enter an expression."
+        );
+
+        return;
+
+    }
+
+
+    /*
+      Only mathematical characters are allowed.
+      No variables or JavaScript commands.
+    */
+
+    if(
+        !/^[0-9+\-*/().%\s]+$/.test(
+            expression
+        )
+    ){
+
+        showResult(
+            "scientificResult",
+            "Invalid expression."
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        const answer =
+            Function(
+                '"use strict";return(' +
+                expression +
+                ')'
+            )();
+
+        if(
+            typeof answer !== "number" ||
+            !isFinite(answer)
+        ){
+
+            throw new Error();
+
+        }
+
+        showResult(
+            "scientificResult",
+            "Result" +
+            "<strong>" +
+            formatNumber(answer) +
+            "</strong>"
+        );
+
+    }catch(error){
+
+        showResult(
+            "scientificResult",
+            "Invalid expression."
+        );
+
+    }
+
+}
+
+
+/* =========================
+   EMI
 ========================= */
 
 function calculateEMI(){
 
-  const principal =
-    Number($("emiAmount").value);
+    const principal =
+        parseFloat(
+            document.getElementById(
+                "emiPrincipal"
+            ).value
+        );
 
-  const annualRate =
-    Number($("emiRate").value);
+    const rate =
+        parseFloat(
+            document.getElementById(
+                "emiRate"
+            ).value
+        );
 
-  const years =
-    Number($("emiYears").value);
+    const years =
+        parseFloat(
+            document.getElementById(
+                "emiYears"
+            ).value
+        );
 
-  if(
-    !Number.isFinite(principal) ||
-    !Number.isFinite(annualRate) ||
-    !Number.isFinite(years)
-  ){
+    if(
+        isNaN(principal) ||
+        isNaN(rate) ||
+        isNaN(years) ||
+        principal <= 0 ||
+        years <= 0
+    ){
 
-    alert("Please enter all EMI details.");
+        showResult(
+            "emiResult",
+            "Please enter valid values."
+        );
 
-    return;
-  }
+        return;
 
-  if(
-    principal <= 0 ||
-    annualRate < 0 ||
-    years <= 0
-  ){
+    }
 
-    alert("Please enter valid EMI values.");
 
-    return;
-  }
+    const r =
+        rate / 100 / 12;
 
-  const months =
-    years * 12;
+    const n =
+        years * 12;
 
-  const monthlyRate =
-    annualRate / 100 / 12;
+    let emi;
 
-  let emi;
+    if(r === 0){
 
-  if(monthlyRate === 0){
+        emi =
+            principal / n;
 
-    emi =
-      principal / months;
+    }else{
 
-  }else{
+        emi =
+            principal *
+            r *
+            Math.pow(1+r,n) /
+            (
+                Math.pow(1+r,n)-1
+            );
 
-    emi =
-      principal *
-      monthlyRate *
-      Math.pow(
-        1 + monthlyRate,
-        months
-      ) /
-      (
-        Math.pow(
-          1 + monthlyRate,
-          months
-        ) - 1
-      );
-  }
+    }
 
-  const total =
-    emi * months;
+    const total =
+        emi * n;
 
-  const interest =
-    total - principal;
+    showResult(
+        "emiResult",
+        "Monthly EMI" +
+        "<strong>" +
+        formatNumber(emi) +
+        "</strong>" +
+        "Total Payment: " +
+        formatNumber(total)
+    );
 
-  $("emiMonthly").textContent =
-    formatNumber(emi);
-
-  $("emiTotal").textContent =
-    "Total payment: " +
-    formatNumber(total) +
-    " | Interest: " +
-    formatNumber(interest);
-
-  showResult("emiResult");
 }
 
 
 /* =========================
-   INVESTMENT CALCULATOR
+   INVESTMENT
 ========================= */
 
 function calculateInvestment(){
 
-  const initial =
-    Number($("investmentInitial").value);
+    const principal =
+        parseFloat(
+            document.getElementById(
+                "investmentPrincipal"
+            ).value
+        );
 
-  const monthly =
-    Number($("investmentMonthly").value);
+    const rate =
+        parseFloat(
+            document.getElementById(
+                "investmentRate"
+            ).value
+        );
 
-  const annualRate =
-    Number($("investmentRate").value);
+    const years =
+        parseFloat(
+            document.getElementById(
+                "investmentYears"
+            ).value
+        );
 
-  const years =
-    Number($("investmentYears").value);
+    if(
+        isNaN(principal) ||
+        isNaN(rate) ||
+        isNaN(years)
+    ){
 
-  if(
-    !Number.isFinite(initial) ||
-    !Number.isFinite(monthly) ||
-    !Number.isFinite(annualRate) ||
-    !Number.isFinite(years)
-  ){
+        showResult(
+            "investmentResult",
+            "Please enter valid values."
+        );
 
-    alert("Please enter all investment details.");
+        return;
 
-    return;
-  }
+    }
 
-  if(
-    initial < 0 ||
-    monthly < 0 ||
-    annualRate < 0 ||
-    years <= 0
-  ){
-
-    alert("Please enter valid investment values.");
-
-    return;
-  }
-
-  const months =
-    years * 12;
-
-  const monthlyRate =
-    annualRate / 100 / 12;
-
-  let futureInitial;
-  let futureMonthly;
-
-  if(monthlyRate === 0){
-
-    futureInitial = initial;
-
-    futureMonthly =
-      monthly * months;
-
-  }else{
-
-    futureInitial =
-      initial *
-      Math.pow(
-        1 + monthlyRate,
-        months
-      );
-
-    futureMonthly =
-      monthly *
-      (
+    const future =
+        principal *
         Math.pow(
-          1 + monthlyRate,
-          months
-        ) - 1
-      ) /
-      monthlyRate;
-  }
+            1 + rate / 100,
+            years
+        );
 
-  const futureValue =
-    futureInitial + futureMonthly;
+    const profit =
+        future - principal;
 
-  const invested =
-    initial + monthly * months;
+    showResult(
+        "investmentResult",
+        "Future Value" +
+        "<strong>" +
+        formatNumber(future) +
+        "</strong>" +
+        "Estimated Growth: " +
+        formatNumber(profit)
+    );
 
-  const profit =
-    futureValue - invested;
-
-  $("investmentAnswer").textContent =
-    formatNumber(futureValue);
-
-  $("investmentProfit").textContent =
-    "Total invested: " +
-    formatNumber(invested) +
-    " | Estimated profit: " +
-    formatNumber(profit);
-
-  showResult("investmentResult");
 }
 
 
 /* =========================
-   PERCENTAGE CHANGE TOOL
+   PERCENTAGE CHANGE
 ========================= */
 
 function calculateChange(){
 
-  const oldValue =
-    Number($("changeValue1").value);
+    const oldValue =
+        parseFloat(
+            document.getElementById(
+                "changeOld"
+            ).value
+        );
 
-  const newValue =
-    Number($("changeValue2").value);
+    const newValue =
+        parseFloat(
+            document.getElementById(
+                "changeNew"
+            ).value
+        );
 
-  if(
-    !Number.isFinite(oldValue) ||
-    !Number.isFinite(newValue)
-  ){
+    if(
+        isNaN(oldValue) ||
+        isNaN(newValue) ||
+        oldValue === 0
+    ){
 
-    alert("Please enter both values.");
+        showResult(
+            "changeResult",
+            "Please enter valid values."
+        );
 
-    return;
-  }
+        return;
 
-  if(oldValue === 0){
+    }
 
-    alert("Original value cannot be zero.");
+    const change =
+        (
+            (newValue - oldValue) /
+            Math.abs(oldValue)
+        ) * 100;
 
-    return;
-  }
+    let label;
 
-  const change =
-    ((newValue - oldValue) /
-    Math.abs(oldValue)) * 100;
+    if(change > 0){
 
-  $("changeAnswer").textContent =
-    formatNumber(Math.abs(change)) + "%";
+        label =
+            "Increase";
 
-  if(change > 0){
+    }else if(change < 0){
 
-    $("changeNote").textContent =
-      "The value increased by " +
-      formatNumber(Math.abs(change)) +
-      "%.";
+        label =
+            "Decrease";
 
-  }else if(change < 0){
+    }else{
 
-    $("changeNote").textContent =
-      "The value decreased by " +
-      formatNumber(Math.abs(change)) +
-      "%.";
+        label =
+            "No Change";
 
-  }else{
+    }
 
-    $("changeNote").textContent =
-      "There was no change.";
+    showResult(
+        "changeResult",
+        label +
+        "<strong>" +
+        formatNumber(
+            Math.abs(change)
+        ) +
+        "%</strong>"
+    );
 
-  }
-
-  showResult("changeResult");
 }
 
 
 /* =========================
-   TIP CALCULATOR
+   TIP
 ========================= */
 
 function calculateTip(){
 
-  const bill =
-    Number($("tipBill").value);
+    const bill =
+        parseFloat(
+            document.getElementById(
+                "tipBill"
+            ).value
+        );
 
-  const tipPercent =
-    Number($("tipPercent").value);
+    const rate =
+        parseFloat(
+            document.getElementById(
+                "tipRate"
+            ).value
+        );
 
-  const people =
-    Number($("tipPeople").value);
-
-  if(
-    !Number.isFinite(bill) ||
-    !Number.isFinite(tipPercent) ||
-    !Number.isFinite(people)
-  ){
-
-    alert("Please enter all tip details.");
-
-    return;
-  }
-
-  if(
-    bill < 0 ||
-    tipPercent < 0 ||
-    people <= 0
-  ){
-
-    alert("Please enter valid values.");
-
-    return;
-  }
-
-  const tip =
-    bill * tipPercent / 100;
-
-  const total =
-    bill + tip;
-
-  const perPerson =
-    total / people;
-
-  $("tipTotal").textContent =
-    formatNumber(total);
-
-  $("tipPerPerson").textContent =
-    "Tip: " +
-    formatNumber(tip) +
-    " | Per person: " +
-    formatNumber(perPerson);
-
-  showResult("tipResult");
-}
+    const people =
+        parseInt(
+            document.getElementById(
+                "tipPeople"
+            ).value
+        ) || 1;
 
 
-/* =========================
-   FAQ
-========================= */
+    if(
+        isNaN(bill) ||
+        isNaN(rate) ||
+        bill < 0 ||
+        people < 1
+    ){
 
-function toggleFAQ(button){
+        showResult(
+            "tipResult",
+            "Please enter valid values."
+        );
 
-  const item =
-    button.closest(".faq-item");
-
-  if(!item) return;
-
-  item.classList.toggle("open");
-
-  const symbol =
-    button.querySelector("span");
-
-  if(symbol){
-
-    symbol.textContent =
-      item.classList.contains("open")
-      ? "−"
-      : "+";
-
-  }
-}
-
-
-/* =========================
-   BOTTOM SHEET MENU
-========================= */
-
-function openMenu(){
-
-  const overlay =
-    $("menuOverlay");
-
-  if(overlay){
-    overlay.classList.add("active");
-    document.body.style.overflow = "hidden";
-  }
-}
-
-
-function closeMenu(){
-
-  const overlay =
-    $("menuOverlay");
-
-  if(overlay){
-    overlay.classList.remove("active");
-    document.body.style.overflow = "";
-  }
-}
-
-
-function closeMenuOutside(event){
-
-  if(event.target === $("menuOverlay")){
-
-    closeMenu();
-
-  }
-}
-
-
-/* =========================
-   ESC KEY
-========================= */
-
-document.addEventListener(
-  "keydown",
-  function(event){
-
-    if(event.key === "Escape"){
-
-      closeMenu();
+        return;
 
     }
 
-  }
-);
+
+    const tip =
+        bill * rate / 100;
+
+    const total =
+        bill + tip;
+
+    const perPerson =
+        total / people;
+
+
+    showResult(
+        "tipResult",
+        "Tip Amount" +
+        "<strong>" +
+        formatNumber(tip) +
+        "</strong>" +
+        "Total Bill: " +
+        formatNumber(total) +
+        "<br>" +
+        "Per Person: " +
+        formatNumber(perPerson)
+    );
+
+}
 
 
 /* =========================
-   INITIALIZE UNIT CONVERTER
+   INITIAL STATE
 ========================= */
 
 document.addEventListener(
-  "DOMContentLoaded",
-  function(){
+    "DOMContentLoaded",
+    function(){
 
-    updateUnitOptions();
-
-    showPercentageMode(1);
-
-  }
-);
-
-
-/* =========================
-   ENTER KEY SUPPORT
-========================= */
-
-document.addEventListener(
-  "keydown",
-  function(event){
-
-    if(event.key !== "Enter") return;
-
-    const active =
-      document.activeElement;
-
-    if(!active) return;
-
-    const section =
-      active.closest(".tool-section");
-
-    if(!section) return;
-
-    const button =
-      section.querySelector(".btn");
-
-    if(button){
-
-      button.click();
+        showPercentageMode(1);
 
     }
-
-  }
 );
 
-</script>
-
-</body>
+</s
+  </body>
 </html>
