@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Age Calculator – Calculate Your Exact Age | QuickPercent</title>
+
+<meta name="description" content="Calculate your exact age in years, months and days with the free Age Calculator by QuickPercent.">
+
+<link rel="canonical" href="https://quickpercent.github.io/age-calculator/">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+    color:#222;
+}
+
+header{
+    background:#2563eb;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:28px;
+}
+
+.container{
+    max-width:850px;
+    margin:30px auto;
+    padding:0 15px;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+h2{
+    margin-top:0;
+    color:#1d4ed8;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    margin-top:7px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    background:#2563eb;
+    color:white;
+    border:0;
+    border-radius:8px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.result{
+    margin-top:20px;
+    padding:18px;
+    background:#eff6ff;
+    border-radius:10px;
+    text-align:center;
+    font-size:20px;
+    line-height:1.8;
+}
+
+.result strong{
+    color:#1d4ed8;
+}
+
+p{
+    line-height:1.7;
+}
+
+li{
+    margin:10px 0;
+    line-height:1.6;
+}
+
+.breadcrumb{
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.breadcrumb a{
+    color:#2563eb;
+    text-decoration:none;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Age Calculator</h1>
+</header>
+
+<div class="container">
+
+<div class="breadcrumb">
+    <a href="https://quickpercent.github.io/">Home</a>
+    &nbsp;›&nbsp; Age Calculator
+</div>
+
+<div class="card">
+
+<h2>Calculate Your Age</h2>
+
+<label>Date of Birth</label>
+<input type="date" id="birthDate">
+
+<label>Calculate Age On</label>
+<input type="date" id="endDate">
+
+<button onclick="calculateAge()">Calculate Age</button>
+
+<div class="result" id="result">
+    Enter your date of birth and calculation date.
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>How to Use the Age Calculator</h2>
+
+<ol>
+<li>Enter your date of birth.</li>
+<li>Select the date on which you want to calculate your age.</li>
+<li>Click the Calculate Age button.</li>
+<li>Your exact age in years, months and days will be displayed.</li>
+</ol>
+
+</div>
+
+<div class="card">
+
+<h2>How Age Is Calculated</h2>
+
+<p>
+The calculator compares your date of birth with the selected calculation date.
+It accounts for the different number of days in each month and leap years.
+</p>
+
+<p>
+Your age is displayed as completed <strong>years, months and days</strong>.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Example</h2>
+
+<p>
+If your date of birth is <strong>January 15, 2000</strong> and the calculation
+date is <strong>January 15, 2026</strong>, your age is:
+</p>
+
+<p>
+<strong>26 years, 0 months and 0 days</strong>
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>What does the Age Calculator calculate?</h3>
+<p>
+It calculates your exact age in completed years, months and days.
+</p>
+
+<h3>Can I calculate my age on a past or future date?</h3>
+<p>
+Yes. You can select any date on or after your date of birth.
+</p>
+
+<h3>Does it account for leap years?</h3>
+<p>
+Yes. The calculator uses calendar dates and correctly handles leap years.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 QuickPercent — Free Online Calculators
+</footer>
+
+<script>
+
+function calculateAge(){
+
+    const birthInput = document.getElementById("birthDate").value;
+    const endInput = document.getElementById("endDate").value;
+    const result = document.getElementById("result");
+
+    if(!birthInput || !endInput){
+        result.innerHTML = "Please enter both dates.";
+        return;
+    }
+
+    const birth = parseDate(birthInput);
+    const end = parseDate(endInput);
+
+    if(!birth || !end){
+        result.innerHTML = "Please enter valid dates.";
+        return;
+    }
+
+    if(end < birth){
+        result.innerHTML =
+            "The calculation date cannot be before the date of birth.";
+        return;
+    }
+
+    let years = end.getFullYear() - birth.getFullYear();
+    let months = end.getMonth() - birth.getMonth();
+    let days = end.getDate() - birth.getDate();
+
+    if(days < 0){
+
+        months--;
+
+        const previousMonth = new Date(
+            end.getFullYear(),
+            end.getMonth(),
+            0
+        );
+
+        days += previousMonth.getDate();
+    }
+
+    if(months < 0){
+        years--;
+        months += 12;
+    }
+
+    result.innerHTML =
+        "Your age is:<br>" +
+        "<strong>" +
+        years + " years, " +
+        months + " months and " +
+        days + " days" +
+        "</strong>";
+}
+
+function parseDate(value){
+
+    const parts = value.split("-");
+
+    if(parts.length !== 3){
+        return null;
+    }
+
+    const year = Number(parts[0]);
+    const month = Number(parts[1]) - 1;
+    const day = Number(parts[2]);
+
+    return new Date(year, month, day);
+}
+
+</script>
+
+</body>
+</html>
