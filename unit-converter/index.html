@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Unit Converter – Convert Length, Weight, Temperature & More | QuickPercent</title>
+
+<meta name="description" content="Free online unit converter for length, weight, temperature, area, volume and time. Fast, accurate and easy to use with QuickPercent.">
+
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://quickpercent.github.io/unit-converter/">
+
+<meta property="og:title" content="Unit Converter | QuickPercent">
+<meta property="og:description" content="Convert length, weight, temperature, area, volume and time units quickly and easily.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://quickpercent.github.io/unit-converter/">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f5f7fb;
+  color:#1f2937;
+  line-height:1.6;
+}
+
+header{
+  background:#111827;
+  color:white;
+  padding:22px 16px;
+  text-align:center;
+}
+
+header h1{
+  margin:0;
+  font-size:30px;
+}
+
+header p{
+  margin:6px 0 0;
+  color:#d1d5db;
+}
+
+.container{
+  max-width:850px;
+  margin:30px auto;
+  padding:0 16px;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+  margin-bottom:25px;
+}
+
+.breadcrumb{
+  font-size:14px;
+  margin-bottom:18px;
+  color:#6b7280;
+}
+
+.breadcrumb a{
+  color:#2563eb;
+  text-decoration:none;
+}
+
+h2{
+  margin-top:0;
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  margin:14px 0 6px;
+}
+
+input,select,button{
+  width:100%;
+  padding:12px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  font-size:16px;
+}
+
+button{
+  margin-top:18px;
+  background:#2563eb;
+  color:white;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button:hover{
+  background:#1d4ed8;
+}
+
+.result{
+  margin-top:20px;
+  padding:16px;
+  background:#eff6ff;
+  border-radius:10px;
+  font-size:18px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.info{
+  margin-top:20px;
+}
+
+.faq{
+  border-top:1px solid #e5e7eb;
+  padding:15px 0;
+}
+
+.faq h3{
+  margin:0 0 5px;
+  font-size:18px;
+}
+
+.related a{
+  display:inline-block;
+  margin:6px 6px 0 0;
+  padding:8px 12px;
+  background:#f3f4f6;
+  color:#2563eb;
+  text-decoration:none;
+  border-radius:7px;
+}
+
+footer{
+  text-align:center;
+  padding:25px 15px;
+  color:#6b7280;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Unit Converter</h1>
+  <p>Convert common units quickly and accurately</p>
+</header>
+
+<div class="container">
+
+  <div class="breadcrumb">
+    <a href="https://quickpercent.github.io/">Home</a>
+    →
+    Calculators
+    →
+    Unit Converter
+  </div>
+
+  <div class="card">
+
+    <h2>Unit Converter</h2>
+
+    <p>
+      Use this free unit converter to convert length, weight, temperature,
+      area, volume and time units. Enter a value, select the units and get
+      your result instantly.
+    </p>
+
+    <label for="category">Conversion Type</label>
+    <select id="category" onchange="updateUnits()">
+      <option value="length">Length</option>
+      <option value="weight">Weight</option>
+      <option value="temperature">Temperature</option>
+      <option value="area">Area</option>
+      <option value="volume">Volume</option>
+      <option value="time">Time</option>
+    </select>
+
+    <label for="value">Value</label>
+    <input type="number" id="value" placeholder="Enter value">
+
+    <label for="fromUnit">From</label>
+    <select id="fromUnit"></select>
+
+    <label for="toUnit">To</label>
+    <select id="toUnit"></select>
+
+    <button onclick="convertUnit()">Convert</button>
+
+    <div class="result" id="result">
+      Your result will appear here.
+    </div>
+
+  </div>
+
+  <div class="card info">
+
+    <h2>How to Use the Unit Converter</h2>
+
+    <ol>
+      <li>Select the type of conversion.</li>
+      <li>Enter the value you want to convert.</li>
+      <li>Select the original unit.</li>
+      <li>Select the unit you want to convert to.</li>
+      <li>Click the Convert button.</li>
+    </ol>
+
+    <h2>Supported Conversions</h2>
+
+    <p>
+      This calculator supports several common unit conversions including
+      length, weight, temperature, area, volume and time.
+    </p>
+
+    <h2>Examples</h2>
+
+    <p><strong>Length:</strong> 1 kilometer = 1000 meters.</p>
+    <p><strong>Weight:</strong> 1 kilogram = 1000 grams.</p>
+    <p><strong>Temperature:</strong> 0°C = 32°F.</p>
+    <p><strong>Time:</strong> 1 hour = 60 minutes.</p>
+
+  </div>
+
+  <div class="card">
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq">
+      <h3>What is a unit converter?</h3>
+      <p>
+        A unit converter changes a measurement from one unit into another
+        equivalent unit.
+      </p>
+    </div>
+
+    <div class="faq">
+      <h3>Which units can I convert?</h3>
+      <p>
+        You can convert common length, weight, temperature, area, volume
+        and time units.
+      </p>
+    </div>
+
+    <div class="faq">
+      <h3>Is this unit converter free?</h3>
+      <p>
+        Yes. The QuickPercent Unit Converter is free to use.
+      </p>
+    </div>
+
+    <div class="faq">
+      <h3>Are the conversions automatic?</h3>
+      <p>
+        Yes. Select your units, enter a value and click Convert to calculate
+        the result instantly.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="card related">
+
+    <h2>Related Calculators</h2>
+
+    <a href="https://quickpercent.github.io/percentage-calculator/">
+      Percentage Calculator
+    </a>
+
+    <a href="https://quickpercent.github.io/age-calculator/">
+      Age Calculator
+    </a>
+
+    <a href="https://quickpercent.github.io/bmi-calculator/">
+      BMI Calculator
+    </a>
+
+    <a href="https://quickpercent.github.io/discount-calculator/">
+      Discount Calculator
+    </a>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 QuickPercent. All rights reserved.
+</footer>
+
+<script>
+
+const units = {
+
+  length: {
+    meter: 1,
+    kilometer: 1000,
+    centimeter: 0.01,
+    millimeter: 0.001,
+    mile: 1609.344,
+    yard: 0.9144,
+    foot: 0.3048,
+    inch: 0.0254
+  },
+
+  weight: {
+    kilogram: 1,
+    gram: 0.001,
+    milligram: 0.000001,
+    pound: 0.45359237,
+    ounce: 0.028349523125
+  },
+
+  area: {
+    "square meter": 1,
+    "square kilometer": 1000000,
+    "square centimeter": 0.0001,
+    "square foot": 0.09290304,
+    "square yard": 0.83612736,
+    "square mile": 2589988.110336,
+    acre: 4046.8564224
+  },
+
+  volume: {
+    liter: 1,
+    milliliter: 0.001,
+    "cubic meter": 1000,
+    "cubic centimeter": 0.001,
+    gallon: 3.785411784,
+    quart: 0.946352946,
+    pint: 0.473176473
+  },
+
+  time: {
+    second: 1,
+    minute: 60,
+    hour: 3600,
+    day: 86400,
+    week: 604800
+  }
+
+};
+
+const temperatureUnits = [
+  "Celsius",
+  "Fahrenheit",
+  "Kelvin"
+];
+
+function updateUnits(){
+
+  const category =
+    document.getElementById("category").value;
+
+  const from =
+    document.getElementById("fromUnit");
+
+  const to =
+    document.getElementById("toUnit");
+
+  from.innerHTML = "";
+  to.innerHTML = "";
+
+  let list;
+
+  if(category === "temperature"){
+    list = temperatureUnits;
+  }else{
+    list = Object.keys(units[category]);
+  }
+
+  list.forEach(unit => {
+
+    const option1 =
+      document.createElement("option");
+
+    option1.value = unit;
+    option1.textContent = unit;
+
+    const option2 =
+      document.createElement("option");
+
+    option2.value = unit;
+    option2.textContent = unit;
+
+    from.appendChild(option1);
+    to.appendChild(option2);
+
+  });
+
+  if(list.length > 1){
+    to.selectedIndex = 1;
+  }
+}
+
+function convertTemperature(value, from, to){
+
+  let celsius;
+
+  if(from === "Celsius"){
+    celsius = value;
+  }
+  else if(from === "Fahrenheit"){
+    celsius = (value - 32) * 5 / 9;
+  }
+  else{
+    celsius = value - 273.15;
+  }
+
+  if(to === "Celsius"){
+    return celsius;
+  }
+
+  if(to === "Fahrenheit"){
+    return (celsius * 9 / 5) + 32;
+  }
+
+  return celsius + 273.15;
+}
+
+function convertUnit(){
+
+  const category =
+    document.getElementById("category").value;
+
+  const value =
+    parseFloat(document.getElementById("value").value);
+
+  const from =
+    document.getElementById("fromUnit").value;
+
+  const to =
+    document.getElementById("toUnit").value;
+
+  const result =
+    document.getElementById("result");
+
+  if(isNaN(value)){
+    result.textContent = "Please enter a value.";
+    return;
+  }
+
+  let answer;
+
+  if(category === "temperature"){
+
+    answer =
+      convertTemperature(value, from, to);
+
+  }else{
+
+    const baseValue =
+      value * units[category][from];
+
+    answer =
+      baseValue / units[category][to];
+
+  }
+
+  result.innerHTML =
+    `${value} ${from} = ${Number(answer.toFixed(10))} ${to}`;
+}
+
+updateUnits();
+
+</script>
+
+</body>
+</html>
