@@ -57,6 +57,10 @@
       margin-top: 0;
     }
 
+    h3 {
+      margin-top: 0;
+    }
+
     label {
       display: block;
       font-weight: 700;
@@ -117,6 +121,56 @@
       font-weight: 700;
     }
 
+    .modes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 4px 0 18px;
+    }
+
+    .mode-btn {
+      margin: 0;
+      padding: 11px 8px;
+      background: #eef2f7;
+      color: #172033;
+      font-size: 14px;
+    }
+
+    .mode-btn.active {
+      background: #2563eb;
+      color: white;
+    }
+
+    .calc-mode {
+      display: none;
+    }
+
+    .calc-mode.active {
+      display: block;
+    }
+
+    .hint {
+      margin: 6px 0 0;
+      color: #667085;
+      font-size: 13px;
+    }
+
+    .error {
+      display: none;
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #fff1f2;
+      color: #be123c;
+      font-size: 14px;
+    }
+
+    .result small {
+      display: block;
+      color: #667085;
+      margin-top: 5px;
+    }
+
     .faq {
       border-top: 1px solid #e5e7eb;
       padding: 14px 0;
@@ -132,6 +186,12 @@
       padding: 20px;
       font-size: 14px;
     }
+
+    @media (max-width: 520px) {
+      .modes {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -146,105 +206,339 @@
 
   <!-- Percentage Calculator -->
   <section class="card">
-    <h2>What is X% of Y?</h2>
+    <h2>Percentage Calculator</h2>
 
-    <label for="percent">Percentage (%)</label>
-    <input id="percent" type="number" inputmode="decimal" placeholder="e.g. 20">
+    <div class="modes">
+      <button class="mode-btn active" type="button"
+        onclick="setPercentMode(1)">
+        X% of Y
+      </button>
 
-    <label for="number">Number</label>
-    <input id="number" type="number" inputmode="decimal" placeholder="e.g. 500">
+      <button class="mode-btn" type="button"
+        onclick="setPercentMode(2)">
+        X is what %?
+      </button>
 
-    <button class="calc" onclick="calculate()">Calculate</button>
-    <button class="reset" onclick="resetCalc()">Reset</button>
-
-    <div id="result" class="result">
-      <div>Result</div>
-      <strong id="answer">0</strong>
-      <button class="copy" onclick="copyResult()">Copy Result</button>
+      <button class="mode-btn" type="button"
+        onclick="setPercentMode(3)">
+        Increase / Decrease
+      </button>
     </div>
+
+
+    <!-- Mode 1 -->
+    <div id="percentMode1" class="calc-mode active">
+
+      <h3>What is X% of Y?</h3>
+
+      <label for="percent">Percentage (%)</label>
+
+      <input
+        id="percent"
+        type="number"
+        inputmode="decimal"
+        step="any"
+        placeholder="e.g. 20"
+      >
+
+      <p class="hint">
+        Example: 20% of 500
+      </p>
+
+
+      <label for="number">Number</label>
+
+      <input
+        id="number"
+        type="number"
+        inputmode="decimal"
+        step="any"
+        placeholder="e.g. 500"
+      >
+
+    </div>
+
+
+    <!-- Mode 2 -->
+    <div id="percentMode2" class="calc-mode">
+
+      <h3>X is what percentage of Y?</h3>
+
+      <label for="part">Value (X)</label>
+
+      <input
+        id="part"
+        type="number"
+        inputmode="decimal"
+        step="any"
+        placeholder="e.g. 100"
+      >
+
+
+      <label for="whole">Total (Y)</label>
+
+      <input
+        id="whole"
+        type="number"
+        inputmode="decimal"
+        step="any"
+        placeholder="e.g. 500"
+      >
+
+    </div>
+
+
+    <!-- Mode 3 -->
+    <div id="percentMode3" class="calc-mode">
+
+      <h3>Percentage increase or decrease</h3>
+
+      <label for="oldValue">Original Value</label>
+
+      <input
+        id="oldValue"
+        type="number"
+        inputmode="decimal"
+        step="any"
+        placeholder="e.g. 500"
+      >
+
+
+      <label for="newValue">New Value</label>
+
+      <input
+        id="newValue"
+        type="number"
+        inputmode="decimal"
+        step="any"
+        placeholder="e.g. 600"
+      >
+
+    </div>
+
+
+    <button
+      class="calc"
+      type="button"
+      onclick="calculatePercentage()">
+      Calculate
+    </button>
+
+    <button
+      class="reset"
+      type="button"
+      onclick="resetPercentage()">
+      Reset
+    </button>
+
+
+    <div
+      id="percentError"
+      class="error"
+      role="alert">
+    </div>
+
+
+    <div
+      id="result"
+      class="result"
+      aria-live="polite">
+
+      <div>Result</div>
+
+      <strong id="answer">0</strong>
+
+      <small id="calculation"></small>
+
+      <button
+        class="copy"
+        type="button"
+        onclick="copyPercentageResult()">
+        Copy Result
+      </button>
+
+    </div>
+
   </section>
 
 
   <!-- Discount Calculator -->
   <section class="card">
+
     <h2>Discount Calculator</h2>
 
-    <label for="price">Original Price</label>
-    <input id="price" type="number" inputmode="decimal" placeholder="e.g. 1000">
 
-    <label for="discount">Discount (%)</label>
-    <input id="discount" type="number" inputmode="decimal" placeholder="e.g. 20">
+    <label for="price">
+      Original Price
+    </label>
 
-    <button class="calc" onclick="calculateDiscount()">Calculate Discount</button>
-    <button class="reset" onclick="resetDiscount()">Reset</button>
+    <input
+      id="price"
+      type="number"
+      inputmode="decimal"
+      step="any"
+      placeholder="e.g. 1000"
+    >
 
-    <div id="discountResult" class="result">
+
+    <label for="discount">
+      Discount (%)
+    </label>
+
+    <input
+      id="discount"
+      type="number"
+      inputmode="decimal"
+      step="any"
+      placeholder="e.g. 20"
+    >
+
+
+    <button
+      class="calc"
+      onclick="calculateDiscount()">
+      Calculate Discount
+    </button>
+
+
+    <button
+      class="reset"
+      onclick="resetDiscount()">
+      Reset
+    </button>
+
+
+    <div
+      id="discountResult"
+      class="result">
+
       <div>Discount Amount</div>
+
       <strong id="discountAmount">0</strong>
 
+
       <div>Final Price</div>
+
       <strong id="finalPrice">0</strong>
 
-      <button class="copy" onclick="copyDiscountResult()">Copy Result</button>
+
+      <button
+        class="copy"
+        onclick="copyDiscountResult()">
+        Copy Result
+      </button>
+
     </div>
+
   </section>
 
 
   <!-- Percentage Formula -->
   <section class="card">
+
     <h2>How to Calculate a Percentage?</h2>
 
-    <p>Use this formula:</p>
-
-    <p class="formula">
-      Percentage result = (Percentage ÷ 100) × Number
+    <p>
+      Use this formula:
     </p>
 
-    <p>Example: 20% of 500 = 100.</p>
+    <p class="formula">
+      Percentage result =
+      (Percentage ÷ 100) × Number
+    </p>
+
+    <p>
+      Example: 20% of 500 = 100.
+    </p>
+
   </section>
 
 
   <!-- Discount Formula -->
   <section class="card">
+
     <h2>How to Calculate a Discount?</h2>
 
-    <p>Discount amount:</p>
-
-    <p class="formula">
-      Discount = (Discount % ÷ 100) × Original Price
+    <p>
+      Discount amount:
     </p>
 
-    <p>Final price:</p>
-
     <p class="formula">
-      Final Price = Original Price − Discount
+      Discount =
+      (Discount % ÷ 100) × Original Price
     </p>
 
-    <p>Example: 20% off $1000 = $200 discount, final price = $800.</p>
+
+    <p>
+      Final price:
+    </p>
+
+    <p class="formula">
+      Final Price =
+      Original Price − Discount
+    </p>
+
+
+    <p>
+      Example: 20% off $1000 =
+      $200 discount, final price = $800.
+    </p>
+
   </section>
 
 
   <!-- FAQ -->
   <section class="card">
+
     <h2>Frequently Asked Questions</h2>
 
-    <div class="faq">
-      <strong>What is a percentage?</strong>
-      <p>A percentage is a number expressed as a fraction of 100.</p>
-    </div>
 
     <div class="faq">
-      <strong>How does the discount calculator work?</strong>
-      <p>Enter the original price and discount percentage to calculate the discount amount and final price.</p>
+
+      <strong>
+        What is a percentage?
+      </strong>
+
+      <p>
+        A percentage is a number expressed
+        as a fraction of 100.
+      </p>
+
     </div>
 
+
     <div class="faq">
-      <strong>Is QuickPercent free?</strong>
-      <p>Yes. QuickPercent is free to use on mobile and desktop.</p>
+
+      <strong>
+        How does the discount calculator work?
+      </strong>
+
+      <p>
+        Enter the original price and discount
+        percentage to calculate the discount
+        amount and final price.
+      </p>
+
     </div>
+
+
+    <div class="faq">
+
+      <strong>
+        Is QuickPercent free?
+      </strong>
+
+      <p>
+        Yes. QuickPercent is free to use
+        on mobile and desktop.
+      </p>
+
+    </div>
+
   </section>
 
 </main>
+
 
 <footer>
   © 2026 QuickPercent. All rights reserved.
@@ -253,91 +547,554 @@
 
 <script>
 
-  // Percentage Calculator
-  function calculate() {
-    const p = parseFloat(document.getElementById('percent').value);
-    const n = parseFloat(document.getElementById('number').value);
+  /* =========================
+     PERCENTAGE CALCULATOR
+  ========================= */
 
-    const result = document.getElementById('result');
-    const answer = document.getElementById('answer');
+  let percentMode = 1;
 
-    if (isNaN(p) || isNaN(n)) {
-      alert('Please enter both numbers.');
-      return;
+
+  function formatNumber(value) {
+
+    if (!Number.isFinite(value)) {
+      return '0';
     }
 
-    const value = (p / 100) * n;
+    if (Number.isInteger(value)) {
+      return value.toLocaleString();
+    }
 
-    answer.textContent =
-      Number.isInteger(value) ? value : value.toFixed(2);
+    return Number(
+      value.toFixed(2)
+    ).toLocaleString();
 
-    result.style.display = 'block';
   }
 
 
-  function resetCalc() {
-    document.getElementById('percent').value = '';
-    document.getElementById('number').value = '';
-    document.getElementById('result').style.display = 'none';
+  function setPercentMode(mode) {
+
+    percentMode = mode;
+
+
+    document
+      .querySelectorAll('.mode-btn')
+      .forEach((button, index) => {
+
+        button.classList.toggle(
+          'active',
+          index === mode - 1
+        );
+
+      });
+
+
+    document
+      .querySelectorAll('.calc-mode')
+      .forEach((box, index) => {
+
+        box.classList.toggle(
+          'active',
+          index === mode - 1
+        );
+
+      });
+
+
+    document.getElementById(
+      'result'
+    ).style.display = 'none';
+
+
+    document.getElementById(
+      'percentError'
+    ).style.display = 'none';
+
   }
 
 
-  function copyResult() {
-    const text = document.getElementById('answer').textContent;
+  function showPercentError(message) {
 
-    navigator.clipboard.writeText(text)
-      .then(() => alert('Result copied!'));
+    const error =
+      document.getElementById(
+        'percentError'
+      );
+
+
+    error.textContent = message;
+
+    error.style.display = 'block';
+
+
+    document.getElementById(
+      'result'
+    ).style.display = 'none';
+
   }
 
 
-  // Discount Calculator
+  function calculatePercentage() {
+
+    const result =
+      document.getElementById('result');
+
+    const answer =
+      document.getElementById('answer');
+
+    const calculation =
+      document.getElementById('calculation');
+
+    const error =
+      document.getElementById('percentError');
+
+
+    error.style.display = 'none';
+
+
+    let value;
+
+    let explanation;
+
+
+    /* X% of Y */
+
+    if (percentMode === 1) {
+
+      const p =
+        parseFloat(
+          document.getElementById(
+            'percent'
+          ).value
+        );
+
+
+      const n =
+        parseFloat(
+          document.getElementById(
+            'number'
+          ).value
+        );
+
+
+      if (
+        !Number.isFinite(p) ||
+        !Number.isFinite(n)
+      ) {
+
+        showPercentError(
+          'Please enter both the percentage and number.'
+        );
+
+        return;
+
+      }
+
+
+      value =
+        (p / 100) * n;
+
+
+      explanation =
+        `${formatNumber(p)}% of ${formatNumber(n)} = ${formatNumber(value)}`;
+
+    }
+
+
+    /* X is what % of Y */
+
+    if (percentMode === 2) {
+
+      const part =
+        parseFloat(
+          document.getElementById(
+            'part'
+          ).value
+        );
+
+
+      const whole =
+        parseFloat(
+          document.getElementById(
+            'whole'
+          ).value
+        );
+
+
+      if (
+        !Number.isFinite(part) ||
+        !Number.isFinite(whole)
+      ) {
+
+        showPercentError(
+          'Please enter both values.'
+        );
+
+        return;
+
+      }
+
+
+      if (whole === 0) {
+
+        showPercentError(
+          'The total value cannot be zero.'
+        );
+
+        return;
+
+      }
+
+
+      value =
+        (part / whole) * 100;
+
+
+      explanation =
+        `${formatNumber(part)} is ${formatNumber(value)}% of ${formatNumber(whole)}`;
+
+    }
+
+
+    /* Increase / Decrease */
+
+    if (percentMode === 3) {
+
+      const oldValue =
+        parseFloat(
+          document.getElementById(
+            'oldValue'
+          ).value
+        );
+
+
+      const newValue =
+        parseFloat(
+          document.getElementById(
+            'newValue'
+          ).value
+        );
+
+
+      if (
+        !Number.isFinite(oldValue) ||
+        !Number.isFinite(newValue)
+      ) {
+
+        showPercentError(
+          'Please enter the original and new values.'
+        );
+
+        return;
+
+      }
+
+
+      if (oldValue === 0) {
+
+        showPercentError(
+          'The original value cannot be zero.'
+        );
+
+        return;
+
+      }
+
+
+      value =
+        (
+          (newValue - oldValue) /
+          Math.abs(oldValue)
+        ) * 100;
+
+
+      const direction =
+        value > 0
+          ? 'increase'
+          : value < 0
+          ? 'decrease'
+          : 'no change';
+
+
+      explanation =
+        `${formatNumber(oldValue)} → ${formatNumber(newValue)} = ${formatNumber(Math.abs(value))}% ${direction}`;
+
+    }
+
+
+    if (
+      percentMode === 2 ||
+      percentMode === 3
+    ) {
+
+      answer.textContent =
+        `${formatNumber(value)}%`;
+
+    } else {
+
+      answer.textContent =
+        formatNumber(value);
+
+    }
+
+
+    calculation.textContent =
+      explanation;
+
+
+    result.style.display =
+      'block';
+
+  }
+
+
+  function resetPercentage() {
+
+    [
+      'percent',
+      'number',
+      'part',
+      'whole',
+      'oldValue',
+      'newValue'
+    ].forEach(id => {
+
+      const input =
+        document.getElementById(id);
+
+      if (input) {
+        input.value = '';
+      }
+
+    });
+
+
+    document.getElementById(
+      'result'
+    ).style.display = 'none';
+
+
+    document.getElementById(
+      'percentError'
+    ).style.display = 'none';
+
+
+    document.getElementById(
+      'answer'
+    ).textContent = '0';
+
+
+    document.getElementById(
+      'calculation'
+    ).textContent = '';
+
+  }
+
+
+  async function copyPercentageResult() {
+
+    const text =
+      document.getElementById(
+        'answer'
+      ).textContent;
+
+
+    try {
+
+      await navigator.clipboard
+        .writeText(text);
+
+
+      const button =
+        document.querySelector(
+          '#result .copy'
+        );
+
+
+      const oldText =
+        button.textContent;
+
+
+      button.textContent =
+        'Copied!';
+
+
+      setTimeout(() => {
+
+        button.textContent =
+          oldText;
+
+      }, 1200);
+
+
+    } catch (e) {
+
+      alert(
+        'Unable to copy result.'
+      );
+
+    }
+
+  }
+
+
+  /* Enter key */
+
+  document
+    .querySelectorAll('input')
+    .forEach(input => {
+
+      input.addEventListener(
+        'keydown',
+        event => {
+
+          if (event.key === 'Enter') {
+
+            if (
+              input.id === 'price' ||
+              input.id === 'discount'
+            ) {
+
+              calculateDiscount();
+
+            } else {
+
+              calculatePercentage();
+
+            }
+
+          }
+
+        }
+      );
+
+    });
+
+
+  /* =========================
+     DISCOUNT CALCULATOR
+  ========================= */
+
   function calculateDiscount() {
-    const price = parseFloat(document.getElementById('price').value);
-    const discount = parseFloat(document.getElementById('discount').value);
 
-    const result = document.getElementById('discountResult');
+    const price =
+      parseFloat(
+        document.getElementById(
+          'price'
+        ).value
+      );
 
-    if (isNaN(price) || isNaN(discount)) {
-      alert('Please enter price and discount.');
+
+    const discount =
+      parseFloat(
+        document.getElementById(
+          'discount'
+        ).value
+      );
+
+
+    const result =
+      document.getElementById(
+        'discountResult'
+      );
+
+
+    if (
+      isNaN(price) ||
+      isNaN(discount)
+    ) {
+
+      alert(
+        'Please enter price and discount.'
+      );
+
       return;
+
     }
 
-    const discountAmount = (discount / 100) * price;
-    const finalPrice = price - discountAmount;
 
-    document.getElementById('discountAmount').textContent =
-      Number.isInteger(discountAmount)
+    const discountAmount =
+      (discount / 100) * price;
+
+
+    const finalPrice =
+      price - discountAmount;
+
+
+    document.getElementById(
+      'discountAmount'
+    ).textContent =
+      Number.isInteger(
+        discountAmount
+      )
         ? discountAmount
         : discountAmount.toFixed(2);
 
-    document.getElementById('finalPrice').textContent =
-      Number.isInteger(finalPrice)
+
+    document.getElementById(
+      'finalPrice'
+    ).textContent =
+      Number.isInteger(
+        finalPrice
+      )
         ? finalPrice
         : finalPrice.toFixed(2);
 
-    result.style.display = 'block';
+
+    result.style.display =
+      'block';
+
   }
 
 
   function resetDiscount() {
-    document.getElementById('price').value = '';
-    document.getElementById('discount').value = '';
-    document.getElementById('discountResult').style.display = 'none';
+
+    document.getElementById(
+      'price'
+    ).value = '';
+
+
+    document.getElementById(
+      'discount'
+    ).value = '';
+
+
+    document.getElementById(
+      'discountResult'
+    ).style.display = 'none';
+
   }
 
 
   function copyDiscountResult() {
+
     const discount =
-      document.getElementById('discountAmount').textContent;
+      document.getElementById(
+        'discountAmount'
+      ).textContent;
+
 
     const finalPrice =
-      document.getElementById('finalPrice').textContent;
+      document.getElementById(
+        'finalPrice'
+      ).textContent;
+
 
     const text =
-      'Discount: ' + discount + '\nFinal Price: ' + finalPrice;
+      'Discount: ' +
+      discount +
+      '\nFinal Price: ' +
+      finalPrice;
 
-    navigator.clipboard.writeText(text)
-      .then(() => alert('Result copied!'));
+
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+
+        alert(
+          'Result copied!'
+        );
+
+      });
+
   }
 
 </script>
