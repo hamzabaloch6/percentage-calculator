@@ -278,35 +278,7 @@ Banks, exchange services and financial markets may use different rates and may a
 </footer>
 
 <script>
-function convertCurrency(){
 
-    const amount = parseFloat(
-        document.getElementById("amount").value
-    );
-
-    const from = document.getElementById("fromCurrency").value;
-    const to = document.getElementById("toCurrency").value;
-
-
-
-    const result = document.getElementById("result");
-
-
-    
-
-    if(from === to){
-
-        result.innerHTML =
-            "<strong>" +
-            amount.toLocaleString(undefined,{
-                minimumFractionDigits:2,
-                maximumFractionDigits:2
-            }) +
-            " " + from +
-            "</strong>";
-
-        return;
-    }
 
 
 async function convertCurrency(){
