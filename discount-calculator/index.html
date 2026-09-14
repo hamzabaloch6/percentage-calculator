@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Discount Calculator – Calculate Sale Price & Savings | QuickPercent</title>
+
+<meta name="description" content="Calculate discount amount, savings and final sale price quickly with the free Discount Calculator by QuickPercent.">
+
+<link rel="canonical" href="https://quickpercent.github.io/discount-calculator/">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+    color:#222;
+}
+
+header{
+    background:#2563eb;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:28px;
+}
+
+.container{
+    max-width:850px;
+    margin:30px auto;
+    padding:0 15px;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+h2{
+    margin-top:0;
+    color:#1d4ed8;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    margin-top:7px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    background:#2563eb;
+    color:white;
+    border:0;
+    border-radius:8px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.result{
+    margin-top:20px;
+    padding:18px;
+    background:#eff6ff;
+    border-radius:10px;
+    font-size:18px;
+    line-height:1.8;
+}
+
+.result strong{
+    color:#1d4ed8;
+}
+
+p{
+    line-height:1.7;
+}
+
+li{
+    margin:10px 0;
+    line-height:1.6;
+}
+
+.breadcrumb{
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.breadcrumb a{
+    color:#2563eb;
+    text-decoration:none;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Discount Calculator</h1>
+</header>
+
+<div class="container">
+
+<div class="breadcrumb">
+    <a href="https://quickpercent.github.io/">Home</a>
+    &nbsp;›&nbsp; Discount Calculator
+</div>
+
+<div class="card">
+
+<h2>Calculate Your Discount</h2>
+
+<label>Original Price</label>
+<input type="number" id="price" placeholder="e.g. 5000" min="0">
+
+<label>Discount Percentage (%)</label>
+<input type="number" id="discount" placeholder="e.g. 20" min="0" max="100">
+
+<button onclick="calculateDiscount()">Calculate Discount</button>
+
+<div class="result" id="result">
+    Enter the original price and discount percentage.
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>How to Use the Discount Calculator</h2>
+
+<ol>
+<li>Enter the original price of the product.</li>
+<li>Enter the discount percentage.</li>
+<li>Click the Calculate Discount button.</li>
+<li>The calculator will show your discount amount, savings and final price.</li>
+</ol>
+
+</div>
+
+<div class="card">
+
+<h2>Discount Formula</h2>
+
+<p>
+The discount amount is calculated using:
+</p>
+
+<p>
+<strong>Discount Amount = Original Price × Discount Percentage ÷ 100</strong>
+</p>
+
+<p>
+The final sale price is:
+</p>
+
+<p>
+<strong>Final Price = Original Price − Discount Amount</strong>
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Example</h2>
+
+<p>
+Suppose an item costs <strong>5,000</strong> and has a <strong>20%</strong> discount.
+</p>
+
+<p>
+Discount = 5,000 × 20 ÷ 100 = <strong>1,000</strong>
+</p>
+
+<p>
+Final Price = 5,000 − 1,000 = <strong>4,000</strong>
+</p>
+
+<p>
+So, you save <strong>1,000</strong> and pay <strong>4,000</strong>.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>How do I calculate a discount?</h3>
+<p>
+Multiply the original price by the discount percentage and divide by 100.
+</p>
+
+<h3>How do I find the final sale price?</h3>
+<p>
+Subtract the discount amount from the original price.
+</p>
+
+<h3>Can I calculate a 50% or 100% discount?</h3>
+<p>
+Yes. The calculator supports discount percentages from 0% to 100%.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 QuickPercent — Free Online Calculators
+</footer>
+
+<script>
+function calculateDiscount(){
+
+    const price = parseFloat(document.getElementById("price").value);
+    const discount = parseFloat(document.getElementById("discount").value);
+    const result = document.getElementById("result");
+
+    if(
+        isNaN(price) ||
+        isNaN(discount) ||
+        price < 0 ||
+        discount < 0 ||
+        discount > 100
+    ){
+        result.innerHTML = "Please enter valid values.";
+        return;
+    }
+
+    const discountAmount = price * discount / 100;
+    const finalPrice = price - discountAmount;
+
+    result.innerHTML =
+        "Discount Amount: <strong>" + discountAmount.toFixed(2) +
+        "</strong><br>" +
+        "You Save: <strong>" + discountAmount.toFixed(2) +
+        "</strong><br>" +
+        "Final Price: <strong>" + finalPrice.toFixed(2) +
+        "</strong>";
+}
+</script>
+
+</body>
+</html>
