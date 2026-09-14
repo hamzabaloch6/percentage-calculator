@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Loan Calculator – Calculate Monthly Loan Payments | QuickPercent</title>
+
+<meta name="description" content="Calculate monthly loan payments, total interest and total repayment with the free Loan Calculator by QuickPercent.">
+
+<link rel="canonical" href="https://quickpercent.github.io/loan-calculator/">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+    color:#222;
+}
+
+header{
+    background:#2563eb;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:28px;
+}
+
+.container{
+    max-width:850px;
+    margin:30px auto;
+    padding:0 15px;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+h2{
+    margin-top:0;
+    color:#1d4ed8;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    margin-top:7px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    background:#2563eb;
+    color:white;
+    border:0;
+    border-radius:8px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.result{
+    margin-top:20px;
+    padding:18px;
+    background:#eff6ff;
+    border-radius:10px;
+    font-size:18px;
+    line-height:1.9;
+}
+
+.result strong{
+    color:#1d4ed8;
+}
+
+p{
+    line-height:1.7;
+}
+
+li{
+    margin:10px 0;
+    line-height:1.6;
+}
+
+.breadcrumb{
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.breadcrumb a{
+    color:#2563eb;
+    text-decoration:none;
+}
+
+.note{
+    background:#f8fafc;
+    padding:15px;
+    border-radius:8px;
+    font-size:14px;
+    line-height:1.6;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Loan Calculator</h1>
+</header>
+
+<div class="container">
+
+<div class="breadcrumb">
+    <a href="https://quickpercent.github.io/">Home</a>
+    &nbsp;›&nbsp; Loan Calculator
+</div>
+
+<div class="card">
+
+<h2>Calculate Your Loan Payment</h2>
+
+<label>Loan Amount</label>
+<input type="number" id="loanAmount" placeholder="e.g. 100000" min="0">
+
+<label>Annual Interest Rate (%)</label>
+<input type="number" id="interestRate" placeholder="e.g. 10" min="0" step="0.01">
+
+<label>Loan Term (Years)</label>
+<input type="number" id="loanTerm" placeholder="e.g. 5" min="1" step="1">
+
+<button onclick="calculateLoan()">Calculate Loan</button>
+
+<div class="result" id="result">
+    Enter your loan details to calculate your payment.
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>How to Use the Loan Calculator</h2>
+
+<ol>
+<li>Enter the amount you want to borrow.</li>
+<li>Enter the annual interest rate.</li>
+<li>Enter the loan term in years.</li>
+<li>Click the Calculate Loan button.</li>
+<li>The calculator will show your estimated monthly payment, total payment and total interest.</li>
+</ol>
+
+</div>
+
+<div class="card">
+
+<h2>Loan Payment Formula</h2>
+
+<p>
+For a standard fixed-rate loan, the monthly payment is calculated using:
+</p>
+
+<p>
+<strong>
+M = P × r × (1 + r)<sup>n</sup> ÷ ((1 + r)<sup>n</sup> − 1)
+</strong>
+</p>
+
+<p>
+Where <strong>M</strong> is the monthly payment, <strong>P</strong> is the loan amount,
+<strong>r</strong> is the monthly interest rate, and <strong>n</strong> is the total number of monthly payments.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Example</h2>
+
+<p>
+Suppose you borrow <strong>100,000</strong> at an annual interest rate of
+<strong>10%</strong> for <strong>5 years</strong>.
+</p>
+
+<p>
+The calculator estimates the monthly payment and shows the total amount
+you will repay over the loan term.
+</p>
+
+<div class="note">
+<strong>Note:</strong> Actual loan payments may differ because of taxes,
+fees, insurance, compounding methods, or lender-specific terms.
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>What does a Loan Calculator calculate?</h3>
+<p>
+It estimates your monthly loan payment, total repayment amount and total interest.
+</p>
+
+<h3>Can I use this calculator for different loan amounts?</h3>
+<p>
+Yes. Enter the loan amount, interest rate and repayment term for your loan.
+</p>
+
+<h3>Is the result an exact loan quote?</h3>
+<p>
+No. It is an estimate based on the information entered and a standard fixed-rate loan formula.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 QuickPercent — Free Online Calculators
+</footer>
+
+<script>
+function calculateLoan(){
+
+    const principal = parseFloat(
+        document.getElementById("loanAmount").value
+    );
+
+    const annualRate = parseFloat(
+        document.getElementById("interestRate").value
+    );
+
+    const years = parseFloat(
+        document.getElementById("loanTerm").value
+    );
+
+    const result = document.getElementById("result");
+
+    if(
+        isNaN(principal) ||
+        isNaN(annualRate) ||
+        isNaN(years) ||
+        principal <= 0 ||
+        annualRate < 0 ||
+        years <= 0
+    ){
+        result.innerHTML = "Please enter valid loan details.";
+        return;
+    }
+
+    const months = years * 12;
+    const monthlyRate = annualRate / 100 / 12;
+
+    let monthlyPayment;
+
+    if(monthlyRate === 0){
+
+        monthlyPayment = principal / months;
+
+    }else{
+
+        monthlyPayment =
+            principal *
+            monthlyRate *
+            Math.pow(1 + monthlyRate, months) /
+            (Math.pow(1 + monthlyRate, months) - 1);
+    }
+
+    const totalPayment = monthlyPayment * months;
+    const totalInterest = totalPayment - principal;
+
+    result.innerHTML =
+        "Monthly Payment: <strong>" +
+        monthlyPayment.toFixed(2) +
+        "</strong><br>" +
+
+        "Total Payment: <strong>" +
+        totalPayment.toFixed(2) +
+        "</strong><br>" +
+
+        "Total Interest: <strong>" +
+        totalInterest.toFixed(2) +
+        "</strong>";
+}
+</script>
+
+</body>
+</html>
