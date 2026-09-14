@@ -349,7 +349,7 @@ function toggleCalc(id){
 }
 function openMenu(){$('overlay').classList.add('show');$('sheet').classList.add('show');document.body.classList.add('lock')}
 function closeMenu(){$('overlay').classList.remove('show');$('sheet').classList.remove('show');document.body.classList.remove('lock')}
-function go(id){closeMenu();toggleCalc(id)}
+function go(id){closeMenu();const pages={percentage:'percentage-calculator',grade:'grade-calculator',gpa:'gpa-calculator',cgpa:'cgpa-calculator',attendance:'attendance-calculator',required:'required-marks-calculator',average:'average-calculator',exam:'exam-countdown',discount:'discount-calculator',loan:'loan-calculator',currency:'currency-converter',age:'age-calculator',bmi:'bmi-calculator',unit:'unit-converter'};if(pages[id])location.href='/'+pages[id]+'/'}
 function fmt(n){return Number(n).toLocaleString(undefined,{maximumFractionDigits:2})}
 function pmode(n){['p1','p2','p3'].forEach((x,i)=>$(x).style.display=i===n-1?'block':'none');['pm1','pm2','pm3'].forEach((x,i)=>$(x).classList.toggle('sel',i===n-1));$('presult').classList.remove('show')}
 function calcPercent(){
