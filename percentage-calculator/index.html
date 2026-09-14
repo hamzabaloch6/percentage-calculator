@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Percentage Calculator – Calculate Percentages Easily | QuickPercent</title>
+<meta name="description" content="Use QuickPercent's free percentage calculator to find a percentage of a number, calculate what percent one number is of another, and calculate percentage increase or decrease.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://quickpercent.github.io/percentage-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Percentage Calculator | QuickPercent">
+<meta property="og:description" content="Free percentage calculator for percentage of a number, percentage comparison, and increase or decrease.">
+<meta property="og:url" content="https://quickpercent.github.io/percentage-calculator/">
+<meta property="og:site_name" content="QuickPercent">
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:#102b55;font-family:Arial,Helvetica,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+
+.header{height:66px;background:#fff;display:flex;align-items:center;padding:0 5%;border-bottom:1px solid #edf1f6;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;font-size:25px;font-weight:900;letter-spacing:-1px}
+.logo-mark{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#1764df,#16b98a);color:#fff;font-size:22px}
+.logo-blue{color:#102b55}
+.logo-blue2{color:#1764df}
+.nav{display:flex;gap:38px;margin:auto}
+.nav a{color:#102b55;text-decoration:none;font-size:13px;font-weight:700;padding:23px 0 20px}
+.nav a.active{color:#1764df;border-bottom:2px solid #1764df}
+
+.page{max-width:900px;margin:auto;padding:28px 20px 45px}
+.breadcrumb{font-size:12px;color:#63738b;margin:0 0 18px}
+.breadcrumb a{color:#1764df;text-decoration:none}
+
+.content-card{background:#fff;border:1px solid #e1e9f1;border-radius:14px;padding:22px;box-shadow:0 4px 15px rgba(30,55,95,.025);margin-bottom:18px}
+.content-card h1{font-size:34px;line-height:1.15;margin:0 0 10px;color:#102b55}
+.content-card h2{font-size:22px;margin:0 0 10px;color:#102b55}
+.content-card p,.content-card li{color:#5f718d;font-size:14px;line-height:1.7}
+.content-card ol{padding-left:22px}
+
+.calc-box{background:#f8fbff;border:1px solid #dfe7f0;border-radius:13px;padding:18px}
+
+.modes{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.modes button{border:1px solid #ccd5e2;background:#fff;border-radius:9px;padding:8px 10px;font-size:11px}
+.modes button.sel{background:#1764df;color:#fff;border-color:#1764df}
+
+label{display:block;font-size:12px;font-weight:800;margin:11px 0 6px}
+input{width:100%;height:43px;border:1px solid #ccd5e2;border-radius:10px;background:#fff;padding:0 11px;color:#17345e}
+
+.calc-btn{width:100%;min-height:43px;border:0;border-radius:10px;background:#1764df;color:#fff;font-weight:800;margin-top:12px}
+.result{display:none;margin-top:13px;padding:12px;border-radius:10px;background:#eaf2ff;font-size:14px;line-height:1.55}
+.result.show{display:block}
+
+.formula{background:#f0f7ff;border-left:4px solid #1764df;padding:13px 15px;border-radius:8px;color:#17345e;margin:12px 0}
+.example{background:#f6f8fb;padding:13px 15px;border-radius:8px;color:#17345e}
+
+footer{background:#102b55;color:#fff;padding:17px 5%;display:flex;align-items:center;justify-content:space-between;font-size:11px}
+.footer-brand{display:flex;align-items:center;gap:7px}
+.footer-brand .logo-mark{width:31px;height:31px;font-size:17px}
+.footer-brand b{font-size:20px}
+.footer-brand b span{color:#20c49b}
+.footer-nav{display:flex;gap:20px}
+.footer-nav a{color:#fff;text-decoration:none}
+
+@media(max-width:600px){
+.header{height:61px;padding:0 15px}
+.logo{font-size:21px}
+.logo-mark{width:33px;height:33px;font-size:18px}
+.nav{display:none}
+.page{padding:20px 14px 34px}
+.content-card{padding:17px}
+.content-card h1{font-size:28px}
+footer{display:block;text-align:center;line-height:1.8}
+.footer-nav{justify-content:center;margin-top:7px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo">
+    <span class="logo-mark">%</span>
+    <span class="logo-blue">Quick<span class="logo-blue2">Percent</span></span>
+  </div>
+
+  <nav class="nav">
+    <a href="https://quickpercent.github.io/">Home</a>
+    <a class="active" href="https://quickpercent.github.io/percentage-calculator/">Calculators</a>
+    <a href="https://quickpercent.github.io/">Tools</a>
+  </nav>
+</header>
+
+<main class="page">
+
+  <div class="breadcrumb">
+    <a href="https://quickpercent.github.io/">Home</a>
+    → Calculators → Percentage Calculator
+  </div>
+
+  <section class="content-card">
+    <h1>Percentage Calculator</h1>
+
+    <p>
+      Calculate percentages quickly and accurately. Use this free calculator
+      to find a percentage of a number, determine what percentage one value
+      is of another, or calculate percentage increase or decrease.
+    </p>
+
+    <div class="calc-box">
+
+      <div class="modes">
+        <button id="pm1" class="sel" onclick="pmode(1)">X% of Y</button>
+        <button id="pm2" onclick="pmode(2)">X is what %?</button>
+        <button id="pm3" onclick="pmode(3)">Increase / Decrease</button>
+      </div>
+
+      <div id="p1">
+        <label>Percentage (%)</label>
+        <input id="p1a" type="number" inputmode="decimal" placeholder="e.g. 20">
+
+        <label>Number</label>
+        <input id="p1b" type="number" inputmode="decimal" placeholder="e.g. 500">
+      </div>
+
+      <div id="p2" style="display:none">
+        <label>Value</label>
+        <input id="p2a" type="number" inputmode="decimal" placeholder="e.g. 80">
+
+        <label>Total</label>
+        <input id="p2b" type="number" inputmode="decimal" placeholder="e.g. 100">
+      </div>
+
+      <div id="p3" style="display:none">
+        <label>Original value</label>
+        <input id="p3a" type="number" inputmode="decimal" placeholder="e.g. 500">
+
+        <label>New value</label>
+        <input id="p3b" type="number" inputmode="decimal" placeholder="e.g. 600">
+      </div>
+
+      <button class="calc-btn" onclick="calcPercent()">Calculate</button>
+
+      <div id="presult" class="result"></div>
+
+    </div>
+  </section>
+
+  <section class="content-card">
+    <h2>How to use the percentage calculator</h2>
+
+    <ol>
+      <li>Choose the type of percentage calculation you need.</li>
+      <li>Enter the numbers in the fields provided.</li>
+      <li>Tap <strong>Calculate</strong> to see the result instantly.</li>
+    </ol>
+  </section>
+
+  <section class="content-card">
+    <h2>Percentage formulas</h2>
+
+    <div class="formula">
+      <strong>Percentage of a number:</strong>
+      (Percentage ÷ 100) × Number
+    </div>
+
+    <div class="formula">
+      <strong>What percent is X of Y:</strong>
+      (X ÷ Y) × 100
+    </div>
+
+    <div class="formula">
+      <strong>Percentage change:</strong>
+      ((New value − Original value) ÷ |Original value|) × 100
+    </div>
+  </section>
+
+  <section class="content-card">
+    <h2>Examples</h2>
+
+    <div class="example">
+      <strong>20% of 500:</strong>
+      (20 ÷ 100) × 500 = 100.
+      <br><br>
+
+      <strong>80 is what percent of 100:</strong>
+      (80 ÷ 100) × 100 = 80%.
+      <br><br>
+
+      <strong>500 to 600:</strong>
+      ((600 − 500) ÷ 500) × 100 = 20% increase.
+    </div>
+  </section>
+
+  <section class="content-card">
+    <h2>Frequently asked questions</h2>
+
+    <p>
+      <strong>How do I calculate a percentage?</strong><br>
+      Divide the percentage by 100 and multiply it by the number.
+      For example, 25% of 200 is 50.
+    </p>
+
+    <p>
+      <strong>How do I find what percentage one number is of another?</strong><br>
+      Divide the first number by the total and multiply by 100.
+    </p>
+
+    <p>
+      <strong>How do I calculate percentage increase or decrease?</strong><br>
+      Compare the difference between the new and original values with
+      the original value, then multiply by 100.
+    </p>
+  </section>
+
+  <section class="content-card">
+    <h2>More calculators</h2>
+
+    <p>
+      <a href="https://quickpercent.github.io/"
+         style="color:#1764df;font-weight:800;text-decoration:none">
+         Explore all QuickPercent calculators →
+      </a>
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <span class="logo-mark">%</span>
+    <b>Quick<span>Percent</span></b>
+  </div>
+
+  <div>© 2025 QuickPercent. All rights reserved.</div>
+
+  <div class="footer-nav">
+    <a href="https://quickpercent.github.io/">Home</a>
+    <a href="https://quickpercent.github.io/#cards">Calculators</a>
+  </div>
+</footer>
+
+<script>
+function $(id){
+  return document.getElementById(id);
+}
+
+function show(id,text){
+  $(id).innerHTML=text;
+  $(id).classList.add('show');
+}
+
+function fmt(n){
+  return Number(n).toLocaleString(undefined,{
+    maximumFractionDigits:2
+  });
+}
+
+function pmode(n){
+  ['p1','p2','p3'].forEach((x,i)=>{
+    $(x).style.display=i===n-1?'block':'none';
+  });
+
+  ['pm1','pm2','pm3'].forEach((x,i)=>{
+    $(x).classList.toggle('sel',i===n-1);
+  });
+
+  $('presult').classList.remove('show');
+}
+
+function calcPercent(){
+
+  let r;
+
+  if($('p1').style.display!=='none'){
+    let a=+$('p1a').value;
+    let b=+$('p1b').value;
+
+    r=isFinite(a)&&isFinite(b)
+      ?fmt(a*b/100)
+      :'Enter valid values.';
+  }
+
+  else if($('p2').style.display!=='none'){
+    let a=+$('p2a').value;
+    let b=+$('p2b').value;
+
+    r=b
+      ?fmt(a/b*100)+'%'
+      :'Enter a valid total.';
+  }
+
+  else{
+    let a=+$('p3a').value;
+    let b=+$('p3b').value;
+
+    r=a
+      ?fmt((b-a)/Math.abs(a)*100)+'% '+(b>=a?'increase':'decrease')
+      :'Enter a valid original value.';
+  }
+
+  show('presult','Result: <strong>'+r+'</strong>');
+}
+</script>
+
+</body>
+</html>
