@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Required Marks Calculator – Calculate Marks Needed | QuickPercent</title>
+
+<meta name="description" content="Calculate the marks you need to achieve your desired percentage. Free, fast and easy Required Marks Calculator by QuickPercent.">
+
+<link rel="canonical" href="https://quickpercent.github.io/required-marks-calculator/">
+
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+    color:#222;
+}
+header{
+    background:#2563eb;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+header h1{margin:0;font-size:28px}
+.container{
+    max-width:850px;
+    margin:30px auto;
+    padding:0 15px;
+}
+.card{
+    background:white;
+    border-radius:14px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+h2{margin-top:0;color:#1d4ed8}
+label{
+    display:block;
+    font-weight:bold;
+    margin-top:15px;
+}
+input{
+    width:100%;
+    padding:13px;
+    margin-top:7px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    background:#2563eb;
+    color:white;
+    border:0;
+    border-radius:8px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+button:hover{background:#1d4ed8}
+.result{
+    margin-top:20px;
+    padding:18px;
+    background:#eff6ff;
+    border-radius:10px;
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+}
+p{line-height:1.7}
+li{margin:10px 0;line-height:1.6}
+.breadcrumb{
+    font-size:14px;
+    margin-bottom:20px;
+}
+.breadcrumb a{
+    color:#2563eb;
+    text-decoration:none;
+}
+footer{
+    text-align:center;
+    padding:25px;
+    color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Required Marks Calculator</h1>
+</header>
+
+<div class="container">
+
+<div class="breadcrumb">
+    <a href="https://quickpercent.github.io/">Home</a>
+    &nbsp;›&nbsp; Required Marks Calculator
+</div>
+
+<div class="card">
+    <h2>Calculate Required Marks</h2>
+
+    <label>Total Marks</label>
+    <input type="number" id="totalMarks" placeholder="e.g. 100">
+
+    <label>Desired Percentage (%)</label>
+    <input type="number" id="desiredPercentage" placeholder="e.g. 80">
+
+    <button onclick="calculateRequiredMarks()">Calculate</button>
+
+    <div class="result" id="result">
+        Enter your marks and desired percentage.
+    </div>
+</div>
+
+<div class="card">
+    <h2>How to Use the Required Marks Calculator</h2>
+    <ol>
+        <li>Enter the total marks of your exam.</li>
+        <li>Enter the percentage you want to achieve.</li>
+        <li>Click the Calculate button.</li>
+        <li>The calculator will show the minimum marks required.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>Required Marks Formula</h2>
+
+    <p>
+        The formula used to calculate required marks is:
+    </p>
+
+    <p>
+        <strong>Required Marks = (Total Marks × Desired Percentage) ÷ 100</strong>
+    </p>
+
+    <p>
+        For example, if your exam has 500 total marks and you want 80%:
+    </p>
+
+    <p>
+        (500 × 80) ÷ 100 = <strong>400 marks</strong>
+    </p>
+</div>
+
+<div class="card">
+    <h2>Example</h2>
+
+    <p>
+        Suppose your exam is worth 600 marks and your target is 75%.
+        You need:
+    </p>
+
+    <p>
+        (600 × 75) ÷ 100 = <strong>450 marks</strong>
+    </p>
+
+    <p>
+        Therefore, you need at least <strong>450 marks</strong> to achieve 75%.
+    </p>
+</div>
+
+<div class="card">
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>What is a Required Marks Calculator?</h3>
+    <p>
+        It calculates the minimum marks you need to achieve a specific percentage in an exam.
+    </p>
+
+    <h3>Can I use this for any total marks?</h3>
+    <p>
+        Yes. You can enter any total marks and your desired percentage.
+    </p>
+
+    <h3>Does the calculator round the result?</h3>
+    <p>
+        Yes. The result is rounded up to the next whole mark when necessary.
+    </p>
+</div>
+
+</div>
+
+<footer>
+    © 2026 QuickPercent — Free Online Calculators
+</footer>
+
+<script>
+function calculateRequiredMarks(){
+
+    const total = parseFloat(document.getElementById("totalMarks").value);
+    const percentage = parseFloat(document.getElementById("desiredPercentage").value);
+    const result = document.getElementById("result");
+
+    if(
+        isNaN(total) ||
+        isNaN(percentage) ||
+        total <= 0 ||
+        percentage < 0 ||
+        percentage > 100
+    ){
+        result.innerHTML = "Please enter valid values.";
+        return;
+    }
+
+    const required = Math.ceil((total * percentage) / 100);
+
+    result.innerHTML =
+        "You need at least <strong>" +
+        required +
+        " marks</strong> to achieve " +
+        percentage +
+        "%.";
+}
+</script>
+
+</body>
+</html>
