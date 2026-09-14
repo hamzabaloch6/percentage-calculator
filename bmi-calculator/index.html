@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BMI Calculator – Calculate Your Body Mass Index | QuickPercent</title>
+
+<meta name="description" content="Calculate your Body Mass Index (BMI) using height and weight with the free BMI Calculator by QuickPercent.">
+
+<link rel="canonical" href="https://quickpercent.github.io/bmi-calculator/">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+    color:#222;
+}
+
+header{
+    background:#2563eb;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:28px;
+}
+
+.container{
+    max-width:850px;
+    margin:30px auto;
+    padding:0 15px;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+h2{
+    margin-top:0;
+    color:#1d4ed8;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    margin-top:7px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    background:#2563eb;
+    color:white;
+    border:0;
+    border-radius:8px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.result{
+    margin-top:20px;
+    padding:18px;
+    background:#eff6ff;
+    border-radius:10px;
+    text-align:center;
+    font-size:20px;
+    line-height:1.8;
+}
+
+.result strong{
+    color:#1d4ed8;
+}
+
+.note{
+    margin-top:15px;
+    padding:14px;
+    background:#f8fafc;
+    border-radius:8px;
+    font-size:14px;
+    line-height:1.6;
+}
+
+p{
+    line-height:1.7;
+}
+
+li{
+    margin:10px 0;
+    line-height:1.6;
+}
+
+.breadcrumb{
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.breadcrumb a{
+    color:#2563eb;
+    text-decoration:none;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:center;
+}
+
+th{
+    background:#eff6ff;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>BMI Calculator</h1>
+</header>
+
+<div class="container">
+
+<div class="breadcrumb">
+    <a href="https://quickpercent.github.io/">Home</a>
+    &nbsp;›&nbsp; BMI Calculator
+</div>
+
+<div class="card">
+
+<h2>Calculate Your BMI</h2>
+
+<label>Weight (kg)</label>
+<input type="number" id="weight" placeholder="e.g. 70" min="0" step="0.1">
+
+<label>Height (cm)</label>
+<input type="number" id="height" placeholder="e.g. 175" min="0" step="0.1">
+
+<button onclick="calculateBMI()">Calculate BMI</button>
+
+<div class="result" id="result">
+    Enter your weight and height.
+</div>
+
+<div class="note">
+<strong>Note:</strong> BMI is a general screening measure and does not
+diagnose health conditions or account for every aspect of body composition.
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>How to Use the BMI Calculator</h2>
+
+<ol>
+<li>Enter your weight in kilograms.</li>
+<li>Enter your height in centimeters.</li>
+<li>Click the Calculate BMI button.</li>
+<li>Your BMI value and general BMI category will be displayed.</li>
+</ol>
+
+</div>
+
+<div class="card">
+
+<h2>BMI Formula</h2>
+
+<p>
+BMI is calculated by dividing weight in kilograms by height in meters squared.
+</p>
+
+<p>
+<strong>BMI = Weight (kg) ÷ Height² (m²)</strong>
+</p>
+
+<p>
+For example, if your weight is 70 kg and your height is 1.75 m:
+</p>
+
+<p>
+70 ÷ (1.75 × 1.75) = <strong>22.86</strong>
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>BMI Categories for Adults</h2>
+
+<table>
+<tr>
+<th>BMI</th>
+<th>Category</th>
+</tr>
+<tr>
+<td>Below 18.5</td>
+<td>Underweight</td>
+</tr>
+<tr>
+<td>18.5 – 24.9</td>
+<td>Healthy Weight</td>
+</tr>
+<tr>
+<td>25.0 – 29.9</td>
+<td>Overweight</td>
+</tr>
+<tr>
+<td>30.0 or above</td>
+<td>Obesity</td>
+</tr>
+</table>
+
+</div>
+
+<div class="card">
+
+<h2>Example</h2>
+
+<p>
+A person weighing <strong>70 kg</strong> with a height of
+<strong>175 cm</strong> has a BMI of approximately:
+</p>
+
+<p>
+<strong>22.86</strong>
+</p>
+
+<p>
+This falls within the commonly used adult healthy-weight BMI range.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>What is BMI?</h3>
+<p>
+BMI, or Body Mass Index, is a number calculated from a person's weight
+and height and is commonly used as a general screening measure.
+</p>
+
+<h3>Is BMI accurate for everyone?</h3>
+<p>
+No. BMI does not directly measure body fat and may not accurately reflect
+body composition for every person.
+</p>
+
+<h3>Can children use adult BMI categories?</h3>
+<p>
+Adult BMI categories should not be applied to children in the same way.
+Children and teenagers require age- and sex-specific BMI interpretation.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 QuickPercent — Free Online Calculators
+</footer>
+
+<script>
+
+function calculateBMI(){
+
+    const weight = parseFloat(
+        document.getElementById("weight").value
+    );
+
+    const heightCm = parseFloat(
+        document.getElementById("height").value
+    );
+
+    const result = document.getElementById("result");
+
+    if(
+        isNaN(weight) ||
+        isNaN(heightCm) ||
+        weight <= 0 ||
+        heightCm <= 0
+    ){
+        result.innerHTML = "Please enter valid weight and height.";
+        return;
+    }
+
+    const heightM = heightCm / 100;
+
+    const bmi = weight / (heightM * heightM);
+
+    let category;
+
+    if(bmi < 18.5){
+        category = "Underweight";
+    }else if(bmi < 25){
+        category = "Healthy Weight";
+    }else if(bmi < 30){
+        category = "Overweight";
+    }else{
+        category = "Obesity";
+    }
+
+    result.innerHTML =
+        "Your BMI: <strong>" +
+        bmi.toFixed(2) +
+        "</strong><br>" +
+        "Category: <strong>" +
+        category +
+        "</strong>";
+}
+
+</script>
+
+</body>
+</html>
