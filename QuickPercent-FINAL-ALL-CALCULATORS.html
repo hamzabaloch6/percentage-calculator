@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="QuickPercent - Quick, Easy, Useful Calculators">
+<title>QuickPercent</title>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:#102b55;font-family:Arial,Helvetica,sans-serif}
+body.lock{overflow:hidden}
+button,input,select{font:inherit}button{cursor:pointer}
+
+.header{height:66px;background:#fff;display:flex;align-items:center;padding:0 5%;border-bottom:1px solid #edf1f6;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;font-size:25px;font-weight:900;letter-spacing:-1px}
+.logo-mark{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#1764df,#16b98a);color:#fff;font-size:22px}
+.logo-blue{color:#102b55}.logo-blue2{color:#1764df}
+.nav{display:flex;gap:38px;margin:auto}
+.nav a{color:#102b55;text-decoration:none;font-size:13px;font-weight:700;padding:23px 0 20px}
+.nav a.active{color:#1764df;border-bottom:2px solid #1764df}
+.header-actions{display:flex;gap:9px}
+.header-action{width:38px;height:38px;border:0;border-radius:50%;background:#f5f8fc;color:#102b55;font-size:18px}
+.menu-btn{display:none;width:38px;height:38px;border:0;border-radius:50%;background:#f5f8fc;color:#102b55;font-size:19px}
+
+.hero{background:linear-gradient(110deg,#edf7ff 0%,#f8fcff 50%,#ecfbf6 100%);text-align:center;padding:23px 20px 27px}
+.badge{display:inline-block;background:#eef9ff;border:1px solid #d3eafb;color:#18519a;border-radius:20px;padding:7px 15px;font-size:12px;font-weight:800;margin-bottom:13px}
+.hero h1{font-size:52px;line-height:1;margin:0 0 10px;letter-spacing:-2.8px;color:#102b55}
+.hero h1 span{color:#1764df}
+.hero h2{font-size:25px;line-height:1.2;margin:0 0 13px;letter-spacing:-.5px}
+.hero p{max-width:700px;margin:0 auto 20px;color:#5f718d;font-size:15px;line-height:1.5}
+
+.search{height:51px;max-width:660px;margin:0 auto;display:flex;align-items:center;background:#fff;border:1px solid #dce6f2;border-radius:28px;padding:0 9px 0 17px;box-shadow:0 5px 18px rgba(20,45,85,.08)}
+.search span{font-size:24px;color:#607794;margin-right:11px}
+.search input{border:0;outline:0;width:100%;font-size:14px;color:#17345e;background:transparent}
+.search button{width:43px;height:43px;border:0;border-radius:50%;background:#1764df;color:#fff;font-size:19px}
+
+.features{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);padding:22px 0 5px}
+.feature{display:flex;align-items:center;justify-content:center;gap:9px;border-right:1px solid #dfe7ef;text-align:left}
+.feature:last-child{border-right:0}
+.feature .fi{width:39px;height:39px;border-radius:50%;display:grid;place-items:center;font-size:20px;font-weight:900}
+.feature:nth-child(1) .fi{background:#dff9ec;color:#13b975}.feature:nth-child(2) .fi{background:#fff4d8;color:#f0aa00}.feature:nth-child(3) .fi{background:#e4f4ff;color:#1764df}.feature:nth-child(4) .fi{background:#e4f4ff;color:#1764df}
+.feature b{display:block;font-size:13px;margin-bottom:3px}.feature small{display:block;color:#657793;font-size:11px}
+
+.wrap{max-width:1160px;margin:auto;padding:29px 30px 42px}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:19px}
+.section-title-left{display:flex;align-items:center;gap:11px}
+.section-icon{font-size:24px;color:#1764df}.section-title h2{font-size:27px;margin:0 0 3px;letter-spacing:-.5px}.section-title p{margin:0;color:#63738b;font-size:13px}
+.view-all{border:0;background:#edf7ff;color:#1764df;font-weight:800;border-radius:20px;padding:9px 15px;font-size:12px}
+
+#cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
+.card{border:1px solid #e1e9f1;border-radius:14px;padding:15px 17px 15px;min-height:182px;position:relative;box-shadow:0 4px 15px rgba(30,55,95,.025);margin:0}
+.card:nth-child(1){background:#f0f7ff}.card:nth-child(2){background:#f0fbf7}.card:nth-child(3){background:#f6f3ff}.card:nth-child(4){background:#fff3f4}
+.card:nth-child(5){background:#fff8ee}.card:nth-child(6){background:#eefbfb}.card:nth-child(7){background:#f2f4ff}.card:nth-child(8){background:#f3f6fa}
+.card:nth-child(n+9){display:none}
+.card-head{display:block}
+.icon{width:47px;height:47px;border-radius:12px;display:grid;place-items:center;color:#fff;font-size:24px;font-weight:800;margin-bottom:10px}
+.blue{background:#1764df}.orange{background:#ff8e12}.cyan{background:#27b4ca}.purple{background:#7048df}.green{background:#14b879}.red{background:#ef4d58}.slate{background:#64758c}
+.card h2{font-size:15px;margin:0 0 8px;letter-spacing:-.1px}.card p{font-size:11px;line-height:1.5;color:#5f718d;margin:0;padding-right:8px;max-width:220px}
+.open{position:absolute;right:16px;bottom:15px;width:31px;height:31px;border:0;border-radius:50%;display:grid;place-items:center;background:rgba(23,100,223,.10);color:#1764df;font-size:18px;font-weight:800;padding:0}
+.card:nth-child(2) .open{background:rgba(20,184,121,.10);color:#079b78}
+.card:nth-child(3) .open,.card:nth-child(7) .open{background:rgba(112,72,223,.10);color:#7048df}
+.card:nth-child(4) .open{background:rgba(239,77,88,.10);color:#ef4d58}
+.card:nth-child(5) .open{background:rgba(255,142,18,.10);color:#ff8e12}
+.card:nth-child(6) .open{background:rgba(39,180,202,.10);color:#168fa7}
+.more-card{display:block!important}
+.more-card .open{background:rgba(100,117,140,.11);color:#52657c}
+.calculator{display:none;margin-top:14px;padding:15px;border-radius:13px;background:#fff;border:1px solid #dfe7f0}
+.calculator.active{display:block}
+.calculator h3{font-size:18px;margin:0 0 14px}
+label{display:block;font-size:12px;font-weight:800;margin:11px 0 6px}
+input,select{width:100%;height:43px;border:1px solid #ccd5e2;border-radius:10px;background:#fff;padding:0 11px;color:#17345e}
+.calc-btn{width:100%;min-height:43px;border:0;border-radius:10px;background:#1764df;color:#fff;font-weight:800;margin-top:12px}
+.result{display:none;margin-top:13px;padding:12px;border-radius:10px;background:#eaf2ff;font-size:14px;line-height:1.55}
+.result.show{display:block}
+.modes{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}.modes button{border:1px solid #ccd5e2;background:#fff;border-radius:9px;padding:7px 8px;font-size:11px}.modes button.sel{background:#1764df;color:#fff;border-color:#1764df}
+
+.suggest{margin:18px 0 0;background:linear-gradient(100deg,#0750ad,#1764df);color:#fff;border-radius:13px;padding:15px 23px;display:flex;align-items:center;justify-content:space-between}
+.suggest-left{display:flex;align-items:center;gap:14px}.suggest-icon{width:42px;height:42px;border-radius:50%;background:rgba(31,140,255,.35);display:grid;place-items:center;font-size:23px}
+.suggest h2{margin:0 0 4px;font-size:17px}.suggest p{margin:0;font-size:11px;opacity:.92}
+.suggest:after{content:"Suggest a Tool   →";border:1px solid rgba(255,255,255,.8);border-radius:22px;padding:9px 17px;font-size:12px;font-weight:800}
+
+footer{background:#102b55;color:#fff;padding:17px 5%;display:flex;align-items:center;justify-content:space-between;font-size:11px}
+.footer-brand{display:flex;align-items:center;gap:7px}.footer-brand .logo-mark{width:31px;height:31px;font-size:17px}.footer-brand b{font-size:20px}.footer-brand b span{color:#20c49b}
+.footer-nav{display:flex;gap:20px}.footer-nav a{color:#fff;text-decoration:none}
+.footer-social{display:flex;gap:13px;font-size:12px}
+
+.overlay{position:fixed;inset:0;background:rgba(13,31,57,.48);opacity:0;pointer-events:none;transition:.25s;z-index:20}
+.overlay.show{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:50%;bottom:0;width:min(760px,100%);background:#fff;border-radius:26px 26px 0 0;padding:15px 24px 28px;transform:translate(-50%,105%);transition:.3s;z-index:21;max-height:86vh;overflow:auto}
+.sheet.show{transform:translate(-50%,0)}
+.handle{width:58px;height:6px;border-radius:20px;background:#b8c1cf;margin:0 auto 22px}.sheet h2{font-size:22px;margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 18px}.item{display:flex;align-items:center;gap:11px;border:0;background:none;text-align:left;color:#172f55;padding:5px 0}.item .mini{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;color:#fff;font-size:23px}.item b{font-size:15px}
+.more{margin-top:20px;padding-top:16px;border-top:1px solid #e3e7ee;display:flex;justify-content:space-between;align-items:center}.more button{border:0;background:none;text-align:left;color:#17345e}.more b{font-size:16px}.more span{color:#8995a8}.more-tools{display:none;margin-top:13px}.more-tools.show{display:grid}
+
+@media(max-width:900px){
+.nav{gap:20px}#cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+.header{height:61px;padding:0 15px}.logo{font-size:21px}.logo-mark{width:33px;height:33px;font-size:18px}.nav,.header-actions{display:none}.menu-btn{display:block}
+.hero{padding:20px 14px 24px}.hero h1{font-size:41px}.hero h2{font-size:20px}.hero p{font-size:13px}.search{height:49px}
+.features{grid-template-columns:repeat(2,1fr);padding:18px 8px 2px;gap:13px 0}.feature{border-right:0;justify-content:flex-start}.feature b{font-size:11px}.feature small{font-size:9px}.feature .fi{width:34px;height:34px;font-size:17px}
+.wrap{padding:24px 14px 34px}.section-title h2{font-size:21px}.section-title p{font-size:11px}.view-all{font-size:10px;padding:8px 10px}
+#cards{grid-template-columns:1fr 1fr;gap:11px}.card{min-height:176px;padding:13px}.icon{width:41px;height:41px;font-size:21px}.card h2{font-size:13px}.card p{font-size:10px}.open{right:11px;bottom:11px;width:29px;height:29px}
+.suggest{display:block;padding:15px}.suggest:after{display:inline-block;margin-top:11px}
+footer{display:block;text-align:center;line-height:1.8}.footer-nav{justify-content:center;margin-top:7px}.footer-social{justify-content:center;margin-top:7px}
+}
+</style>
+
+
+<style id="individual-card-expand-fix">
+/* Individual card expansion: only the clicked card grows. */
+#cards{
+  align-items:start !important;
+  grid-auto-rows:max-content !important;
+}
+#cards .card{
+  align-self:start !important;
+  height:max-content !important;
+}
+#cards .card .calculator{
+  width:100%;
+}
+#cards .card.expanded{
+  z-index:2;
+}
+</style>
+
+<style id="final-tool-grid-patch">
+#cards{align-items:start!important;grid-auto-rows:max-content!important}
+#cards .card{align-self:start!important;height:max-content!important}
+#cards .card.expanded{z-index:2}
+#cards .card:nth-child(4n+1){background:#f0f7ff}
+#cards .card:nth-child(4n+2){background:#f0fbf7}
+#cards .card:nth-child(4n+3){background:#f6f3ff}
+#cards .card:nth-child(4n){background:#fff3f4}
+#cards .card:nth-child(5n){background:#fff8ee}
+</style>
+</head>
+<body>
+<header class="header">
+<div class="logo"><span class="logo-mark">%</span><span class="logo-blue">Quick<span class="logo-blue2">Percent</span></span></div>
+<nav class="nav"><a class="active" href="#">Home</a><a href="#cards">Calculators</a><a href="#cards">Tools</a><a href="#footer">About</a></nav>
+<div class="header-actions"><button class="header-action" aria-label="Search" onclick="document.getElementById('search').focus()">⌕</button><button class="header-action" aria-label="Dark mode">◐</button></div>
+<button class="menu-btn" aria-label="Open menu" onclick="openMenu()">☰</button>
+</header>
+
+<main class="wrap">
+<section class="hero">
+<div class="badge">Fast &nbsp;•&nbsp; Accurate &nbsp;•&nbsp; Free</div>
+<h1>Quick<span>Percent</span></h1>
+<h2>Your All-in-One Calculator &amp; Tools Hub</h2>
+<p>Calculate percentages, convert units, check your BMI, plan your finances<br>and much more — all in one place, Free and easy to use.</p>
+<div class="search"><span>⌕</span><input id="search" oninput="filterCards()" placeholder="Search for a calculator or tool..."><button aria-label="Search" onclick="filterCards()">Search</button></div>
+</section>
+
+<div class="features">
+<div class="feature"><span class="fi">✓</span><div><b>100% Free</b><small>No registration needed</small></div></div>
+<div class="feature"><span class="fi">ϟ</span><div><b>Instant Results</b><small>Get results in seconds</small></div></div>
+<div class="feature"><span class="fi">➤</span><div><b>Easy to Use</b><small>Simple &amp; clean interface</small></div></div>
+<div class="feature"><span class="fi">▣</span><div><b>Works on All Devices</b><small>Mobile, Tablet &amp; Desktop</small></div></div>
+</div>
+<div class="section-title"><div class="section-title-left"><span class="section-icon">▦</span><div><h2>Our Calculators &amp; Tools</h2><p>Choose a calculator or tool below to get started.</p></div></div><button class="view-all" onclick="openMenu()">View All Tools&nbsp; →</button></div>
+<div id="cards">
+
+<!-- 1 PERCENTAGE -->
+<article class="card tool-card" data-name="percentage calculator">
+<div class="card-head"><div class="icon blue">%</div><div><h2>Percentage Calculator</h2><p>Find percentages, increase or decrease</p></div></div>
+<button class="open" aria-label="Open calculator" onclick="toggleCalc('percentage')">→</button>
+<div id="percentage" class="calculator"><h3>Percentage Calculator</h3>
+<div class="modes"><button id="pm1" class="sel" onclick="pmode(1)">X% of Y</button><button id="pm2" onclick="pmode(2)">X is what %?</button><button id="pm3" onclick="pmode(3)">Increase / Decrease</button></div>
+<div id="p1"><label>Percentage (%)</label><input id="p1a" type="number" placeholder="e.g. 20"><label>Number</label><input id="p1b" type="number" placeholder="e.g. 500"></div>
+<div id="p2" style="display:none"><label>Value</label><input id="p2a" type="number"><label>Total</label><input id="p2b" type="number"></div>
+<div id="p3" style="display:none"><label>Original value</label><input id="p3a" type="number"><label>New value</label><input id="p3b" type="number"></div>
+<button class="calc-btn" onclick="calcPercent()">Calculate</button><div id="presult" class="result"></div></div></article>
+
+<!-- 2 GRADE -->
+<article class="card tool-card" data-name="grade calculator">
+<div class="card-head"><div class="icon purple">A</div><div><h2>Grade Calculator</h2><p>Calculate your grade from marks</p></div></div>
+<button class="open" aria-label="Open calculator" onclick="toggleCalc('grade')">→</button>
+<div id="grade" class="calculator"><h3>Grade Calculator</h3><label>Marks obtained</label><input id="gmarks" type="number" placeholder="e.g. 82"><label>Total marks</label><input id="gtotal" type="number" placeholder="e.g. 100"><button class="calc-btn" onclick="calcGrade()">Calculate</button><div id="graderesult" class="result"></div></div></article>
+
+<!-- 3 GPA -->
+<article class="card tool-card" data-name="gpa calculator">
+<div class="card-head"><div class="icon green">G</div><div><h2>GPA Calculator</h2><p>Calculate GPA from course grades</p></div></div>
+<button class="open" aria-label="Open calculator" onclick="toggleCalc('gpa')">→</button>
+<div id="gpa" class="calculator"><h3>GPA Calculator</h3><label>Grade points (comma separated)</label><input id="gpavalues" type="text" placeholder="e.g. 4, 3.5, 3, 4"><label>Credit hours (comma separated)</label><input id="gpacredits" type="text" placeholder="e.g. 3, 3, 3, 3"><button class="calc-btn" onclick="calcGPA()">Calculate GPA</button><div id="gparesult" class="result"></div></div></article>
+
+<!-- 4 CGPA -->
+<article class="card tool-card" data-name="cgpa calculator">
+<div class="card-head"><div class="icon blue">C</div><div><h2>CGPA Calculator</h2><p>Calculate cumulative GPA</p></div></div>
+<button class="open" aria-label="Open calculator" onclick="toggleCalc('cgpa')">→</button>
+<div id="cgpa" class="calculator"><h3>CGPA Calculator</h3><label>Semester GPAs (comma separated)</label><input id="cgpavalues" type="text" placeholder="e.g. 3.2, 3.5, 3.7"><label>Credit hours (optional, comma separated)</label><input id="cgpacredits" type="text" placeholder="e.g. 15, 18, 16"><button class="calc-btn" onclick="calcCGPA()">Calculate CGPA</button><div id="cgparesult" class="result"></div></div></article>
+
+<!-- 5 ATTENDANCE -->
+<article class="card tool-card" data-name="attendance calculator">
+<div class="card-head"><div class="icon cyan">✓</div><div><h2>Attendance Calculator</h2><p>Check attendance percentage</p></div></div>
+<button class="open" aria-label="Open calculator" onclick="toggleCalc('attendance')">→</button>
+<div id="attendance" class="calculator"><h3>Attendance Calculator</h3><label>Classes attended</label><input id="attended" type="number"><label>Total classes</label><input id="totalclasses" type="number"><button class="calc-btn" onclick="calcAttendance()">Calculate</button><div id="attresult" class="result"></div></div></article>
+
+<!-- 6 REQUIRED MARKS -->
+<article class="card tool-card" data-name="required marks calculator">
+<div class="card-head"><div class="icon orange">★</div><div><h2>Required Marks Calculator</h2><p>Find marks needed to reach a target</p></div></div>
+<button class="open" aria-label="Open calculator" onclick="toggleCalc('required')">→</button>
+<div id="required" class="calculator"><h3>Required Marks</h3><label>Current marks</label><input id="r_current" type="number"><label>Marks already possible</label><input id="r_done" type="number"><label>Remaining marks</label><input id="r_remaining" type="number"><label>Target percentage</label><input id="r_target" type="number" placeholder="e.g. 80"><button class="calc-btn" onclick="calcRequired()">Calculate</button><div id="reqresult" class="result"></div></div></article>
+
+<!-- 7 AVERAGE -->
+<article class="card tool-card" data-name="average calculator">
+<div class="card-head"><div class="icon purple">x̄</div><div><h2>Average Calculator</h2><p>Calculate the average of values</p></div></div>
+<button class="open" aria-label="Open calculator" onclick="toggleCalc('average')">→</button>
+<div id="average" class="calculator"><h3>Average Calculator</h3><label>Numbers (comma separated)</label><input id="avgvalues" type="text" placeholder="e.g. 10, 20, 30, 40"><button class="calc-btn" onclick="calcAverage()">Calculate</button><div id="avgresult" class="result"></div></div></article>
+
+<!-- 8 EXAM COUNTDOWN -->
+<article class="card tool-card" data-name="exam countdown">
+<div class="card-head"><div class="icon red">⏱</div><div><h2>Exam Countdown</h2><p>See time remaining until your exam</p></div></div>
+<button class="open" aria-label="Open calculator" onclick="toggleCalc('exam')">→</button>
+<div id="exam" class="calculator"><h3>Exam Countdown</h3><label>Exam date</label><input id="examdate" type="datetime-local"><button class="calc-btn" onclick="calcExam()">Check Countdown</button><div id="examresult" class="result"></div></div></article>
+
+<!-- 9 DISCOUNT -->
+<article class="card tool-card" data-name="discount calculator">
+<div class="card-head"><div class="icon orange">◇</div><div><h2>Discount Calculator</h2><p>Calculate sale price and savings</p></div></div>
+<button class="open" aria-label="Open calculator" onclick="toggleCalc('discount')">→</button>
+<div id="discount" class="calculator"><h3>Discount Calculator</h3><label>Original price</label><input id="dprice" type="number"><label>Discount (%)</label><input id="drate" type="number"><button class="calc-btn" onclick="calcDiscount()">Calculate</button><div id="dresult" class="result"></div></div></article>
+
+<!-- 10 LOAN -->
+<article class="card tool-card" data-name="loan calculator">
+<div class="card-head"><div class="icon purple">♜</div><div><h2>Loan Calculator</h2><p>Estimate monthly loan payments</p></div></div>
+<button class="open" aria-label="Open calculator" onclick="toggleCalc('loan')">→</button>
+<div id="loan" class="calculator"><h3>Loan Calculator</h3><label>Loan amount</label><input id="lamount" type="number"><label>Annual interest (%)</label><input id="lrate" type="number"><label>Term (years)</label><input id="lyears" type="number"><button class="calc-btn" onclick="calcLoan()">Calculate</button><div id="loanresult" class="result"></div></div></article>
+
+<!-- 11 CURRENCY -->
+<article class="card tool-card" data-name="currency converter">
+<div class="card-head"><div class="icon green">⇄</div><div><h2>Currency Converter</h2><p>Convert common currencies instantly</p></div></div>
+<button class="open" aria-label="Open calculator" onclick="toggleCalc('currency')">→</button>
+<div id="currency" class="calculator"><h3>Currency Converter</h3><label>Amount</label><input id="camount" type="number"><label>From</label><select id="cfrom"><option>USD</option><option>EUR</option><option>GBP</option><option>PKR</option><option>AED</option><option>SAR</option><option>INR</option></select><label>To</label><select id="cto"><option>PKR</option><option>USD</option><option>EUR</option><option>GBP</option><option>AED</option><option>SAR</option><option>INR</option></select><button class="calc-btn" onclick="calcCurrency()">Convert</button><div id="currencyresult" class="result"></div></div></article>
+
+<!-- 12 AGE -->
+<article class="card tool-card" data-name="age calculator">
+<div class="card-head"><div class="icon cyan">□</div><div><h2>Age Calculator</h2><p>Calculate your exact age</p></div></div>
+<button class="open" aria-label="Open calculator" onclick="toggleCalc('age')">→</button>
+<div id="age" class="calculator"><h3>Age Calculator</h3><label>Date of birth</label><input id="dob" type="date"><button class="calc-btn" onclick="calcAge()">Calculate</button><div id="ageresult" class="result"></div></div></article>
+
+<!-- 13 BMI -->
+<article class="card tool-card" data-name="bmi calculator">
+<div class="card-head"><div class="icon purple">♙</div><div><h2>BMI Calculator</h2><p>Check your body mass index</p></div></div>
+<button class="open" aria-label="Open calculator" onclick="toggleCalc('bmi')">→</button>
+<div id="bmi" class="calculator"><h3>BMI Calculator</h3><label>Weight (kg)</label><input id="bweight" type="number"><label>Height (cm)</label><input id="bheight" type="number"><button class="calc-btn" onclick="calcBMI()">Calculate</button><div id="bmiresult" class="result"></div></div></article>
+
+<!-- 14 UNIT -->
+<article class="card tool-card" data-name="unit converter">
+<div class="card-head"><div class="icon blue">⌁</div><div><h2>Unit Converter</h2><p>Convert length, weight and temperature</p></div></div>
+<button class="open" aria-label="Open calculator" onclick="toggleCalc('unit')">→</button>
+<div id="unit" class="calculator"><h3>Unit Converter</h3><label>Category</label><select id="ucat" onchange="units()"><option value="length">Length</option><option value="weight">Weight</option><option value="temp">Temperature</option></select><label>Value</label><input id="uvalue" type="number"><label>From</label><select id="ufrom"></select><label>To</label><select id="uto"></select><button class="calc-btn" onclick="calcUnit()">Convert</button><div id="unitresult" class="result"></div></div></article>
+
+</div>
+</main>
+
+<div class="suggest"><div class="suggest-left"><div class="suggest-icon">✧</div><div><h2>Need something else?</h2><p>We’re constantly adding new calculators and tools to make your life easier.</p></div></div></div>
+<footer id="footer">
+<div class="footer-brand"><span class="logo-mark">%</span><b>Quick<span>Percent</span></b></div>
+<div>© 2025 QuickPercent. All rights reserved.</div>
+<div class="footer-nav"><a href="#">Home</a><a href="#cards">Calculators</a><a href="#cards">Tools</a><a href="#footer">About</a></div>
+<div class="footer-social">f &nbsp;♥ &nbsp;▶ &nbsp;in</div>
+</footer>
+
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+<div id="sheet" class="sheet" role="dialog" aria-modal="true">
+<div class="handle"></div>
+<h2>All Calculators</h2>
+<div class="grid">
+<button class="item" onclick="go('percentage')"><span class="mini blue">%</span><b>Percentage</b></button>
+<button class="item" onclick="go('grade')"><span class="mini purple">A</span><b>Grade</b></button>
+<button class="item" onclick="go('gpa')"><span class="mini green">G</span><b>GPA</b></button>
+<button class="item" onclick="go('cgpa')"><span class="mini blue">C</span><b>CGPA</b></button>
+<button class="item" onclick="go('attendance')"><span class="mini cyan">✓</span><b>Attendance</b></button>
+<button class="item" onclick="go('required')"><span class="mini orange">★</span><b>Required Marks</b></button>
+<button class="item" onclick="go('average')"><span class="mini purple">x̄</span><b>Average</b></button>
+<button class="item" onclick="go('exam')"><span class="mini red">⏱</span><b>Exam Countdown</b></button>
+<button class="item" onclick="go('discount')"><span class="mini orange">◇</span><b>Discount</b></button>
+<button class="item" onclick="go('loan')"><span class="mini purple">♜</span><b>Loan</b></button>
+<button class="item" onclick="go('currency')"><span class="mini green">⇄</span><b>Currency</b></button>
+<button class="item" onclick="go('age')"><span class="mini cyan">□</span><b>Age</b></button>
+<button class="item" onclick="go('bmi')"><span class="mini purple">♙</span><b>BMI</b></button>
+<button class="item" onclick="go('unit')"><span class="mini blue">⌁</span><b>Unit Converter</b></button>
+</div>
+</div>
+
+<script>
+function $(id){return document.getElementById(id)}
+function show(id,text){$(id).innerHTML=text;$(id).classList.add('show')}
+function toggleCalc(id){
+  const target=$(id), card=target?target.closest('.card'):null;
+  document.querySelectorAll('#cards .calculator.active').forEach(c=>{
+    if(c!==target){c.classList.remove('active'); const owner=c.closest('.card'); if(owner) owner.classList.remove('expanded');}
+  });
+  if(!target)return;
+  const opening=!target.classList.contains('active');
+  target.classList.toggle('active', opening);
+  if(card)card.classList.toggle('expanded', opening);
+  if(opening)setTimeout(()=>target.scrollIntoView({behavior:'smooth',block:'center'}),50);
+}
+function openMenu(){$('overlay').classList.add('show');$('sheet').classList.add('show');document.body.classList.add('lock')}
+function closeMenu(){$('overlay').classList.remove('show');$('sheet').classList.remove('show');document.body.classList.remove('lock')}
+function go(id){closeMenu();toggleCalc(id)}
+function fmt(n){return Number(n).toLocaleString(undefined,{maximumFractionDigits:2})}
+function pmode(n){['p1','p2','p3'].forEach((x,i)=>$(x).style.display=i===n-1?'block':'none');['pm1','pm2','pm3'].forEach((x,i)=>$(x).classList.toggle('sel',i===n-1));$('presult').classList.remove('show')}
+function calcPercent(){
+let r;
+if($('p1').style.display!=='none'){let a=+$('p1a').value,b=+$('p1b').value;r=isFinite(a)&&isFinite(b)?fmt(a*b/100):'Enter valid values.'}
+else if($('p2').style.display!=='none'){let a=+$('p2a').value,b=+$('p2b').value;r=b?fmt(a/b*100)+'%':'Enter a valid total.'}
+else{let a=+$('p3a').value,b=+$('p3b').value;r=a?fmt((b-a)/Math.abs(a)*100)+'% '+(b>=a?'increase':'decrease'):'Enter a valid original value.'}
+show('presult','Result: <strong>'+r+'</strong>')}
+
+function calcGrade(){
+  let m=+$('gmarks').value,t=+$('gtotal').value;
+  if(!isFinite(m)||!isFinite(t)||t<=0){show('graderesult','Enter valid marks.');return}
+  let p=m/t*100,grade=p>=90?'A+':p>=80?'A':p>=70?'B':p>=60?'C':p>=50?'D':'F';
+  show('graderesult','Percentage: <strong>'+fmt(p)+'%</strong><br>Grade: <strong>'+grade+'</strong>');
+}
+function parseNums(id){
+  return $(id).value.split(',').map(x=>Number(x.trim())).filter(x=>isFinite(x));
+}
+function calcGPA(){
+  let g=parseNums('gpavalues'),c=parseNums('gpacredits');
+  if(!g.length||g.length!==c.length||c.some(x=>x<=0)){show('gparesult','Enter matching grade points and credit hours.');return}
+  let tc=c.reduce((a,b)=>a+b,0),sum=g.reduce((s,x,i)=>s+x*c[i],0);
+  show('gparesult','GPA: <strong>'+fmt(sum/tc)+'</strong>');
+}
+function calcCGPA(){
+  let g=parseNums('cgpavalues'),c=parseNums('cgpacredits');
+  if(!g.length){show('cgparesult','Enter semester GPAs.');return}
+  if(c.length){
+    if(g.length!==c.length||c.some(x=>x<=0)){show('cgparesult','Enter matching credit hours.');return}
+    let tc=c.reduce((a,b)=>a+b,0),sum=g.reduce((s,x,i)=>s+x*c[i],0); show('cgparesult','CGPA: <strong>'+fmt(sum/tc)+'</strong>');
+  }else show('cgparesult','CGPA: <strong>'+fmt(g.reduce((a,b)=>a+b,0)/g.length)+'</strong>');
+}
+function calcAttendance(){
+  let a=+$('attended').value,t=+$('totalclasses').value;
+  if(!isFinite(a)||!isFinite(t)||t<=0){show('attresult','Enter valid class counts.');return}
+  show('attresult','Attendance: <strong>'+fmt(a/t*100)+'%</strong>');
+}
+function calcRequired(){
+  let cur=+$('r_current').value,done=+$('r_done').value,rem=+$('r_remaining').value,target=+$('r_target').value;
+  if(!isFinite(cur)||!isFinite(done)||!isFinite(rem)||!isFinite(target)||done+rem<=0){show('reqresult','Enter valid values.');return}
+  let needed=target/100*(done+rem)-cur;
+  show('reqresult','Required marks: <strong>'+fmt(needed)+'</strong> out of '+fmt(rem));
+}
+function calcAverage(){
+  let a=parseNums('avgvalues');
+  if(!a.length){show('avgresult','Enter valid numbers.');return}
+  show('avgresult','Average: <strong>'+fmt(a.reduce((x,y)=>x+y,0)/a.length)+'</strong>');
+}
+function calcExam(){
+  let d=new Date($('examdate').value),now=new Date();
+  if(isNaN(d)){show('examresult','Please select an exam date and time.');return}
+  let ms=d-now;
+  if(ms<=0){show('examresult','The exam date/time has passed.');return}
+  let days=Math.floor(ms/86400000),hours=Math.floor(ms%86400000/3600000),mins=Math.floor(ms%3600000/60000);
+  show('examresult','Time remaining: <strong>'+days+' days, '+hours+' hours, '+mins+' minutes</strong>');
+}
+
+function calcDiscount(){let p=+$('dprice').value,r=+$('drate').value,s=p*r/100;show('dresult','Savings: <strong>'+fmt(s)+'</strong><br>Sale price: <strong>'+fmt(p-s)+'</strong>')}
+function calcAge(){let d=new Date($('dob').value),n=new Date();if(isNaN(d)){show('ageresult','Please enter your date of birth.');return}let y=n.getFullYear()-d.getFullYear(),m=n.getMonth()-d.getMonth(),day=n.getDate()-d.getDate();if(day<0)m--;if(m<0){y--;m+=12}show('ageresult','Exact age: <strong>'+y+' years, '+m+' months</strong>')}
+function calcBMI(){let w=+$('bweight').value,h=+$('bheight').value/100;if(!w||!h){show('bmiresult','Enter valid weight and height.');return}let b=w/(h*h),cat=b<18.5?'Underweight':b<25?'Normal':b<30?'Overweight':'Obesity';show('bmiresult','BMI: <strong>'+fmt(b)+'</strong><br>Category: <strong>'+cat+'</strong>')}
+function loanPay(P,rate,months){let r=rate/100/12;return r?P*r*Math.pow(1+r,months)/(Math.pow(1+r,months)-1):P/months}
+function calcLoan(){let P=+$('lamount').value,r=+$('lrate').value,n=+$('lyears').value*12;if(!P||!n){show('loanresult','Enter valid values.');return}let m=loanPay(P,r,n);show('loanresult','Monthly payment: <strong>'+fmt(m)+'</strong><br>Total payment: '+fmt(m*n))}
+const rates={USD:1,EUR:0.855,GBP:0.735,PKR:280,AED:3.6725,SAR:3.75,INR:83.8}
+function calcCurrency(){let a=+$('camount').value,f=$('cfrom').value,t=$('cto').value;if(!a){show('currencyresult','Enter an amount.');return}let out=a/rates[f]*rates[t];show('currencyresult',fmt(a)+' '+f+' ≈ <strong>'+fmt(out)+' '+t+'</strong><br><small>Indicative built-in rates; not live market rates.</small>')}
+function units(){let cat=$('ucat').value,sets={length:['m','km','cm','ft','in'],weight:['kg','g','lb','oz'],temp:['C','F','K']},arr=sets[cat];$('ufrom').innerHTML=arr.map(x=>'<option>'+x+'</option>').join('');$('uto').innerHTML=arr.map(x=>'<option>'+x+'</option>').join('')}
+function unitVal(v,u){let m={m:1,km:1000,cm:.01,ft:.3048,in:.0254,kg:1,g:.001,lb:.453592,oz:.0283495};return m[u]?v*m[u]:v}
+function calcUnit(){let v=+$('uvalue').value,f=$('ufrom').value,t=$('uto').value,cat=$('ucat').value;if(cat==='temp'){let c=f==='C'?v:f==='F'?(v-32)*5/9:v-273.15;let o=t==='C'?c:t==='F'?c*9/5+32:c+273.15;show('unitresult','Result: <strong>'+fmt(o)+' '+t+'</strong>');return}show('unitresult','Result: <strong>'+fmt(unitVal(v,f)/unitVal(1,t))+' '+t+'</strong>')}
+function sci(type){let n=+$('snum').value,r=type==='sqrt'?Math.sqrt(n):type==='square'?n*n:type==='log'?Math.log10(n):Math.sin(n*Math.PI/180);show('sresult','Result: <strong>'+fmt(r)+'</strong>')}
+function calcEMI(){let p=+$('eprincipal').value,r=+$('erate').value/1200,n=+$('emonths').value;if(!p||!n){show('emiresult','Enter valid values.');return}let m=r?p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):p/n;show('emiresult','Monthly EMI: <strong>'+fmt(m)+'</strong><br>Total payment: '+fmt(m*n))}
+function calcInvestment(){let p=+$('iinvest').value,r=+$('irate').value/100,n=+$('iyears').value;if(!p||!n){show('investmentresult','Enter valid values.');return}let f=p*Math.pow(1+r,n);show('investmentresult','Future value: <strong>'+fmt(f)+'</strong><br>Estimated gain: '+fmt(f-p))}
+function calcChange(){let a=+$('oldv').value,b=+$('newv').value;if(!a){show('changeresult','Old value cannot be zero.');return}let x=(b-a)/Math.abs(a)*100;show('changeresult','Percentage change: <strong>'+fmt(x)+'%</strong>')}
+function calcTip(){let b=+$('tbill').value,r=+$('trate').value,p=Math.max(1,+$('tpeople').value||1),tip=b*r/100,total=b+tip;show('tipresult','Tip amount: <strong>'+fmt(tip)+'</strong><br>Total bill: '+fmt(total)+'<br>Per person: '+fmt(total/p))}
+function filterCards(){let q=$('search').value.toLowerCase();document.querySelectorAll('.tool-card').forEach(c=>c.style.display=c.dataset.name.includes(q)?'block':'none')}
+units();
+</script>
+
+<script id="individual-card-expand-js">
+(function(){
+  const oldToggle = window.toggleCalc;
+  if (typeof oldToggle !== 'function') return;
+  window.toggleCalc = function(id){
+    oldToggle(id);
+    document.querySelectorAll('#cards .card').forEach(card => {
+      card.classList.remove('expanded');
+    });
+    const el = document.getElementById(id);
+    if (el) {
+      const card = el.closest('.card');
+      if (card && el.classList.contains('active')) card.classList.add('expanded');
+    }
+  };
+})();
+</script>
+<script id="unit-init">document.addEventListener('DOMContentLoaded',function(){if(typeof units==='function')units();});</script>
+</body>
+</html>
