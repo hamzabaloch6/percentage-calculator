@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>CGPA Calculator – Calculate CGPA Easily | QuickPercent</title>
+
+<meta name="description" content="Free CGPA Calculator to calculate your cumulative grade point average from semester GPA and credit hours. Fast, simple and accurate.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://quickpercent.github.io/cgpa-calculator/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="CGPA Calculator | QuickPercent">
+<meta property="og:description" content="Calculate your CGPA instantly using GPA and credit hours with QuickPercent's free CGPA Calculator.">
+<meta property="og:url" content="https://quickpercent.github.io/cgpa-calculator/">
+<meta property="og:site_name" content="QuickPercent">
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;
+background:#fff;
+color:#102b55;
+font-family:Arial,Helvetica,sans-serif
+}
+button,input{font:inherit}
+button{cursor:pointer}
+
+.header{
+height:66px;
+background:#fff;
+display:flex;
+align-items:center;
+padding:0 5%;
+border-bottom:1px solid #edf1f6;
+position:sticky;
+top:0;
+z-index:10
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:25px;
+font-weight:900;
+letter-spacing:-1px
+}
+
+.logo-mark{
+width:38px;
+height:38px;
+border-radius:50%;
+display:grid;
+place-items:center;
+background:linear-gradient(135deg,#1764df,#16b98a);
+color:#fff;
+font-size:18px
+}
+
+.logo-blue{color:#102b55}
+.logo-blue2{color:#1764df}
+
+.nav{
+display:flex;
+gap:38px;
+margin:auto
+}
+
+.nav a{
+color:#102b55;
+text-decoration:none;
+font-size:13px;
+font-weight:700;
+padding:23px 0 20px
+}
+
+.nav a.active{
+color:#1764df;
+border-bottom:2px solid #1764df
+}
+
+.page{
+max-width:900px;
+margin:auto;
+padding:28px 20px 45px
+}
+
+.breadcrumb{
+font-size:12px;
+color:#63738b;
+margin:0 0 18px
+}
+
+.breadcrumb a{
+color:#1764df;
+text-decoration:none
+}
+
+.content-card{
+background:#fff;
+border:1px solid #e1e9f1;
+border-radius:14px;
+padding:22px;
+box-shadow:0 4px 15px rgba(30,55,95,.025);
+margin-bottom:18px
+}
+
+.content-card h1{
+font-size:34px;
+line-height:1.15;
+margin:0 0 10px;
+color:#102b55
+}
+
+.content-card h2{
+font-size:22px;
+margin:0 0 10px;
+color:#102b55
+}
+
+.content-card p,
+.content-card li{
+color:#5f718d;
+font-size:14px;
+line-height:1.7
+}
+
+.content-card ol{
+padding-left:22px
+}
+
+.calc-box{
+background:#f8fbff;
+border:1px solid #dfe7f0;
+border-radius:13px;
+padding:18px
+}
+
+label{
+display:block;
+font-size:12px;
+font-weight:800;
+margin:11px 0 6px
+}
+
+input{
+width:100%;
+height:43px;
+border:1px solid #ccd5e2;
+border-radius:10px;
+background:#fff;
+padding:0 11px;
+color:#17345e
+}
+
+.calc-btn{
+width:100%;
+min-height:43px;
+border:0;
+border-radius:10px;
+background:#1764df;
+color:#fff;
+font-weight:800;
+margin-top:14px
+}
+
+.result{
+display:none;
+margin-top:13px;
+padding:14px;
+border-radius:10px;
+background:#eaf2ff;
+font-size:14px;
+line-height:1.7
+}
+
+.result.show{
+display:block
+}
+
+.formula{
+background:#f0f7ff;
+border-left:4px solid #1764df;
+padding:13px 15px;
+border-radius:8px;
+color:#17345e;
+margin:12px 0
+}
+
+.example{
+background:#f6f8fb;
+padding:13px 15px;
+border-radius:8px;
+color:#17345e
+}
+
+footer{
+background:#102b55;
+color:#fff;
+padding:17px 5%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+font-size:11px
+}
+
+.footer-brand{
+display:flex;
+align-items:center;
+gap:7px
+}
+
+.footer-brand .logo-mark{
+width:31px;
+height:31px;
+font-size:15px
+}
+
+.footer-brand b{
+font-size:20px
+}
+
+.footer-brand b span{
+color:#20c49b
+}
+
+.footer-nav{
+display:flex;
+gap:20px
+}
+
+.footer-nav a{
+color:#fff;
+text-decoration:none
+}
+
+@media(max-width:600px){
+.header{
+height:61px;
+padding:0 15px
+}
+
+.logo{
+font-size:21px
+}
+
+.logo-mark{
+width:33px;
+height:33px
+}
+
+.nav{
+display:none
+}
+
+.page{
+padding:20px 14px 34px
+}
+
+.content-card{
+padding:17px
+}
+
+.content-card h1{
+font-size:28px
+}
+
+footer{
+display:block;
+text-align:center;
+line-height:1.8
+}
+
+.footer-nav{
+justify-content:center;
+margin-top:7px
+}
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+<span class="logo-mark">Q</span>
+<span class="logo-blue">
+Quick<span class="logo-blue2">Percent</span>
+</span>
+</div>
+
+<nav class="nav">
+<a href="https://quickpercent.github.io/">Home</a>
+<a class="active" href="https://quickpercent.github.io/">Calculators</a>
+<a href="https://quickpercent.github.io/">Tools</a>
+</nav>
+
+</header>
+
+<main class="page">
+
+<div class="breadcrumb">
+<a href="https://quickpercent.github.io/">Home</a>
+→ Calculators → CGPA Calculator
+</div>
+
+<section class="content-card">
+
+<h1>CGPA Calculator</h1>
+
+<p>
+Use this free CGPA Calculator to calculate your cumulative grade point
+average from your semester GPA and credit hours. Enter your GPA and
+credit hours for each semester and get your CGPA instantly.
+</p>
+
+<div class="calc-box">
+
+<label>Semester 1 GPA</label>
+<input id="gpa1" type="number" step="0.01" min="0" max="4" placeholder="e.g. 3.25">
+
+<label>Semester 1 Credit Hours</label>
+<input id="credit1" type="number" step="0.5" min="0" placeholder="e.g. 15">
+
+<label>Semester 2 GPA</label>
+<input id="gpa2" type="number" step="0.01" min="0" max="4" placeholder="e.g. 3.50">
+
+<label>Semester 2 Credit Hours</label>
+<input id="credit2" type="number" step="0.5" min="0" placeholder="e.g. 18">
+
+<label>Semester 3 GPA</label>
+<input id="gpa3" type="number" step="0.01" min="0" max="4" placeholder="e.g. 3.20">
+
+<label>Semester 3 Credit Hours</label>
+<input id="credit3" type="number" step="0.5" min="0" placeholder="e.g. 15">
+
+<button class="calc-btn" onclick="calculateCGPA()">
+Calculate CGPA
+</button>
+
+<div id="result" class="result"></div>
+
+</div>
+
+</section>
+
+<section class="content-card">
+
+<h2>How to use the CGPA Calculator</h2>
+
+<ol>
+<li>Enter your GPA for each semester.</li>
+<li>Enter the credit hours for each semester.</li>
+<li>Leave unused semester fields empty if necessary.</li>
+<li>Tap Calculate CGPA.</li>
+<li>Your cumulative GPA will appear instantly.</li>
+</ol>
+
+</section>
+
+<section class="content-card">
+
+<h2>CGPA calculation formula</h2>
+
+<div class="formula">
+<strong>CGPA =</strong>
+Σ (GPA × Credit Hours) ÷ Σ Credit Hours
+</div>
+
+<p>
+The calculator gives more weight to semesters with higher credit hours.
+This provides a weighted cumulative GPA.
+</p>
+
+</section>
+
+<section class="content-card">
+
+<h2>Example</h2>
+
+<div class="example">
+
+<strong>Semester 1:</strong> GPA 3.25 × 15 credits
+<br>
+<strong>Semester 2:</strong> GPA 3.50 × 18 credits
+<br>
+<strong>Semester 3:</strong> GPA 3.20 × 15 credits
+
+<br><br>
+
+CGPA =
+(3.25×15 + 3.50×18 + 3.20×15)
+÷ (15+18+15)
+
+<br><br>
+
+CGPA = <strong>3.32</strong>
+
+</div>
+
+</section>
+
+<section class="content-card">
+
+<h2>Frequently asked questions</h2>
+
+<p>
+<strong>What is CGPA?</strong><br>
+CGPA stands for Cumulative Grade Point Average and represents your
+overall academic performance across semesters.
+</p>
+
+<p>
+<strong>How is CGPA calculated?</strong><br>
+CGPA is calculated by multiplying each semester GPA by its credit hours,
+adding the results, and dividing by the total credit hours.
+</p>
+
+<p>
+<strong>Can I calculate CGPA for multiple semesters?</strong><br>
+Yes. Enter the GPA and credit hours for each semester available.
+</p>
+
+<p>
+<strong>Does credit hour affect CGPA?</strong><br>
+Yes. A semester with more credit hours has a greater effect on the
+weighted CGPA.
+</p>
+
+</section>
+
+<section class="content-card">
+
+<h2>More calculators</h2>
+
+<p>
+<a href="https://quickpercent.github.io/"
+style="color:#1764df;font-weight:800;text-decoration:none">
+Explore all QuickPercent calculators →
+</a>
+</p>
+
+</section>
+
+</main>
+
+<footer>
+
+<div class="footer-brand">
+<span class="logo-mark">Q</span>
+<b>Quick<span>Percent</span></b>
+</div>
+
+<div>© 2025 QuickPercent. All rights reserved.</div>
+
+<div class="footer-nav">
+<a href="https://quickpercent.github.io/">Home</a>
+<a href="https://quickpercent.github.io/">Calculators</a>
+</div>
+
+</footer>
+
+<script>
+
+function calculateCGPA(){
+
+let totalPoints = 0;
+let totalCredits = 0;
+
+for(let i = 1; i <= 3; i++){
+
+let gpa = parseFloat(document.getElementById("gpa" + i).value);
+let credits = parseFloat(document.getElementById("credit" + i).value);
+
+if(isNaN(gpa) && isNaN(credits)){
+continue;
+}
+
+if(isNaN(gpa) || isNaN(credits)){
+showError("Please enter both GPA and credit hours for each semester.");
+return;
+}
+
+if(gpa < 0 || gpa > 4){
+showError("GPA must be between 0 and 4.");
+return;
+}
+
+if(credits <= 0){
+showError("Credit hours must be greater than 0.");
+return;
+}
+
+totalPoints += gpa * credits;
+totalCredits += credits;
+
+}
+
+if(totalCredits === 0){
+showError("Please enter at least one semester GPA and credit hours.");
+return;
+}
+
+let cgpa = totalPoints / totalCredits;
+
+let result = document.getElementById("result");
+
+result.innerHTML =
+"<strong>CGPA:</strong> " + cgpa.toFixed(2) +
+"<br><strong>Total Credit Hours:</strong> " + totalCredits;
+
+result.classList.add("show");
+
+}
+
+function showError(message){
+
+let result = document.getElementById("result");
+
+result.innerHTML = message;
+result.classList.add("show");
+
+}
+
+</script>
+
+</body>
+  </html>
