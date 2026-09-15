@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
     <loc>https://quickpercent.github.io/</loc>
   </url>
+
+  <url>
+    <loc>https://quickpercent.github.io/age-calculator/</loc>
+  </url>
+
+  <url>
+    <loc>https://quickpercent.github.io/attendance-calculator/</loc>
+  </url>
+
+  <url>
+    <loc>https://quickpercent.github.io/average-calculator/</loc>
+  </url>
+
+  <url>
+    <loc>https://quickpercent.github.io/bmi-calculator/</loc>
+  </url>
+
+  <url>
+    <loc>https://quickpercent.github.io/cgpa-calculator/</loc>
+  </url>
+
+  <url>
+    <loc>https://quickpercent.github.io/currency-converter/</loc>
+  </url>
+
+  <url>
+    <loc>https://quickpercent.github.io/discount-calculator/</loc>
+  </url>
+
+  <url>
+    <loc>https://quickpercent.github.io/exam-countdown/</loc>
+  </url>
+
+  <url>
+    <loc>https://quickpercent.github.io/gpa-calculator/</loc>
+  </url>
+
+  <url>
+    <loc>https://quickpercent.github.io/grade-calculator/</loc>
+  </url>
+
+  <url>
+    <loc>https://quickpercent.github.io/loan-calculator/</loc>
+  </url>
+
+  <url>
+    <loc>https://quickpercent.github.io/percentage-calculator/</loc>
+  </url>
+
+  <url>
+    <loc>https://quickpercent.github.io/required-marks-calculator/</loc>
+  </url>
+
+  <url>
+    <loc>https://quickpercent.github.io/unit-converter/</loc>
+  </url>
+
 </urlset>
